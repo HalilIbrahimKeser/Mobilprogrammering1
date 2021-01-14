@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lab1_1">
+    package="com.example.lab1_2">
 
     <application
         android:allowBackup="true"
@@ -10,15 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobilprogrammering">
 
-        <activity android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity_Lab1_1">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity_Lab1_1" />
-        </activity>
-
-        <activity android:name=".MainActivity_Lab1_1">
+        <activity android:name=".MainActivity_Lab1_2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

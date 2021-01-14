@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_Lab1_1 extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.lab1_1.MESSAGE";
 
     @Override
