@@ -1,12 +1,9 @@
 package com.example.lab1_2;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +16,6 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
     public static final String MY_DATETIME_FORMAT = "dd.MM.yyyy hh:mm:ss";
     private TextView tvHeader;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +27,6 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
         tvHeader.setText("Beregner tidsdifferanse fra " + dateNow + " til ...");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void beregnDato(View view) {
         Calendar calendarNow = Calendar.getInstance();
         String dateNow = new SimpleDateFormat(MY_DATETIME_FORMAT).format(calendarNow.getTime());
