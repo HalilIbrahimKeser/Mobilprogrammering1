@@ -1,3 +1,5 @@
+include ':lab1_4'
+include ':lab1_3'
 include ':datecalc'
 include ':lab1_2'
 include ':lab1_1'
