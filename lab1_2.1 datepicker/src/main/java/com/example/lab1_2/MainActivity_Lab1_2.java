@@ -1,16 +1,13 @@
 package com.example.lab1_2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 
@@ -18,7 +15,6 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
     public static final String MY_DATE_FORMAT = "dd.MM.yyyy";
     public static final String MY_DATETIME_FORMAT = "dd.MM.yyyy hh:mm:ss";
     private TextView tvHeader;
-    private java.util.Calendar calendarGiven=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,25 +26,6 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
 
         tvHeader = this.findViewById(R.id.tvHeader);
         tvHeader.setText("Beregner tidsdifferanse fra " + dateNow + " til ...");
-
-        // Henter referanse til calendarView:
-        CalendarView calendarView = findViewById(R.id.calendarView2);
-        // Setter listener:
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-                @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String selectedDate = dayOfMonth + "." + (month + 1) + "." + year;
-                try {
-                    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat(MY_DATE_FORMAT);
-                    calendarGiven = java.util.Calendar.getInstance();
-                    calendarGiven.setTime(simpleDateFormat.parse(selectedDate));
-                    Toast.makeText(MainActivity_Lab1_2.this, "Du valgte " + selectedDate, Toast.LENGTH_SHORT).show();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     public void beregnDato(View view) {

@@ -21,36 +21,38 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="425dp"
-        android:layout_height="523dp"
+        android:layout_width="376dp"
+        android:layout_height="203dp"
         android:layout_marginTop="25dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeader">
 
-        <CalendarView
-            android:id="@+id/calendarView2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <EditText
+            android:id="@+id/etDateGiven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:padding="10dp" />
+            android:autofillHints=""
+            android:digits="0123456789,.:"
+            android:enabled="true"
+            android:hint="@string/etDateGivenHint"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/buttonBeregn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
             android:onClick="beregnDato"
             android:padding="5dp"
             android:text="@string/buttonBeregn" />
-
     </LinearLayout>
 
     <TextView
@@ -67,5 +69,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

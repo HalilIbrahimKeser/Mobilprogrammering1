@@ -13,6 +13,7 @@ public class MainActivity_Lab1_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_lab1_1);
+
         }
 
     /** Called when the user taps the Send button */

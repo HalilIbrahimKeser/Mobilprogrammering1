@@ -5,5 +5,4 @@
     <string name="textview">TextView</string>
     <string name="etDateGivenHint">dd.MM.åååå</string>
     <string name="tvDatoBeregnet">00d 00t 00m</string>
-    <string name="calendarView2">calendarView2</string>
 </resources>
