@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">lab1_4</string>
+    <string name="app_name">Lab 1.4</string>
+    <string name="dagens_dato_er">"Dagens dato er: "</string>
+
 </resources>

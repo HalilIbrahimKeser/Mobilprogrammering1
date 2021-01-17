@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab 1.4</string>
+    <string name="Etternavn">Surname</string>
+    <string name="Fornavn">Firstname</string>
+    <string name="Poststed">Postal Adress</string>
+    <string name="Fødselsår">Birthdate</string>
+    <string name="dagens_dato_er">"Todays date is: "</string>
+</resources>
