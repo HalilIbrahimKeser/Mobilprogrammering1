@@ -1,0 +1,7 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<resources>
+    <string name="Etternavn">Etternavn</string>
+    <string name="Fornavn">Fornavn</string>
+    <string name="Poststed">Poststed</string>
+    <string name="Fødselsår">Fødselsår</string>
+</resources>

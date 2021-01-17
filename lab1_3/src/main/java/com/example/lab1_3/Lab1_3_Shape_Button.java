@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivityLab1_3 extends AppCompatActivity {
+public class Lab1_3_Shape_Button extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

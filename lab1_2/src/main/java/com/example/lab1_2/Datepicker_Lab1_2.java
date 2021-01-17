@@ -8,13 +8,12 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
 
-public class MainActivity_Lab1_2 extends AppCompatActivity {
+public class Datepicker_Lab1_2 extends AppCompatActivity {
     public static final String MY_DATE_FORMAT = "dd.MM.yyyy";
     public static final String MY_DATETIME_FORMAT = "dd.MM.yyyy hh:mm:ss";
     private TextView tvHeader;
@@ -43,7 +42,7 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
                     java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat(MY_DATE_FORMAT);
                     calendarGiven = java.util.Calendar.getInstance();
                     calendarGiven.setTime(simpleDateFormat.parse(selectedDate));
-                    Toast.makeText(MainActivity_Lab1_2.this, "Du valgte " + selectedDate, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Datepicker_Lab1_2.this, "Du valgte " + selectedDate, Toast.LENGTH_SHORT).show();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -53,7 +52,7 @@ public class MainActivity_Lab1_2 extends AppCompatActivity {
 
     public void beregnDato(View view) {
         if (calendarGiven==null) {
-            Toast.makeText(MainActivity_Lab1_2.this, "Du må velge en dato!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Datepicker_Lab1_2.this, "Du må velge en dato!", Toast.LENGTH_SHORT).show();
         } else {
             java.util.Calendar calendarNow = java.util.Calendar.getInstance();
             String dateNow = new java.text.SimpleDateFormat(MY_DATETIME_FORMAT).format(calendarNow.getTime());

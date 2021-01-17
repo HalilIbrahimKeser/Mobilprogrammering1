@@ -4,15 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityLab1_4">
+    tools:context=".InputActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="187dp">
 
+        <EditText
+            android:id="@+id/etFornavn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/Fornavn"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etEtterNavn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/Etternavn"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etPoststed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/Poststed"
+            android:inputType="textPostalAddress" />
+
+        <EditText
+            android:id="@+id/etFodselsar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/Fødselsår"
+            android:inputType="number" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
