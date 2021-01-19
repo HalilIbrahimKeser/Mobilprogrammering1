@@ -15,8 +15,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main_activity_bondesjakk" />
 
+    <include layout="@layout/content_main_activity_bondesjakk" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
