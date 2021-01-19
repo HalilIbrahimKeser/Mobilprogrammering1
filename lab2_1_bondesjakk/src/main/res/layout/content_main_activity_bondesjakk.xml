@@ -27,15 +27,11 @@
         android:id="@+id/tvA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:background="@drawable/tv_background"
-        android:hint="X"
         android:padding="30dp"
-        android:text="X"
+        android:text="@string/x"
         android:textAlignment="center"
-        android:textColor="#6B23CF"
-        android:textSize="45dp"
-        android:textStyle="bold"
+        android:textAppearance="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

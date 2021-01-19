@@ -12,5 +12,6 @@
     <string name="appnametop">Bondesjakk</string>
     <string name="spiller_o">Spiller O</string>
     <string name="spiller_x">Spiller X</string>
+    <string name="x">X</string>
 
 </resources>
