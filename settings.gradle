@@ -1,3 +1,4 @@
+include ':lab2_1_bondesjakk'
 include ':appbartest1'
 include ':lab1_4'
 include ':lab1_3'

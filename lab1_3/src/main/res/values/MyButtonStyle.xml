@@ -8,7 +8,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/button_border</item>
         <item name="android:textSize">@dimen/button_text_size</item>
-        <item name="android:background">@drawable/button_shape</item>
+        <item name="background">@drawable/button_shape</item>
         <item name="android:gravity">center</item>
     </style>
 
