@@ -1,15 +1,18 @@
 package com.example.lab2_1_bondesjakk;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Handler;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
     private TextView tvA;
@@ -24,19 +27,17 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     private TextView tvSpillerX;
     private TextView tvSpillerO;
     private TextView tvResultat;
-    private TextView tvElapsetTid;
 
     public static final String SETTINGS = "Innstillinger";
     private long elapsedSeconds = 0;
     private Timer timer;
-    private TextView tvElapsedTime;
+    public static final int MAX_TIME = 60;
+    private TextView tvElapsetTid;
+    private Handler mainHandler;
 
     private static String USER = "X";
     private static final String UserX = "X";
     private static final String UserO = "O";
-
-
-    private static final String RUTE = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,37 +57,19 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         TextView tvG = findViewById(R.id.tvG);
         TextView tvH = findViewById(R.id.tvH);
         TextView tvK = findViewById(R.id.tvK);
-        TextView tvSpillerX = findViewById(R.id.tvSpillerX);
-        TextView tvSpillerO = findViewById(R.id.tvSpillerO);
-        TextView tvResultat = findViewById(R.id.tvResultat);
-        TextView tvElapsetTid = findViewById(R.id.tvElapsetTid);
 
         //Random start user
         randomUser();
 
-        tvA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ruteValgt(tvA, USER);
-            }
-
-        });
-        tvB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ModelBondesjakk.ruteValgt(tvB, USER);
-            }
-        });
-
-        tvC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ModelBondesjakk.ruteValgt(tvC, USER);
-            }
-        });
-
-
-
+        tvA.setOnClickListener(view -> boksChoosenOfPlayer(tvA, USER));
+        tvB.setOnClickListener(view -> boksChoosenOfPlayer(tvB, USER));
+        tvC.setOnClickListener(view -> boksChoosenOfPlayer(tvC, USER));
+        tvD.setOnClickListener(view -> boksChoosenOfPlayer(tvD, USER));
+        tvE.setOnClickListener(view -> boksChoosenOfPlayer(tvE, USER));
+        tvF.setOnClickListener(view -> boksChoosenOfPlayer(tvF, USER));
+        tvG.setOnClickListener(view -> boksChoosenOfPlayer(tvG, USER));
+        tvH.setOnClickListener(view -> boksChoosenOfPlayer(tvH, USER));
+        tvK.setOnClickListener(view -> boksChoosenOfPlayer(tvK, USER));
     }
 
 
@@ -115,16 +98,12 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 toastSettings.show();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     private void randomUser() {
         TextView tvSpillerX = findViewById(R.id.tvSpillerX);
         TextView tvSpillerO = findViewById(R.id.tvSpillerO);
-
-        tvSpillerX.getResources();
-        tvSpillerO.getResources();
 
         int randomStartUser = (int) ( Math.random() * 2 + 1);
         System.out.println(randomStartUser);
@@ -141,6 +120,77 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         }
     }
 
-    private void ruteValgt(TextView view, String user) {
+    private void boksChoosenOfPlayer(TextView view, String user) {
+        if (view.getText().toString().equals(" ")){
+            view.setBackgroundResource(R.color.grey);
+            if (user.equals(UserX)) {
+                view.setText(R.string.stringX);
+                changeUser();
+            } else if (user.equals(UserO)) {
+                view.setText(R.string.stringO);
+                changeUser();
+            }else {
+                System.out.println("User is null");
+            }
+        }
+    }
+
+    void changeUser() {
+        TextView tvSpillerX = findViewById(R.id.tvSpillerX);
+        TextView tvSpillerO = findViewById(R.id.tvSpillerO);
+
+        if (USER.equals(UserX)) {
+            USER = UserO;
+            tvSpillerX.setBackgroundResource(R.color.grey);
+            tvSpillerO.setBackgroundResource(R.color.lightgreen);
+        }else {
+            USER = UserX;
+            tvSpillerO.setBackgroundResource(R.color.grey);
+            tvSpillerX.setBackgroundResource(R.color.lightgreen);
+        }
+    }
+
+    public void startTimer() {
+        timer = new Timer();
+        try {
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if (elapsedSeconds < MAX_TIME) {
+                        elapsedSeconds++;
+
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvElapsetTid.setText(String.valueOf(elapsedSeconds));
+                            }
+                        });
+                    } else {
+                        elapsedSeconds = 0;
+                        timer.cancel();
+                        timer.purge();
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvElapsetTid.setText(String.valueOf(0));
+                            }
+                        });
+                    }
+                }
+            }, 0, 1000);
+        } catch (IllegalArgumentException iae) {
+            iae.printStackTrace();
+        } catch (IllegalStateException ise) {
+            ise.printStackTrace();
+        }
+    }
+
+    public void stopTimer() {
+        if (timer!=null) {
+            elapsedSeconds = 0;
+            tvElapsetTid.setText("0");
+            timer.cancel();
+            timer.purge();
+        }
     }
 }

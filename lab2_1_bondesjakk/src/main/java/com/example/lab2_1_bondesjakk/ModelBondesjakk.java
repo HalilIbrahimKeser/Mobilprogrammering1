@@ -18,6 +18,7 @@ public class ModelBondesjakk extends MainActivityBondesjakk {
 
 
 
+
     public static void ruteValgt(View rute, String user) {
 
 

@@ -14,12 +14,11 @@
 
     <TextView
         android:id="@+id/tvA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +26,12 @@
 
     <TextView
         android:id="@+id/tvB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
 
         android:paddingTop="25dp"
-        android:text="@string/stringO"
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvC"
         app:layout_constraintStart_toEndOf="@+id/tvA"
@@ -41,14 +39,13 @@
 
     <TextView
         android:id="@+id/tvC"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +53,11 @@
 
     <TextView
         android:id="@+id/tvD"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +65,11 @@
 
     <TextView
         android:id="@+id/tvE"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringO"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvF"
@@ -83,13 +78,12 @@
 
     <TextView
         android:id="@+id/tvF"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,12 +91,11 @@
 
     <TextView
         android:id="@+id/tvG"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,12 +103,11 @@
 
     <TextView
         android:id="@+id/tvH"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringO"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvK"
@@ -124,13 +116,12 @@
 
     <TextView
         android:id="@+id/tvK"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/tv_buttons_background"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
