@@ -121,7 +121,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     }
 
     private void boksChoosenOfPlayer(TextView view, String user) {
-        if (view.getText().toString().equals(" ")){
+        String tempString = view.getText().toString();
+        if (!tempString.equalsIgnoreCase("X") || !tempString.equalsIgnoreCase("O")){
             view.setBackgroundResource(R.color.grey);
             if (user.equals(UserX)) {
                 view.setText(R.string.stringX);
@@ -132,6 +133,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             }else {
                 System.out.println("User is null");
             }
+        }else{
+            view.setBackgroundResource(R.color.lightgreen);
         }
     }
 
