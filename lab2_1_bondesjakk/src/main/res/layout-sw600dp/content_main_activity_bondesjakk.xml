@@ -19,7 +19,7 @@
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +76,7 @@
 
         android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvF"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/tvD"
@@ -134,7 +134,7 @@
         android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
 
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvF" />
 
@@ -151,7 +151,7 @@
         android:paddingEnd="15dp"
         android:text="@string/spiller_x"
         android:textAlignment="center"
-        android:textAppearance="@style/textStyle1"
+        android:textAppearance="@style/textStylePlayers"
         android:textColor="#56219F"
 
         app:layout_constraintLeft_toRightOf="parent"
@@ -171,14 +171,14 @@
         android:paddingEnd="15dp"
         android:text="@string/spiller_o"
         android:textAlignment="center"
-        android:textAppearance="@style/textStyle1"
+        android:textAppearance="@style/textStylePlayers"
         android:textColor="#CA2A72"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvK" />
 
     <TextView
-        android:id="@+id/tvTeller"
+        android:id="@+id/tvElapsetTid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -208,7 +208,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="48dp"
-        android:hint="@string/forel_pig_ingen_seier"
+        android:hint="@string/forelopig_ingen_seier"
         android:maxLines="2"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"

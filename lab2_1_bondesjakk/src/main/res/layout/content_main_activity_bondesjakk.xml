@@ -21,7 +21,7 @@
         android:paddingTop="25dp"
         android:text="@string/stringX"
 
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
         android:paddingTop="25dp"
         android:text="@string/stringO"
 
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvF"
         app:layout_constraintStart_toEndOf="@+id/tvD"
         app:layout_constraintTop_toBottomOf="@+id/tvB" />
@@ -132,7 +132,7 @@
         android:paddingTop="25dp"
         android:text="@string/stringX"
 
-        android:theme="@style/textStyleButtonsO"
+        android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvF" />
 
@@ -149,7 +149,7 @@
         android:paddingEnd="15dp"
         android:text="@string/spiller_x"
         android:textAlignment="center"
-        android:textAppearance="@style/textStyle1"
+        android:textAppearance="@style/textStylePlayers"
         android:textColor="#56219F"
 
         app:layout_constraintLeft_toRightOf="parent"
@@ -169,14 +169,14 @@
         android:paddingEnd="15dp"
         android:text="@string/spiller_o"
         android:textAlignment="center"
-        android:textAppearance="@style/textStyle1"
+        android:textAppearance="@style/textStylePlayers"
         android:textColor="#CA2A72"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvK" />
 
     <TextView
-        android:id="@+id/tvTeller"
+        android:id="@+id/tvElapsetTid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
