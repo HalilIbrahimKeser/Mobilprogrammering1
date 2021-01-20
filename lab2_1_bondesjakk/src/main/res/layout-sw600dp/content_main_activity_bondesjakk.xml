@@ -14,41 +14,39 @@
 
     <TextView
         android:id="@+id/tvA"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
-
         android:theme="@style/textStyleButtonsO"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvB"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
+        android:layout_marginStart="4dp"
 
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringO"
         android:theme="@style/textStyleButtons"
+        app:layout_constraintBottom_toTopOf="@+id/tvE"
         app:layout_constraintEnd_toStartOf="@+id/tvC"
         app:layout_constraintStart_toEndOf="@+id/tvA"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvC"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/tv_buttons_background"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +54,12 @@
 
     <TextView
         android:id="@+id/tvD"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,27 +67,29 @@
 
     <TextView
         android:id="@+id/tvE"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
-        android:paddingTop="25dp"
-        android:text="@string/stringO"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
 
+        android:background="@drawable/tv_buttons_background_tablett"
+        android:paddingTop="25dp"
         android:theme="@style/textStyleButtonsO"
         app:layout_constraintEnd_toStartOf="@+id/tvF"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/tvD"
         app:layout_constraintTop_toBottomOf="@+id/tvB" />
 
     <TextView
         android:id="@+id/tvF"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/tv_buttons_background"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,12 +97,12 @@
 
     <TextView
         android:id="@+id/tvG"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,27 +110,29 @@
 
     <TextView
         android:id="@+id/tvH"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/tv_buttons_background"
-        android:paddingTop="25dp"
-        android:text="@string/stringO"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
 
+        android:background="@drawable/tv_buttons_background_tablett"
+        android:paddingTop="25dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintEnd_toStartOf="@+id/tvK"
+        app:layout_constraintHorizontal_bias="0.269"
         app:layout_constraintStart_toEndOf="@+id/tvG"
         app:layout_constraintTop_toBottomOf="@+id/tvE" />
 
     <TextView
         android:id="@+id/tvK"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/tv_buttons_background"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/tv_buttons_background_tablett"
         android:paddingTop="25dp"
-        android:text="@string/stringX"
 
         android:theme="@style/textStyleButtonsO"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,10 +140,10 @@
 
     <TextView
         android:id="@+id/tvSpillerX"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="214dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/tv_spiller_background"
         android:maxLines="2"
         android:paddingStart="15dp"
@@ -158,10 +160,10 @@
 
     <TextView
         android:id="@+id/tvSpillerO"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="214dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/tv_spiller_background"
         android:maxLines="2"
         android:paddingStart="15dp"
@@ -181,19 +183,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/_00_00"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvResultat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSpillerX" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSpillerX"
+        app:layout_constraintVertical_bias="0.133" />
 
     <TextView
         android:id="@+id/tvResultat1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="64dp"
         android:text="@string/resultat"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -204,15 +207,15 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="4dp"
-        android:hint="@string/forelopig_ingen_seier"
+        android:layout_marginBottom="48dp"
+        android:hint="@string/forel_pig_ingen_seier"
         android:maxLines="2"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toEndOf="@+id/tvResultat1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

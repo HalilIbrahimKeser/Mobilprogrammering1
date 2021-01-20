@@ -1,10 +1,12 @@
 package com.example.lab2_1_bondesjakk;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,8 +15,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
+
+    public static final String SETTINGS = "Innstillinger";
+    private long elapsedSeconds = 0;
+    private Timer timer;
+    //Brukere
+    private TextView tvElapsedTime;
+    private TextView tvElapsedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +34,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         setContentView(R.layout.activity_main_bondesjakk);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String myString = this.getString(R.string.action_settings);
 
         TextView tvA = findViewById(R.id.tvA);
         tvA.setOnClickListener(new View.OnClickListener() {
@@ -43,14 +57,21 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.btStartGame:
+                Toast toast = Toast.makeText(this, "Velg en rute...", Toast.LENGTH_SHORT);
+                toast.show();
+                break;
+            case R.id.btEndGame:
+                this.recreate();
+                break;
+
+            case R.id.action_settings   :
+                Toast toastSettings = Toast.makeText(this, "Innstillinger", Toast.LENGTH_SHORT);
+                toastSettings.show();
+                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,3 +1,6 @@
+include ':huskeliste1'
+include ':huskeliste2'
+include ':instanceStateDemo'
 include ':lab2_1_bondesjakk'
 include ':appbartest1'
 include ':lab1_4'
@@ -6,4 +9,5 @@ include ':datecalc'
 include ':lab1_2'
 include ':lab1_1'
 include ':app'
+include ':lab1_2.1_no_datepicker'
 rootProject.name = "Mobilprogrammering"
