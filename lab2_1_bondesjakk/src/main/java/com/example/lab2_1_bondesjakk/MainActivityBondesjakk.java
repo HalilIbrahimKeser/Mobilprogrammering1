@@ -4,31 +4,27 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Timer;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
-
-    TextView tvA = new TextView(getApplicationContext()); ;
-    TextView tvB = new TextView(getApplicationContext());
-    TextView tvC = new TextView(getApplicationContext());
-    TextView tvD = new TextView(getApplicationContext());
-    TextView tvE = new TextView(getApplicationContext());
-    TextView tvF = new TextView(getApplicationContext());
-    TextView tvG = new TextView(getApplicationContext());
-    TextView tvH = new TextView(getApplicationContext());
-    TextView tvK = new TextView(getApplicationContext());
-    TextView tvSpillerX = new TextView(getApplicationContext());
-    TextView tvSpillerO = new TextView(getApplicationContext());
-    TextView tvResultat = new TextView(getApplicationContext());
-    TextView tvElapsetTid = new TextView(getApplicationContext());
+    private TextView tvA;
+    private TextView tvB;
+    private TextView tvC;
+    private TextView tvD;
+    private TextView tvE;
+    private TextView tvF;
+    private TextView tvG;
+    private TextView tvH;
+    private TextView tvK;
+    private TextView tvSpillerX;
+    private TextView tvSpillerO;
+    private TextView tvResultat;
+    private TextView tvElapsetTid;
 
     public static final String SETTINGS = "Innstillinger";
     private long elapsedSeconds = 0;
@@ -51,7 +47,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
         String settings = this.getString(R.string.action_settings);
 
-        TextView tvA = findViewById(R.id.tvA); ;
+        TextView tvA = findViewById(R.id.tvA);
         TextView tvB = findViewById(R.id.tvB);
         TextView tvC = findViewById(R.id.tvC);
         TextView tvD = findViewById(R.id.tvD);
@@ -74,8 +70,6 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 ruteValgt(tvA, USER);
             }
 
-            private void ruteValgt(TextView tvA, String user) {
-            }
         });
         tvB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +77,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 ModelBondesjakk.ruteValgt(tvB, USER);
             }
         });
+
         tvC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +120,14 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     }
 
     private void randomUser() {
+        TextView tvSpillerX = findViewById(R.id.tvSpillerX);
+        TextView tvSpillerO = findViewById(R.id.tvSpillerO);
+
+        tvSpillerX.getResources();
+        tvSpillerO.getResources();
+
         int randomStartUser = (int) ( Math.random() * 2 + 1);
+        System.out.println(randomStartUser);
         if (randomStartUser == 1)
             USER = UserX;
         else USER = UserO;
