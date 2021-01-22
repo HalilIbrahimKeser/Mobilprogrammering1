@@ -9,15 +9,15 @@
         android:topLeftRadius="20dp"
         android:topRightRadius="20dp" />
 
-    <solid android:color="#93A693" />
+    <solid android:color="@color/lightgreen" />
 
     <stroke android:width="2dp" android:color="#C5C6C8" />
 
     <padding
-        android:bottom="0dp"
-        android:left="0dp"
-        android:right="0dp"
-        android:top="0dp" />
+        android:bottom="14dp"
+        android:left="14dp"
+        android:right="14dp"
+        android:top="14dp" />
 
     <size
         android:height="80dp"

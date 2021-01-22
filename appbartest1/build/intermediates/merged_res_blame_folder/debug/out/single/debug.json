@@ -76,16 +76,16 @@
         "source": "B:\\androidstudio_app\\appbartest1\\src\\main\\res\\drawable-xxxhdpi\\ic_action_mail.png"
     },
     {
-        "merged": "B:\\androidstudio_app\\appbartest1\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
-        "source": "B:\\androidstudio_app\\appbartest1\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
-    },
-    {
         "merged": "B:\\androidstudio_app\\appbartest1\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "B:\\androidstudio_app\\appbartest1\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "B:\\androidstudio_app\\appbartest1\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "B:\\androidstudio_app\\appbartest1\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "B:\\androidstudio_app\\appbartest1\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "B:\\androidstudio_app\\appbartest1\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
         "merged": "B:\\androidstudio_app\\appbartest1\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_mail.png.flat",

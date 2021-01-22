@@ -3,8 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.lab2_1_bondesjakk.MainActivityBondesjakk">
     <item
+        android:id="@+id/action_newgame"
+        android:icon="@drawable/ic_baseline_play_circle_outline_24"
+        android:orderInCategory="1"
+        android:title="@string/Stringitemnewgame"
+        android:visible="true" />
+    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:orderInCategory="3"
+        android:title="@string/StringSettings"
+        android:visible="true"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_engame"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_baseline_stop_circle_24"
+        android:title="@string/Stringitemquit"
+        android:visible="true" />
 </menu>

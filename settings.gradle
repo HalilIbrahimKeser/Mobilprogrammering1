@@ -1,3 +1,4 @@
+include ':intent1'
 include ':huskeliste1'
 include ':huskeliste2'
 include ':instanceStateDemo'

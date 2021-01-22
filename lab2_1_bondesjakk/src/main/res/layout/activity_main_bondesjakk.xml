@@ -28,24 +28,29 @@
 
     <Button
         android:id="@+id/btStartGame"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="49dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/ic_baseline_play_circle_outline_24"
         android:gravity="end"
-        app:rippleColor="#FFFFFF" />
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:shadowColor="#49683E"
+        android:visibility="visible"
+        app:icon="@drawable/ic_baseline_play_circle_outline_24"
+        app:iconSize="35dp" />
+
 
     <Button
         android:id="@+id/btEndGame"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="47dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="310dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/ic_baseline_stop_circle_24"
-        android:gravity="end" />
+        android:gravity="end"
+        android:paddingStart="6dp"
+        android:paddingEnd="5dp"
+        android:shadowColor="#49683E"
+        android:visibility="visible"
+        app:icon="@drawable/ic_baseline_stop_circle_24"
+        app:iconSize="35dp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

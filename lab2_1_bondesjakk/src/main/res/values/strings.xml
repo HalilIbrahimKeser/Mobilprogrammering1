@@ -8,6 +8,15 @@
     <string name="stringO">O</string>
     <string name="_00_00">00:00</string>
     <string name="resultat">Resultat:</string>
-    <string name="forelopig_ingen_seier">Foreløpig ingen seier. Tid brukt totalt: </string>
+    <string name="forelopig_ingen_seier">Foreløpig ingen seier.\nTid brukt totalt: </string>
+    <string name="Stringitemnewgame">Nytt spill</string>
+    <string name="StringitemStopp">Stopp spill</string>
+    <string name="Stringitemquit">Avslutt</string>
+    <string name="StringSettings">Innstillinger</string>
+    <string name="StringResultatElapsedSecondsForX">Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder</string>
+    <string name="StringResultatElapsedSecondsForO">Hittil tid brukt for spiller O:\n" + elapsedSecondsForUserO + " sekunder</string>
+
+
+
 
 </resources>

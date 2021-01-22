@@ -19,8 +19,7 @@
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
 
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,8 +32,7 @@
 
         android:layout_marginStart="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvA"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,8 +45,7 @@
         android:layout_marginStart="4dp"
 
         android:background="@drawable/tv_buttons_background_portrait"
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvB"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,8 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
 
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +71,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
 
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvD"
         app:layout_constraintTop_toBottomOf="@+id/tvB" />
@@ -90,8 +85,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/tv_buttons_background_portrait"
 
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvE"
         app:layout_constraintTop_toBottomOf="@+id/tvC" />
@@ -104,8 +98,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
 
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvD" />
@@ -119,8 +112,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/tv_buttons_background_portrait"
 
-        android:paddingTop="25dp"
-        android:text="@string/stringX"
+        android:paddingTop="20dp"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvG"
         app:layout_constraintTop_toBottomOf="@+id/tvE" />
@@ -135,7 +127,6 @@
         android:background="@drawable/tv_buttons_background_portrait"
 
         android:paddingTop="25dp"
-        android:text="@string/stringX"
         android:theme="@style/textStyleButtons"
         app:layout_constraintStart_toEndOf="@+id/tvH"
         app:layout_constraintTop_toBottomOf="@+id/tvF" />
@@ -147,7 +138,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/tv_spiller_background"
+        android:background="@drawable/tv_spiller_background_lightgreen"
         android:maxLines="2"
         android:paddingStart="15dp"
         android:paddingTop="10dp"
@@ -169,7 +160,7 @@
         android:layout_height="69dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/tv_spiller_background"
+        android:background="@drawable/tv_spiller_background_lightgreen"
         android:maxLines="2"
         android:paddingStart="15dp"
         android:paddingTop="10dp"

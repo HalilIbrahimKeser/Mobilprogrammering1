@@ -10,7 +10,7 @@
         android:topRightRadius="0dp" />
 
     <solid
-        android:color="#BFD5BF" />
+        android:color="@color/lightgreen" />
 
     <stroke
         android:width="4dp"
@@ -20,7 +20,7 @@
         android:bottom="0dp"
         android:left="0dp"
         android:right="0dp"
-        android:top="0dp" />
+        android:top="20dp" />
 
     <size
         android:height="100dp"

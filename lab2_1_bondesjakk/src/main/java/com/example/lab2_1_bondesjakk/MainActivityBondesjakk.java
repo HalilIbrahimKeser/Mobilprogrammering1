@@ -1,11 +1,13 @@
 package com.example.lab2_1_bondesjakk;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,11 +29,15 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     private TextView tvSpillerX;
     private TextView tvSpillerO;
     private TextView tvResultat;
+    boolean spillStarted = false;
+    boolean spillerVunnet = false;
+    boolean booleanStartTimer = false;
 
-    public static final String SETTINGS = "Innstillinger";
     private long elapsedSeconds = 0;
+    private long elapsedSecondsForUserX = 0;
+    private long elapsedSecondsForUserO = 0;
     private Timer timer;
-    public static final int MAX_TIME = 60;
+    public static final int MAX_TIME = 5000;
     private TextView tvElapsetTid;
     private Handler mainHandler;
 
@@ -46,20 +52,22 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String settings = this.getString(R.string.action_settings);
+        mainHandler = new Handler(Looper.getMainLooper());
+        tvElapsetTid = findViewById(R.id.tvElapsetTid);
+        tvResultat = findViewById(R.id.tvResultat);
 
-        TextView tvA = findViewById(R.id.tvA);
-        TextView tvB = findViewById(R.id.tvB);
-        TextView tvC = findViewById(R.id.tvC);
-        TextView tvD = findViewById(R.id.tvD);
-        TextView tvE = findViewById(R.id.tvE);
-        TextView tvF = findViewById(R.id.tvF);
-        TextView tvG = findViewById(R.id.tvG);
-        TextView tvH = findViewById(R.id.tvH);
-        TextView tvK = findViewById(R.id.tvK);
+        tvA = findViewById(R.id.tvA);
+        tvB = findViewById(R.id.tvB);
+        tvC = findViewById(R.id.tvC);
+        tvD = findViewById(R.id.tvD);
+        tvE = findViewById(R.id.tvE);
+        tvF = findViewById(R.id.tvF);
+        tvG = findViewById(R.id.tvG);
+        tvH = findViewById(R.id.tvH);
+        tvK = findViewById(R.id.tvK);
 
-        //Random start user
-        randomUser();
+        TextView btStartGame = findViewById(R.id.btStartGame);
+        TextView btEndGame = findViewById(R.id.btEndGame);
 
         tvA.setOnClickListener(view -> boksChoosenOfPlayer(tvA, USER));
         tvB.setOnClickListener(view -> boksChoosenOfPlayer(tvB, USER));
@@ -70,8 +78,67 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         tvG.setOnClickListener(view -> boksChoosenOfPlayer(tvG, USER));
         tvH.setOnClickListener(view -> boksChoosenOfPlayer(tvH, USER));
         tvK.setOnClickListener(view -> boksChoosenOfPlayer(tvK, USER));
+
+        btStartGame.setOnClickListener(v -> {
+            if(!spillStarted) {
+                startSpill();
+                randomUser();
+                booleanStartTimer = true;
+                startTimer(tvElapsetTid);
+            }
+        });
+
+        btEndGame.setOnClickListener(v -> {
+            stopTimer(tvElapsetTid);
+            stopSpill();
+            resetTextBokser();
+        });
+
+        startTimer(tvElapsetTid);
     }
 
+    private void startSpill() {
+        this.spillStarted = true;
+        tvA.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvB.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvC.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvD.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvE.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvF.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvG.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvH.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        tvK.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+    }
+
+    private void stopSpill() {
+        this.spillStarted = false;
+        tvA.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvB.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvC.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvD.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvE.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvF.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvG.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvH.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+        tvK.setBackgroundResource(R.drawable.tv_buttons_background_grey);
+
+        tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+        tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+        tvResultat.setText(R.string.forelopig_ingen_seier);
+    }
+
+    private void resetTextBokser() {
+        this.tvA.setText(" ");
+        this.tvB.setText(" ");
+        this.tvC.setText(" ");
+        this.tvD.setText(" ");
+        this.tvE.setText(" ");
+        this.tvF.setText(" ");
+        this.tvG.setText(" ");
+        this.tvH.setText(" ");
+        this.tvK.setText(" ");
+        this.tvElapsetTid.setText(R.string._00_00);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,12 +152,14 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.btStartGame:
+            case R.id.action_newgame:
                 Toast toast = Toast.makeText(this, "Velg en rute...", Toast.LENGTH_SHORT);
                 toast.show();
-                break;
-            case R.id.btEndGame:
+                stopTimer(tvElapsetTid);
                 this.recreate();
+                break;
+            case R.id.action_engame:
+                this.finish();
                 break;
 
             case R.id.action_settings   :
@@ -102,8 +171,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     }
 
     private void randomUser() {
-        TextView tvSpillerX = findViewById(R.id.tvSpillerX);
-        TextView tvSpillerO = findViewById(R.id.tvSpillerO);
+        this.tvSpillerX = findViewById(R.id.tvSpillerX);
+        this.tvSpillerO = findViewById(R.id.tvSpillerO);
 
         int randomStartUser = (int) ( Math.random() * 2 + 1);
         System.out.println(randomStartUser);
@@ -112,88 +181,116 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         else USER = UserO;
 
         if (USER.equals(UserX)) {
-            tvSpillerX.setBackgroundResource(R.color.green);
-            tvSpillerO.setBackgroundResource(R.color.grey);
+            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         }else {
-            tvSpillerO.setBackgroundResource(R.color.green);
-            tvSpillerX.setBackgroundResource(R.color.grey);
+            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         }
     }
 
     private void boksChoosenOfPlayer(TextView view, String user) {
-        String tempString = view.getText().toString();
-        if (!tempString.equalsIgnoreCase("X") || !tempString.equalsIgnoreCase("O")){
-            view.setBackgroundResource(R.color.grey);
-            if (user.equals(UserX)) {
-                view.setText(R.string.stringX);
-                changeUser();
-            } else if (user.equals(UserO)) {
-                view.setText(R.string.stringO);
-                changeUser();
-            }else {
-                System.out.println("User is null");
+        String tempString = view.getText().toString(); //henter texten fra view'et som er sendt med
+        if ((this.spillStarted && !this.spillerVunnet)){
+            if (tempString.isEmpty()){
+                if (user.equals(UserX)) {
+                    view.setText(R.string.stringX);
+                    changeUser();
+
+                    this.elapsedSecondsForUserX = this.elapsedSecondsForUserX + elapsedSeconds;
+                    String tempString1 = String.valueOf(elapsedSecondsForUserX);
+                    this.tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder");
+
+                    stopTimer(tvElapsetTid);
+                    startTimer(tvElapsetTid);
+                } else if (user.equals(UserO)) {
+                    view.setText(R.string.stringO);
+                    changeUser();
+
+                    this.elapsedSecondsForUserO = this.elapsedSecondsForUserO + elapsedSeconds;
+                    String tempString2 = String.valueOf(elapsedSecondsForUserO);
+                    this.tvResultat.setText("Hittil tid brukt for spiller O: \n" + elapsedSecondsForUserO + " sekunder");
+
+                    stopTimer(tvElapsetTid);
+                    startTimer(tvElapsetTid);
+                }else {
+                    System.out.println("User is null");
+
+                }
             }
-        }else{
-            view.setBackgroundResource(R.color.lightgreen);
         }
     }
 
-    void changeUser() {
-        TextView tvSpillerX = findViewById(R.id.tvSpillerX);
-        TextView tvSpillerO = findViewById(R.id.tvSpillerO);
-
+    private void changeUser() {
         if (USER.equals(UserX)) {
             USER = UserO;
-            tvSpillerX.setBackgroundResource(R.color.grey);
-            tvSpillerO.setBackgroundResource(R.color.lightgreen);
+            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            this.elapsedSecondsForUserO += elapsedSeconds;
         }else {
             USER = UserX;
-            tvSpillerO.setBackgroundResource(R.color.grey);
-            tvSpillerX.setBackgroundResource(R.color.lightgreen);
+            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            this.elapsedSecondsForUserX += elapsedSeconds;
         }
     }
 
-    public void startTimer() {
-        timer = new Timer();
-        try {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    if (elapsedSeconds < MAX_TIME) {
-                        elapsedSeconds++;
+    private void startTimer(View view) {
+        if(booleanStartTimer) {
+            timer = new Timer();
+            try {
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (elapsedSeconds < MAX_TIME) {
+                            elapsedSeconds++;
 
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvElapsetTid.setText(String.valueOf(elapsedSeconds));
-                            }
-                        });
-                    } else {
-                        elapsedSeconds = 0;
-                        timer.cancel();
-                        timer.purge();
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvElapsetTid.setText(String.valueOf(0));
-                            }
-                        });
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tvElapsetTid.setText(String.valueOf(elapsedSeconds));
+                                }
+                            });
+                        } else {
+                            elapsedSeconds = 0;
+                            timer.cancel();
+                            timer.purge();
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tvElapsetTid.setText(R.string._00_00);
+                                }
+                            });
+                        }
                     }
-                }
-            }, 0, 1000);
-        } catch (IllegalArgumentException iae) {
-            iae.printStackTrace();
-        } catch (IllegalStateException ise) {
-            ise.printStackTrace();
+                }, 0, 1000);
+            } catch (IllegalArgumentException | IllegalStateException iae) {
+                iae.printStackTrace();
+            }
         }
+
     }
 
-    public void stopTimer() {
+    private void stopTimer(View view) {
         if (timer!=null) {
             elapsedSeconds = 0;
-            tvElapsetTid.setText("0");
+            tvElapsetTid.setText(R.string._00_00);
             timer.cancel();
             timer.purge();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putLong("elapsedSeconds", elapsedSeconds);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        elapsedSeconds = savedInstanceState.getLong("elapsedSeconds");
+        startTimer(null);
     }
 }
