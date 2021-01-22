@@ -1,5 +1,6 @@
 package com.example.lab2_1_bondesjakk;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     private long elapsedSecondsForUserX = 0;
     private long elapsedSecondsForUserO = 0;
     private Timer timer;
-    public static final int MAX_TIME = 5000;
+    private static final int MAX_TIME = 5000;
     private TextView tvElapsetTid;
     private Handler mainHandler;
 
@@ -98,7 +99,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     }
 
     private void startSpill() {
-        this.spillStarted = true;
+        spillStarted = true;
         tvA.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
         tvB.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
         tvC.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
@@ -108,10 +109,11 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         tvG.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
         tvH.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
         tvK.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
+        Toast.makeText(this, (R.string.StringLetsPlay), Toast.LENGTH_SHORT).show();
     }
 
     private void stopSpill() {
-        this.spillStarted = false;
+        spillStarted = false;
         tvA.setBackgroundResource(R.drawable.tv_buttons_background_grey);
         tvB.setBackgroundResource(R.drawable.tv_buttons_background_grey);
         tvC.setBackgroundResource(R.drawable.tv_buttons_background_grey);
@@ -153,7 +155,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_newgame:
-                Toast toast = Toast.makeText(this, "Velg en rute...", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, (R.string.StringVelgEnRute), Toast.LENGTH_SHORT);
                 toast.show();
                 stopTimer(tvElapsetTid);
                 this.recreate();
@@ -163,7 +165,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 break;
 
             case R.id.action_settings   :
-                Toast toastSettings = Toast.makeText(this, "Innstillinger", Toast.LENGTH_SHORT);
+                Toast toastSettings = Toast.makeText(this, (R.string.StringSettings), Toast.LENGTH_SHORT);
                 toastSettings.show();
                 break;
         }
@@ -191,47 +193,46 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     private void boksChoosenOfPlayer(TextView view, String user) {
         String tempString = view.getText().toString(); //henter texten fra view'et som er sendt med
-        if ((this.spillStarted && !this.spillerVunnet)){
-            if (tempString.isEmpty()){
-                if (user.equals(UserX)) {
-                    view.setText(R.string.stringX);
-                    changeUser();
+        if ((this.spillStarted && !this.spillerVunnet && tempString.isEmpty())){
+            if (user.equals(UserX)) {
+                view.setText(R.string.stringX);
+                changeUser();
 
-                    this.elapsedSecondsForUserX = this.elapsedSecondsForUserX + elapsedSeconds;
-                    String tempString1 = String.valueOf(elapsedSecondsForUserX);
-                    this.tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder");
+                stopTimer(tvElapsetTid);
+                startTimer(tvElapsetTid);
+            } else if (user.equals(UserO)) {
+                view.setText(R.string.stringO);
+                changeUser();
 
-                    stopTimer(tvElapsetTid);
-                    startTimer(tvElapsetTid);
-                } else if (user.equals(UserO)) {
-                    view.setText(R.string.stringO);
-                    changeUser();
-
-                    this.elapsedSecondsForUserO = this.elapsedSecondsForUserO + elapsedSeconds;
-                    String tempString2 = String.valueOf(elapsedSecondsForUserO);
-                    this.tvResultat.setText("Hittil tid brukt for spiller O: \n" + elapsedSecondsForUserO + " sekunder");
-
-                    stopTimer(tvElapsetTid);
-                    startTimer(tvElapsetTid);
-                }else {
-                    System.out.println("User is null");
-
-                }
+                stopTimer(tvElapsetTid);
+                startTimer(tvElapsetTid);
+            }else {
+                System.out.println("User is null");
             }
+        }else if (!this.spillStarted) {
+            Toast.makeText(this, (R.string.StringStartTheGame), Toast.LENGTH_SHORT).show();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void changeUser() {
         if (USER.equals(UserX)) {
             USER = UserO;
-            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
-            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
-            this.elapsedSecondsForUserO += elapsedSeconds;
+            tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+
+            this.elapsedSecondsForUserX = this.elapsedSecondsForUserX + elapsedSeconds;
+            String tempString1 = String.valueOf(elapsedSecondsForUserX);
+            tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder");
+
         }else {
             USER = UserX;
-            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
-            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
-            this.elapsedSecondsForUserX += elapsedSeconds;
+            tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+
+            this.elapsedSecondsForUserO = this.elapsedSecondsForUserO + elapsedSeconds;
+            String tempString2 = String.valueOf(elapsedSecondsForUserO);
+            this.tvResultat.setText("Hittil tid brukt for spiller O: \n" + elapsedSecondsForUserO + " sekunder");
         }
     }
 
