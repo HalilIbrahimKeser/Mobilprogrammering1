@@ -16,10 +16,11 @@
     <string name="StringVelgEnRute">Velg en rute!</string>
     <string name="StringStartTheGame">Trykk start spill først</string>
     <string name="StringLetsPlay">Sett i gang! Grønn bruker starter.</string>
-    <string name="StringResultatElapsedSecondsForX">Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder</string>
-    <string name="StringResultatElapsedSecondsForO">Hittil tid brukt for spiller O:\n" + elapsedSecondsForUserO + " sekunder</string>
-
-
+    <string name="StringResultatElapsedSecondsFor">Hittil tid brukt for spiller</string>
+    <string name="StringResultatElapsedSecondsFor2">" sekunder</string>
+    <string name="action_pause">Pause spillet</string>
+    <string name="StringXvant">Spiller X har vunnet!</string>
+    <string name="StringOvant">Spiller O har vunnet!</string>
 
 
 </resources>

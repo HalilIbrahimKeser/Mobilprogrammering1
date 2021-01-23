@@ -34,8 +34,10 @@
         android:layout_marginStart="500dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/ic_baseline_play_circle_outline_24"
         android:gravity="end"
+        app:icon="@drawable/ic_baseline_play_circle_outline_24"
+        app:iconGravity="textStart"
+        app:iconSize="30dp"
         app:rippleColor="#FFFFFF" />
 
     <Button
@@ -43,9 +45,11 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="47dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="600dp"
+        android:layout_marginStart="570dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/ic_baseline_stop_circle_24"
-        android:gravity="end" />
+        android:layout_marginEnd="30dp"
+        android:gravity="end"
+        app:icon="@drawable/ic_baseline_stop_circle_24"
+        app:iconGravity="textStart"
+        app:iconSize="30dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

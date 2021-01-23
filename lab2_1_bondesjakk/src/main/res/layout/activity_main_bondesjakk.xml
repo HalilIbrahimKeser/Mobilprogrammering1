@@ -22,7 +22,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#B9F6CA"
+        android:background="#9ADCA5"
         app:layout_anchorGravity="center"
         app:popupTheme="@style/Theme.Mobilprogrammering.PopupOverlay" />
 
@@ -30,7 +30,8 @@
         android:id="@+id/btStartGame"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginEnd="100dp"
         android:gravity="end"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
@@ -45,6 +46,7 @@
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
+        android:layout_marginEnd="50dp"
         android:gravity="end"
         android:paddingStart="6dp"
         android:paddingEnd="5dp"

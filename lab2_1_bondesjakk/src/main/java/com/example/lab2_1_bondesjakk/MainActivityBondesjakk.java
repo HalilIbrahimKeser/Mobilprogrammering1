@@ -18,21 +18,22 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
-    private TextView tvA;
-    private TextView tvB;
-    private TextView tvC;
-    private TextView tvD;
-    private TextView tvE;
-    private TextView tvF;
-    private TextView tvG;
-    private TextView tvH;
-    private TextView tvK;
-    private TextView tvSpillerX;
-    private TextView tvSpillerO;
-    private TextView tvResultat;
-    boolean spillStarted = false;
-    boolean spillerVunnet = false;
-    boolean booleanStartTimer = false;
+    ModelBondesjakk modelBondesjakk;
+    public TextView tvA;
+    public TextView tvB;
+    public TextView tvC;
+    public TextView tvD;
+    public TextView tvE;
+    public TextView tvF;
+    public TextView tvG;
+    public TextView tvH;
+    public TextView tvK;
+    public TextView tvSpillerX;
+    public TextView tvSpillerO;
+    public TextView tvResultat;
+    public boolean spillStarted = false;
+    public boolean spillerVunnet = false;
+    public boolean booleanStartTimer = false;
 
     private long elapsedSeconds = 0;
     private long elapsedSecondsForUserX = 0;
@@ -90,9 +91,10 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         });
 
         btEndGame.setOnClickListener(v -> {
-            stopTimer(tvElapsetTid);
-            stopSpill();
-            resetTextBokser();
+            stopTimer(null);
+            this.recreate();
+            // resetTextBokser(); //denne om man skal bruke knappen som pause knapp
+            //da maa this.recreate endres med stopSpill()
         });
 
         startTimer(tvElapsetTid);
@@ -127,6 +129,10 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         tvResultat.setText(R.string.forelopig_ingen_seier);
+    }
+
+    private void pauseSpill() {
+        spillStarted = false;
     }
 
     private void resetTextBokser() {
@@ -168,6 +174,10 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 Toast toastSettings = Toast.makeText(this, (R.string.StringSettings), Toast.LENGTH_SHORT);
                 toastSettings.show();
                 break;
+            case R.id.action_pause   :
+                stopTimer(null);
+                pauseSpill();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -177,7 +187,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         this.tvSpillerO = findViewById(R.id.tvSpillerO);
 
         int randomStartUser = (int) ( Math.random() * 2 + 1);
-        System.out.println(randomStartUser);
+
         if (randomStartUser == 1)
             USER = UserX;
         else USER = UserO;
@@ -193,7 +203,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     private void boksChoosenOfPlayer(TextView view, String user) {
         String tempString = view.getText().toString(); //henter texten fra view'et som er sendt med
-        if ((this.spillStarted && !this.spillerVunnet && tempString.isEmpty())){
+        if (this.spillStarted && !this.spillerVunnet && tempString.isEmpty() && !modelBondesjakk.vunnet()){
             if (user.equals(UserX)) {
                 view.setText(R.string.stringX);
                 changeUser();
@@ -211,6 +221,15 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             }
         }else if (!this.spillStarted) {
             Toast.makeText(this, (R.string.StringStartTheGame), Toast.LENGTH_SHORT).show();
+        }else if (modelBondesjakk.vunnet()) {
+            this.spillerVunnet = true;
+                if (USER.equals(UserX)){
+                    Toast.makeText(this, (R.string.StringXvant), Toast.LENGTH_SHORT).show();
+                    tvResultat.setText("Totalt tid for Spiller X\n" + elapsedSecondsForUserX + "\b sekunder");
+                }else if (USER.equals(UserO)) {
+                    Toast.makeText(this, (R.string.StringOvant), Toast.LENGTH_SHORT).show();
+                    tvResultat.setText("Totalt tid for Spiller O\n" + elapsedSecondsForUserX + "\b sekunder");
+            }
         }
     }
 
@@ -223,7 +242,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
             this.elapsedSecondsForUserX = this.elapsedSecondsForUserX + elapsedSeconds;
             String tempString1 = String.valueOf(elapsedSecondsForUserX);
-            tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + " sekunder");
+            tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + "\b sekunder");
+            //tvResultat.setText(R.string.StringResultatElapsedSecondsFor + " X \n" + elapsedSecondsForUserO + R.string.StringResultatElapsedSecondsFor2);
 
         }else {
             USER = UserX;
@@ -232,7 +252,8 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
             this.elapsedSecondsForUserO = this.elapsedSecondsForUserO + elapsedSeconds;
             String tempString2 = String.valueOf(elapsedSecondsForUserO);
-            this.tvResultat.setText("Hittil tid brukt for spiller O: \n" + elapsedSecondsForUserO + " sekunder");
+            tvResultat.setText("Hittil tid brukt for spiller O: \n" + elapsedSecondsForUserO + "\b sekunder");
+            //tvResultat.setText(R.string.StringResultatElapsedSecondsFor + " O \n" + elapsedSecondsForUserO + R.string.StringResultatElapsedSecondsFor2);
         }
     }
 
@@ -284,14 +305,33 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putLong("elapsedSeconds", elapsedSeconds);
+        outState.putString("tvA", tvA.getText().toString());
+        outState.putString("tvB", tvB.getText().toString());
+        outState.putString("tvC", tvC.getText().toString());
+        outState.putString("tvD", tvD.getText().toString());
+        outState.putString("tvE", tvE.getText().toString());
+        outState.putString("tvF", tvF.getText().toString());
+        outState.putString("tvG", tvG.getText().toString());
+        outState.putString("tvH", tvH.getText().toString());
+        outState.putString("tvK", tvK.getText().toString());
+
+
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
         elapsedSeconds = savedInstanceState.getLong("elapsedSeconds");
+        tvA.setText(savedInstanceState.getString(tvA.getText().toString()));
+        tvB.setText(savedInstanceState.getString(tvB.getText().toString()));
+        tvC.setText(savedInstanceState.getString(tvC.getText().toString()));
+        tvD.setText(savedInstanceState.getString(tvD.getText().toString()));
+        tvE.setText(savedInstanceState.getString(tvE.getText().toString()));
+        tvF.setText(savedInstanceState.getString(tvF.getText().toString()));
+        tvG.setText(savedInstanceState.getString(tvA.getText().toString()));
+        tvH.setText(savedInstanceState.getString(tvH.getText().toString()));
+        tvK.setText(savedInstanceState.getString(tvK.getText().toString()));
         startTimer(null);
     }
 }

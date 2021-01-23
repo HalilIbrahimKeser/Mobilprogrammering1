@@ -5,19 +5,25 @@
     <item
         android:id="@+id/action_newgame"
         android:icon="@drawable/ic_baseline_play_circle_outline_24"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="@string/Stringitemnewgame"
         android:visible="true" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/StringSettings"
         android:visible="true"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_engame"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:icon="@drawable/ic_baseline_stop_circle_24"
         android:title="@string/Stringitemquit"
         android:visible="true" />
+
+    <item
+        android:id="@+id/action_pause"
+        android:title="@string/action_pause"
+        android:orderInCategory="1"
+        />
 </menu>
