@@ -203,7 +203,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     private void boksChoosenOfPlayer(TextView view, String user) {
         String tempString = view.getText().toString(); //henter texten fra view'et som er sendt med
-        if (this.spillStarted && !this.spillerVunnet && tempString.isEmpty() && !modelBondesjakk.vunnet()){
+        if (this.spillStarted && !this.spillerVunnet && tempString.isEmpty() && !this.modelBondesjakk.vunnet()){
             if (user.equals(UserX)) {
                 view.setText(R.string.stringX);
                 changeUser();
