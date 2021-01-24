@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
-    ModelBondesjakk modelBondesjakk;
+    public final ModelBondesjakk modelBondesjakk = new ModelBondesjakk();
     public TextView tvA;
     public TextView tvB;
     public TextView tvC;
@@ -221,7 +221,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             }
         }else if (!this.spillStarted) {
             Toast.makeText(this, (R.string.StringStartTheGame), Toast.LENGTH_SHORT).show();
-        }else if (modelBondesjakk.vunnet()) {
+        }else if (this.modelBondesjakk.vunnet()) {
             this.spillerVunnet = true;
                 if (USER.equals(UserX)){
                     Toast.makeText(this, (R.string.StringXvant), Toast.LENGTH_SHORT).show();
