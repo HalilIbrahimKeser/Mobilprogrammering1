@@ -17,7 +17,7 @@ public class ModelBondesjakk extends MainActivityBondesjakk {
     public String strH;
     public String strK;
 
-    public boolean vunnet() {
+    public void vunnet() {
         strA = tvA.getText().toString();
         strB = tvB.getText().toString();
         strC = tvC.getText().toString();
@@ -29,11 +29,7 @@ public class ModelBondesjakk extends MainActivityBondesjakk {
         strK = tvK.getText().toString();
 
 
-        if (sjekkRader() || sjekkDiagonaler() || sjekkKolonner()){
-            return this.spillerVunnet = true;
-        } else {
-            return this.spillerVunnet = false;
-        }
+        this.spillerVunnet = sjekkRader() || sjekkDiagonaler() || sjekkKolonner();
     }
 
     public boolean sjekkRader() {

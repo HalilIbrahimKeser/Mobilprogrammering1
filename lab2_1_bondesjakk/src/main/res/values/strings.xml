@@ -8,23 +8,25 @@
     <string name="stringO">O</string>
     <string name="Stringl00_00">00:00</string>
     <string name="resultat">Resultat:</string>
-    <string name="forelopig_ingen_seier">Foreløpig ingen seier.\n............... </string>
+    <string name="forelopig_ingen_seier">Foreløpig ingen seier.\nTrykk start for nytt spill! </string>
     <string name="Stringitemnewgame">Nytt spill</string>
     <string name="StringitemStopp">Stopp spill</string>
     <string name="Stringitemquit">Avslutt</string>
     <string name="StringSettings">Innstillinger</string>
     <string name="StringVelgEnRute">Velg en rute!</string>
     <string name="StringStartTheGame">Trykk start spill først</string>
-    <string name="StringLetsPlay">Sett i gang! Grønn bruker starter.</string>
+    <string name="StringLetsPlay">Sett i gang! Bruker som starter er: \t</string>
     <string name="StringResultatElapsedSecondsFor">Hittil tid brukt for spiller</string>
-    <string name="StringResultatElapsedSecondsFor2">" sekunder</string>
     <string name="action_pause">Pause spillet</string>
     <string name="StringXvant">Spiller X har vunnet!! \n</string>
     <string name="StringOvant">Spiller O har vunnet!! \n</string>
     <string name="StringSekunder">" sekunder"</string>
     <string name="StringHarVunnet">" har vunnet!!"</string>
-    <string name="StringSpillerXHarBruktSek">"Spiller X har brukt sekunder: "</string>
-    <string name="StringSpillerOHarBruktSek">"Spiller O har brukt sekunder: "</string>
+    <string name="StringSpillerXHarBrukt">"Spiller X har brukt: "</string>
+    <string name="StringSpillerOHarBrukt">"Totalt har brukt: "</string>
+    <string name="StringDetBleUavgjort">Det ble uavgjort... Prøv igjen.</string>
+    <string name="StringSpilletErFerdigTrykkPlayForNyttSpill">Spillet er ferdig trykk play for nytt spill.</string>
+    <string name="StringNyttSpillStartet">Nytt spill. Trykk start :)</string>
 
 
 </resources>
