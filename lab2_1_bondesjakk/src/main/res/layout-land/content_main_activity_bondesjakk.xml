@@ -190,7 +190,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="31dp"
         android:layout_marginBottom="29dp"
-        android:text="@string/_00_00"
+        android:text="@string/Stringl00_00"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvF"

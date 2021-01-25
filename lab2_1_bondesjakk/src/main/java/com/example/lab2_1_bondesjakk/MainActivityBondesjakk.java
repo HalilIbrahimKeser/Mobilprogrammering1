@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityBondesjakk extends AppCompatActivity {
-    public final ModelBondesjakk modelBondesjakk = new ModelBondesjakk();
+    //public final ModelBondesjakk modelBondesjakk = new ModelBondesjakk();
     public TextView tvA;
     public TextView tvB;
     public TextView tvC;
@@ -34,6 +34,16 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     public boolean spillStarted = false;
     public boolean spillerVunnet = false;
     public boolean booleanStartTimer = false;
+
+    public String strA;
+    public String strB;
+    public String strC;
+    public String strD;
+    public String strE;
+    public String strF;
+    public String strG;
+    public String strH;
+    public String strK;
 
     private long elapsedSeconds = 0;
     private long elapsedSecondsForUserX = 0;
@@ -100,6 +110,47 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         startTimer(tvElapsetTid);
     }
 
+    public boolean vunnet() {
+        strA = tvA.getText().toString();
+        strB = tvB.getText().toString();
+        strC = tvC.getText().toString();
+        strD = tvD.getText().toString();
+        strE = tvE.getText().toString();
+        strF = tvF.getText().toString();
+        strG = tvG.getText().toString();
+        strH = tvH.getText().toString();
+        strK = tvK.getText().toString();
+
+
+        if (sjekkRader() || sjekkDiagonaler() || sjekkKolonner()){
+            return this.spillerVunnet = true;
+        } else {
+            return this.spillerVunnet = false;
+        }
+    }
+
+    public boolean sjekkRader() {
+        if (strA.equals(strB) && strA.equals(strC) && !strA.isEmpty()) {
+            return true;
+        } else if (strD.equals(strE) && strD.equals(strF) && !strD.isEmpty()) {
+            return true;
+        } else return strG.equals(strH) && strG.equals(strK) && !strG.isEmpty();
+    }
+
+    public boolean sjekkKolonner() {
+        if (strA.equals(strD) && strA.equals(strG) && !strA.isEmpty()) {
+            return true;
+        }else if (strB.equals(strE) && strB.equals(strH) && !strB.isEmpty()) {
+            return true;
+        }else return strC.equals(strF) && strC.equals(strK) && !strC.isEmpty();
+    }
+
+    public boolean sjekkDiagonaler() {
+        if (strA.equals(strE) && strA.equals(strK) && !strA.isEmpty()) {
+            return true;
+        }else return strC.equals(strE) && strC.equals(strG) && !strC.isEmpty();
+    }
+
     private void startSpill() {
         spillStarted = true;
         tvA.setBackgroundResource(R.drawable.tv_buttons_background_lightgreen);
@@ -145,7 +196,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         this.tvG.setText(" ");
         this.tvH.setText(" ");
         this.tvK.setText(" ");
-        this.tvElapsetTid.setText(R.string._00_00);
+        this.tvElapsetTid.setText(R.string.Stringl00_00);
     }
 
     @Override
@@ -203,7 +254,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     private void boksChoosenOfPlayer(TextView view, String user) {
         String tempString = view.getText().toString(); //henter texten fra view'et som er sendt med
-        if (this.spillStarted && !this.spillerVunnet && tempString.isEmpty() && !this.modelBondesjakk.vunnet()){
+        if (this.spillStarted && !this.spillerVunnet && tempString.isEmpty()){
             if (user.equals(UserX)) {
                 view.setText(R.string.stringX);
                 changeUser();
@@ -220,22 +271,38 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 System.out.println("User is null");
             }
         }else if (!this.spillStarted) {
-            Toast.makeText(this, (R.string.StringStartTheGame), Toast.LENGTH_SHORT).show();
-        }else if (this.modelBondesjakk.vunnet()) {
-            this.spillerVunnet = true;
-                if (USER.equals(UserX)){
-                    Toast.makeText(this, (R.string.StringXvant), Toast.LENGTH_SHORT).show();
-                    tvResultat.setText("Totalt tid for Spiller X\n" + elapsedSecondsForUserX + "\b sekunder");
-                }else if (USER.equals(UserO)) {
-                    Toast.makeText(this, (R.string.StringOvant), Toast.LENGTH_SHORT).show();
-                    tvResultat.setText("Totalt tid for Spiller O\n" + elapsedSecondsForUserX + "\b sekunder");
+            if(!spillerVunnet)
+                Toast.makeText(this, (R.string.StringStartTheGame), Toast.LENGTH_SHORT).show();
+        }
+
+        //Noen som har vunnet?
+        vunnet();
+
+        if (spillerVunnet){
+            changeUser(); //tilbakestill til riktig bruker
+            if (USER.equals(UserX)){
+                stopTimer(null);
+                //Toast.makeText(this, (R.string.StringXvant), Toast.LENGTH_SHORT).show();
+                tvElapsetTid.setText(String.valueOf(elapsedSecondsForUserX));
+                spillStarted = false;
+
+                String tempString1 = (R.string.StringXvant + "\n" + R.string.StringSpillerXHarBruktSek + elapsedSecondsForUserX);
+                tvResultat.setText(tempString1);
+            }else if (USER.equals(UserO)) {
+                stopTimer(null);
+                //Toast.makeText(this, (R.string.StringOvant), Toast.LENGTH_SHORT).show();
+                tvElapsetTid.setText(String.valueOf(elapsedSecondsForUserX));
+                spillStarted = false;
+
+                String tempString2 = (R.string.StringOvant + "\n" + R.string.StringSpillerOHarBruktSek + elapsedSecondsForUserO);
+                tvResultat.setText(tempString2);
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private void changeUser() {
-        if (USER.equals(UserX)) {
+        if (USER.equals(UserX) && !spillerVunnet) {
             USER = UserO;
             tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
             tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
@@ -245,7 +312,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             tvResultat.setText("Hittil tid brukt for spiller X:\n" + elapsedSecondsForUserX + "\b sekunder");
             //tvResultat.setText(R.string.StringResultatElapsedSecondsFor + " X \n" + elapsedSecondsForUserO + R.string.StringResultatElapsedSecondsFor2);
 
-        }else {
+        }else if (USER.equals(UserO) && !spillerVunnet){
             USER = UserX;
             tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
             tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
@@ -280,7 +347,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    tvElapsetTid.setText(R.string._00_00);
+                                    tvElapsetTid.setText(R.string.Stringl00_00);
                                 }
                             });
                         }
@@ -296,7 +363,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     private void stopTimer(View view) {
         if (timer!=null) {
             elapsedSeconds = 0;
-            tvElapsetTid.setText(R.string._00_00);
+            tvElapsetTid.setText(R.string.Stringl00_00);
             timer.cancel();
             timer.purge();
         }
