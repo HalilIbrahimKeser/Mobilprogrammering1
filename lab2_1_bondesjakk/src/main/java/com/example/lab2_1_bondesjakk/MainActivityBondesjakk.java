@@ -97,6 +97,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 startTimer(tvElapsetTid);
             }
         });
+
         btEndGame.setOnClickListener(v -> {
             stopTimer(null);
             elapsedSecondsForUserO = 0;
@@ -115,21 +116,20 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             if (user.equals(UserX)) {
                 view.setText(R.string.StringX);
                 changeUser();
-
                 stopTimer(null);
                 startTimer(tvElapsetTid);
+
             } else if (user.equals(UserO)) {
                 view.setText(R.string.StringO);
                 changeUser();
-
                 stopTimer(null);
                 startTimer(tvElapsetTid);
-            }else {
-                System.out.println("User is null");
             }
-        }else if (!this.booleanSpillStarted) {
+
+        }else if (!booleanSpillStarted) {
             if(!booleanSpillerVunnet)
                 Toast.makeText(this, (getResources().getString(R.string.StringStartTheGame)), Toast.LENGTH_SHORT).show();
+
         }else if (!tempString.isEmpty()) {
             Toast.makeText(this, (getResources().getString(R.string.StringSpilletErFerdigTrykkPlayForNyttSpill)), Toast.LENGTH_SHORT).show();
         }
@@ -144,24 +144,29 @@ public class MainActivityBondesjakk extends AppCompatActivity {
                 stopTimer(null);
                 booleanSpillStarted = false;
 
-                String tempString1 = getResources().getString(R.string.StringXvant) + "\n" + getResources().getString(R.string.StringSpillerXHarBrukt) +
+                String tempString1 = getResources().getString(R.string.StringXvant) + "\n" +
+                        getResources().getString(R.string.StringSpillerXHarBrukt) +
                         elapsedSecondsForUserX + getResources().getString(R.string.StringSekunder);
 
-                String tempString3 = getResources().getString(R.string.StringSpillerXHarBrukt) + elapsedSecondsForUserX +
-                        getResources().getString(R.string.StringSekunder) + "\n" + getResources().getString(R.string.StringSpillerOHarBrukt) +
+                String tempString3 = getResources().getString(R.string.StringSpillerXHarBrukt) +
+                        elapsedSecondsForUserX + getResources().getString(R.string.StringSekunder) +
+                        "\n" + getResources().getString(R.string.StringSpillerOHarBrukt) +
                         elapsedSecondsForUserO + getResources().getString(R.string.StringSekunder);
 
                 Toast.makeText(this, tempString1, Toast.LENGTH_SHORT).show();
                 tvResultat.setText(tempString3);
+
             }else if (USER.equals(UserO)) {
                 stopTimer(null);
                 booleanSpillStarted = false;
 
-                String tempString2 = getResources().getString(R.string.StringOvant) + "\n" + getResources().getString(R.string.StringSpillerOHarBrukt) +
+                String tempString2 = getResources().getString(R.string.StringOvant) + "\n" +
+                        getResources().getString(R.string.StringSpillerOHarBrukt) +
                         elapsedSecondsForUserO + getResources().getString(R.string.StringSekunder);
 
-                String tempString4 = getResources().getString(R.string.StringSpillerOHarBrukt) + elapsedSecondsForUserO +
-                        getResources().getString(R.string.StringSekunder) + "\n" + getResources().getString(R.string.StringSpillerXHarBrukt) +
+                String tempString4 = getResources().getString(R.string.StringSpillerOHarBrukt) +
+                        elapsedSecondsForUserO + getResources().getString(R.string.StringSekunder) +
+                        "\n" + getResources().getString(R.string.StringSpillerXHarBrukt) +
                         elapsedSecondsForUserX + getResources().getString(R.string.StringSekunder);
 
                 Toast.makeText(this, tempString2, Toast.LENGTH_SHORT).show();
@@ -181,7 +186,6 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
 
             this.elapsedSecondsForUserX = this.elapsedSecondsForUserX + elapsedSeconds;
-
             String tempString1 = (getResources().getString(R.string.StringResultatElapsedSecondsFor) + " O \n" + elapsedSecondsForUserO + getResources().getString(R.string.StringSekunder));
             tvResultat.setText(tempString1);
 
@@ -191,9 +195,9 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
 
             this.elapsedSecondsForUserO = this.elapsedSecondsForUserO + elapsedSeconds;
-
             String tempString2 = (getResources().getString(R.string.StringResultatElapsedSecondsFor) + " X \n" + elapsedSecondsForUserX + getResources().getString(R.string.StringSekunder));
             tvResultat.setText(tempString2);
+
         }else if (booleanSpillerVunnet && USER.equals(UserX) && booleanSpillStarted) {
             USER = UserO;
         }else if (booleanSpillerVunnet && USER.equals(UserO) && booleanSpillStarted) {
@@ -212,16 +216,15 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         tvH.setText(null);
         tvK.setText(null);
         tvElapsetTid.setText(R.string.Stringl00_00);
-        //tvResultat.setText(getResources().getString(R.string.StringLetsPlay));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_activity_bondesjakk, menu);
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -229,13 +232,10 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         switch (id) {
             case R.id.action_pause   :
                 stopTimer(null);
-
                 pauseSpill();
                 break;
-
             case R.id.action_newgame:
                 stopTimer(null);
-
                 resetTextBokserOgTexter();
                 Toast.makeText(this, (getResources().getString(R.string.StringNyttSpillStartet)), Toast.LENGTH_SHORT).show();
                 this.recreate();
@@ -243,7 +243,6 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
             case R.id.action_engame:
                 stopTimer(null);
-
                 elapsedSecondsForUserO = 0;
                 elapsedSecondsForUserX = 0;
                 elapsedSeconds = 0;
@@ -254,13 +253,15 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             case R.id.action_settings   :
                 Toast.makeText(this, (getResources().getString(R.string.StringSettings)), Toast.LENGTH_SHORT).show();
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + id);
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void randomUser() {
-        this.tvSpillerX = findViewById(R.id.tvSpillerX);
-        this.tvSpillerO = findViewById(R.id.tvSpillerO);
+        tvSpillerX = findViewById(R.id.tvSpillerX);
+        tvSpillerO = findViewById(R.id.tvSpillerO);
 
         int randomStartUser = (int) ( Math.random() * 2 + 1);
 
@@ -269,11 +270,11 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         else USER = UserO;
 
         if (USER.equals(UserX)) {
-            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
-            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         }else {
-            this.tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
-            this.tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
+            tvSpillerO.setBackgroundResource(R.drawable.tv_spiller_background_lightgreen);
+            tvSpillerX.setBackgroundResource(R.drawable.tv_spiller_background_grey);
         }
     }
 
@@ -296,9 +297,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
 
     }
 
-    private void pauseSpill() {
-        booleanSpillStarted = false;
-    }
+    private void pauseSpill() { booleanSpillStarted = false; }
 
     private void gjorUbrukteKnapperGra() {
         if (tvA.getText().toString().isEmpty())
@@ -333,8 +332,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
         strH = tvH.getText().toString();
         strK = tvK.getText().toString();
 
-
-        this.booleanSpillerVunnet = sjekkRader() || sjekkDiagonaler() || sjekkKolonner();
+        booleanSpillerVunnet = sjekkRader() || sjekkDiagonaler() || sjekkKolonner();
     }
 
     public boolean sjekkRader() {
@@ -360,7 +358,9 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     }
 
     public boolean uavgjort() {
-        return !strA.isEmpty() && !strB.isEmpty() && !strC.isEmpty() && !strD.isEmpty() && !strE.isEmpty() && !strF.isEmpty() && !strG.isEmpty() && !strH.isEmpty() && !strK.isEmpty();
+        return !strA.isEmpty() && !strB.isEmpty() && !strC.isEmpty() &&
+                !strD.isEmpty() && !strE.isEmpty() && !strF.isEmpty() &&
+                !strG.isEmpty() && !strH.isEmpty() && !strK.isEmpty();
     }
 
     private void startTimer(View view) {
@@ -411,7 +411,6 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putLong("elapsedSeconds", elapsedSeconds);
         outState.putLong("elapsedSecondsForUserO", elapsedSecondsForUserO);
         outState.putLong("elapsedSecondsForUserX", elapsedSecondsForUserX);
@@ -421,12 +420,10 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
         elapsedSeconds = savedInstanceState.getLong("elapsedSeconds");
         elapsedSecondsForUserO = savedInstanceState.getLong("elapsedSecondsForUserO");
         elapsedSecondsForUserX = savedInstanceState.getLong("elapsedSecondsForUserX");
         USER = savedInstanceState.getString("USER");
-
         startTimer(null);
     }
 }
