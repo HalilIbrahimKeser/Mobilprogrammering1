@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tiliya tîk</string>
+    <string name="action_settings">Mîhengan</string>
+    <string name="appnametop">Tiliya tîk</string>
+    <string name="StringSpiller_o">Qungir O</string>
+    <string name="StringSpiller_x">Qungir X</string>
+    <string name="StringX">X</string>
+    <string name="StringO">O</string>
+    <string name="Stringl00_00">00:00</string>
+    <string name="StringResultat">"Netîce: "</string>
+    <string name="StringForelopig_ingen_seier">Heta nuha serfirazî tune. Ji bo listika nû capke!</string>
+    <string name="Stringitemnewgame">Lîstika nû</string>
+    <string name="StringitemStopp">Lîstikê rawestîne</string>
+    <string name="Stringitemquit">Biqedîne</string>
+    <string name="StringSettings">Mîhengan</string>
+    <string name="StringVelgEnRute">Regezek hilbijere</string>
+    <string name="StringStartTheGame">Pesin listike destpi bike</string>
+    <string name="StringLetsPlay">Yalla! Bikerhenere dest pe dike</string>
+    <string name="StringResultatElapsedSecondsFor">Dema heta niha kedi</string>
+    <string name="StringAaction_pause">Mola bide</string>
+    <string name="StringXvant">Qungir X serkeft!</string>
+    <string name="StringOvant">Qungir O serkeft!</string>
+    <string name="StringSekunder">" cirke"</string>
+    <string name="StringHarVunnet">" serkeft"</string>
+    <string name="StringSpillerXHarBrukt">"Qungir X bikar ani: "</string>
+    <string name="StringSpillerOHarBrukt">"Qungir O bikar ani: "</string>
+    <string name="StringSpillerneHarBrukt">"Tevahi dem bikar ani: "</string>
+    <string name="StringDetBleUavgjort">Pesgirkek bu..</string>
+    <string name="StringSpilletErFerdigTrykkPlayForNyttSpill">Xelas. Careke din bileyze.</string>
+    <string name="StringNyttSpillStartet">Listika nû. Cape starte bike :)</string>
+</resources>

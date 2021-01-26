@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="action_settings">Settings</string>
+    <string name="appnametop">Tic Tac Toe</string>
+    <string name="StringSpiller_o">Player O</string>
+    <string name="StringSpiller_x">Player X</string>
+    <string name="StringX">X</string>
+    <string name="StringO">O</string>
+    <string name="Stringl00_00">00:00</string>
+    <string name="StringResultat">"Result: "</string>
+    <string name="StringForelopig_ingen_seier">No body won. Push start for new game!</string>
+    <string name="Stringitemnewgame">New game</string>
+    <string name="StringitemStopp">Stop game</string>
+    <string name="Stringitemquit">Quit</string>
+    <string name="StringSettings">Settings</string>
+    <string name="StringVelgEnRute">"Choose a  boks! "</string>
+    <string name="StringStartTheGame">Press on start first</string>
+    <string name="StringLetsPlay">"Lets go! The starting player is: "</string>
+    <string name="StringAaction_pause">Pause the game</string>
+    <string name="StringXvant">Player X has won!</string>
+    <string name="StringOvant">Player O has won!</string>
+    <string name="StringSekunder">" seconds"</string>
+    <string name="StringHarVunnet">" has won!!"</string>
+    <string name="StringSpillerXHarBrukt">"Player X used: "</string>
+    <string name="StringSpillerOHarBrukt">"Player O used: "</string>
+    <string name="StringSpillerneHarBrukt">"Total time used: "</string>
+    <string name="StringDetBleUavgjort">Its draw.. Try again.</string>
+    <string name="StringSpilletErFerdigTrykkPlayForNyttSpill">The game finnished, press to start new game.</string>
+    <string name="StringNyttSpillStartet">New game. Press start :)</string>
+    <string name="StringResultatElapsedSecondsFor">"Time spent for player "</string>
+</resources>

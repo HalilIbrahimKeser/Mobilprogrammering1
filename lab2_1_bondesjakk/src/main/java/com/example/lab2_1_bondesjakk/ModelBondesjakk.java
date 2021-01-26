@@ -1,11 +1,5 @@
 package com.example.lab2_1_bondesjakk;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 public class ModelBondesjakk extends MainActivityBondesjakk {
     public String strA;
     public String strB;
@@ -17,7 +11,7 @@ public class ModelBondesjakk extends MainActivityBondesjakk {
     public String strH;
     public String strK;
 
-    public void vunnet() {
+    public void spillVunnetOgFerdig() {
         strA = tvA.getText().toString();
         strB = tvB.getText().toString();
         strC = tvC.getText().toString();
@@ -29,7 +23,7 @@ public class ModelBondesjakk extends MainActivityBondesjakk {
         strK = tvK.getText().toString();
 
 
-        this.spillerVunnet = sjekkRader() || sjekkDiagonaler() || sjekkKolonner();
+        this.booleanSpillerVunnet = sjekkRader() || sjekkDiagonaler() || sjekkKolonner();
     }
 
     public boolean sjekkRader() {

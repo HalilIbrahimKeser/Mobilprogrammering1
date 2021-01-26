@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Bondesjakk</string>
     <string name="action_settings">Innstillinger</string>
+    <string name="appnametop">Bondesjakk</string>
     <string name="StringSpiller_o">Spiller O</string>
     <string name="StringSpiller_x">Spiller X</string>
     <string name="StringX">X</string>
@@ -18,7 +20,7 @@
     <string name="StringAaction_pause">Pause spillet</string>
     <string name="StringXvant">"Spiller X har vunnet!!  "</string>
     <string name="StringOvant">"Spiller O har vunnet!!  "</string>
-    <string name="StringSekunder">" sekunder"</string>
+    <string name="StringSekunder">"Spiller O har vunnet!!  "</string>
     <string name="StringHarVunnet">" har vunnet!!"</string>
     <string name="StringSpillerXHarBrukt">"Spiller X brukte: "</string>
     <string name="StringSpillerOHarBrukt">"Spiller O brukte: "</string>
@@ -27,5 +29,4 @@
     <string name="StringSpilletErFerdigTrykkPlayForNyttSpill">Spillet er ferdig, trykk play for nytt spill.</string>
     <string name="StringNyttSpillStartet">Nytt spill. Trykk start :)</string>
     <string name="StringResultatElapsedSecondsFor">Hittil tidsbruk for spiller</string>
-    <string name="appnametop">Bondesjakk</string>
 </resources>
