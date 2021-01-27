@@ -30,6 +30,11 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     public TextView tvSpillerX;
     public TextView tvSpillerO;
     public TextView tvResultat;
+
+    private static String USER = "X";
+    private static final String UserX = "X";
+    private static final String UserO = "O";
+
     public boolean booleanSpillStarted = false;
     public boolean booleanSpillerVunnet = false;
     public boolean booleanStartTimer = false;
@@ -51,10 +56,6 @@ public class MainActivityBondesjakk extends AppCompatActivity {
     private Timer timer;
     private Handler mainHandler;
     private static final int MAX_TIME = 1000;
-
-    private static String USER = "X";
-    private static final String UserX = "X";
-    private static final String UserO = "O";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,7 @@ public class MainActivityBondesjakk extends AppCompatActivity {
             resetTextBokserOgTexter();
             this.recreate();
         });
+
         startTimer(tvElapsetTid);
     }
 
