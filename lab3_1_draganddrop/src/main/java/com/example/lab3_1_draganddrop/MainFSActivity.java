@@ -33,6 +33,7 @@ public class MainFSActivity extends Activity {
 
     private final class MyTouchListener implements OnTouchListener {
 
+        @SuppressLint("ClickableViewAccessibility")
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 ClipData data = ClipData.newPlainText("", "");
@@ -75,6 +76,8 @@ public class MainFSActivity extends Activity {
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     v.setBackground(normalShape);
+                    v.setVisibility(View.VISIBLE);
+                    break;
                 default:
                     break;
             }

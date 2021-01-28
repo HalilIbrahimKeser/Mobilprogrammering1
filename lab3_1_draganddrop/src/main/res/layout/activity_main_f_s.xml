@@ -9,59 +9,86 @@
     android:stretchMode="columnWidth" >
 
     <LinearLayout
-        android:id="@+id/topleft"
-        android:layout_width="203dp"
-        android:layout_height="186dp"
-        android:layout_row="0"
-        android:background="@drawable/shape">
+        android:layout_width="match_parent"
+        android:layout_height="361dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
-        <ImageView
-            android:id="@+id/myimage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/man" />
+        <LinearLayout
+            android:id="@+id/topright"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/myimage2"
+                android:layout_width="wrap_content"
+                android:layout_height="124dp"
+                android:background="#DAD4D4"
+                android:contentDescription="@string/ma"
+                android:src="@drawable/tractor_foreground" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topleft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/myimage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/ma1"
+                android:src="@mipmap/heart" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/topright"
-        android:layout_width="200dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape">
+        android:layout_width="match_parent"
+        android:layout_height="367dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
-        <ImageView
-            android:id="@+id/myimage2"
-            android:layout_width="77dp"
-            android:layout_height="88dp"
-            android:background="#DAD4D4"
-            android:src="@drawable/man" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottomright"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:weightSum="2">
 
-    <LinearLayout
-        android:id="@+id/bottomleft"
-        android:layout_width="209dp"
-        android:layout_height="189dp"
-        android:background="@drawable/shape">
+            <ImageView
+                android:id="@+id/myimage4"
+                android:layout_width="66dp"
+                android:layout_height="78dp"
+                android:background="#DC8787"
+                android:contentDescription="@string/ma3"
+                android:src="@drawable/man" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/myimage3"
-            android:layout_width="110dp"
-            android:layout_height="105dp"
-            android:background="#453434"
-            android:src="@drawable/man" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottomleft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:weightSum="2">
 
-    <LinearLayout
-        android:id="@+id/bottomright"
-        android:layout_width="200dp"
-        android:layout_height="160dp"
-        android:background="@drawable/shape">
-
-        <ImageView
-            android:id="@+id/myimage4"
-            android:layout_width="66dp"
-            android:layout_height="78dp"
-            android:background="#DC8787"
-            android:src="@drawable/man" />
+            <ImageView
+                android:id="@+id/myimage3"
+                android:layout_width="110dp"
+                android:layout_height="105dp"
+                android:background="#453434"
+                android:contentDescription="@string/ma3"
+                android:src="@drawable/man" />
+        </LinearLayout>
     </LinearLayout>
 
 </GridLayout>

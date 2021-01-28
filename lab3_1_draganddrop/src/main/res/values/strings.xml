@@ -2,4 +2,8 @@
     <string name="app_name">Lab3_1_dragAndDrop</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="ma">le</string>
+    <string name="ma1">le1</string>
+    <string name="ma2">le2</string>
+    <string name="ma3">le3</string>
 </resources>
