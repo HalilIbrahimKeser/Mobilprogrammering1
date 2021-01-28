@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/appbartest1" />
             <option value="$PROJECT_DIR$/datecalc" />
+            <option value="$PROJECT_DIR$/draganddrop" />
+            <option value="$PROJECT_DIR$/dynamiskgrid" />
             <option value="$PROJECT_DIR$/huskeliste1" />
             <option value="$PROJECT_DIR$/huskeliste2" />
             <option value="$PROJECT_DIR$/instanceStateDemo" />
@@ -23,6 +25,8 @@
             <option value="$PROJECT_DIR$/lab1_3" />
             <option value="$PROJECT_DIR$/lab1_4" />
             <option value="$PROJECT_DIR$/lab2_1_bondesjakk" />
+            <option value="$PROJECT_DIR$/lifeCycleDemo" />
+            <option value="$PROJECT_DIR$/spinnertest1" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

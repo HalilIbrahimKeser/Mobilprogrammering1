@@ -1,3 +1,7 @@
+include ':spinnertest1'
+include ':lifeCycleDemo'
+include ':dynamiskgrid'
+include ':draganddrop'
 include ':intent1'
 include ':huskeliste1'
 include ':huskeliste2'
