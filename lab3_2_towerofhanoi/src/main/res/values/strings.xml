@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tower Of Hanoi</string>
+    <string name="StringAction_settings">Settings</string>
+
+    <string name="StringToptext">Hvor raskt klarer du å flytte ringene fra tårn 1 til tårn 3?</string>
+    <string name="StringTvToptext2">Velg antall ringer.</string>
+    <string name="StringTvAntall_ringer">Antall ringer:</string>
+    <string name="StringResultOfSeekbar">3 / 10</string>
+    <string name="StringStart">Start</string>
+</resources>

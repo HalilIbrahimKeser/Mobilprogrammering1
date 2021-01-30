@@ -1,7 +1,7 @@
-#Fri Jan 29 00:17:03 CET 2021
-base.0=C\:\\DokumenterPC\\ProsjektLaptop\\DTE-2603-Mobilprogrammering\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Sat Jan 30 16:14:01 CET 2021
+base.0=B\:\\androidstudio_app\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\DokumenterPC\\ProsjektLaptop\\DTE-2603-Mobilprogrammering\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.1=B\:\\androidstudio_app\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex

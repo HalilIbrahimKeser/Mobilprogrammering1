@@ -1,0 +1,83 @@
+package com.example.lab3_2_towerofhanoi;
+
+import android.os.Bundle;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.View;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+public class MainActivityTowerOfHanoi extends AppCompatActivity {
+    private SeekBar sBar;
+    private TextView tvResultOfSeekbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_tower_of_hanoi);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        sBar = findViewById(R.id.seekBarDisks);
+        tvResultOfSeekbar = findViewById(R.id.tvResultOfSeekbar);
+        String tempString1 = sBar.getProgress() + " / " + sBar.getMax();
+        tvResultOfSeekbar.setText(tempString1);
+
+        sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int pval = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                pval = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //write custom code to on start progress
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                String tempString2 = pval + " / " + seekBar.getMax();
+                tvResultOfSeekbar.setText(tempString2);
+            }
+        });
+
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_activity_tower_of_hanoi, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
