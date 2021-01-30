@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="4/10"
+        android:hint="@string/StringtvResultofSeekBar"
         android:text="@string/StringResultOfSeekbar"
         android:textColor="@color/darkgrey"
         app:layout_constraintBottom_toTopOf="@+id/seekBarDisks"
@@ -73,39 +73,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tvToptext2" />
 
 
-    <TableLayout
-        android:id="@+id/tableLayout2"
-        android:layout_width="400dp"
-        android:layout_height="520dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStart">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
     <TextView
         android:id="@+id/btStart"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bt_shape"
         android:gravity="center_horizontal|center_vertical"
@@ -115,5 +87,117 @@
         app:layout_constraintEnd_toStartOf="@+id/seekBarDisks"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <LinearLayout
+        android:id="@+id/fromTower"
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
+        android:background="@mipmap/tower2"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btStart" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/rectangle_xsmall" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/rectangle_small" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/rectangle_normal" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            app:srcCompat="@drawable/rectangle_big" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/auxTower"
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:background="@mipmap/tower2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/fromTower"
+        app:layout_constraintEnd_toStartOf="@+id/toTower"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toEndOf="@+id/fromTower"
+        app:layout_constraintTop_toBottomOf="@+id/btStart"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/toTower"
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="4dp"
+        android:background="@mipmap/tower2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/auxTower"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btStart"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvAntallFlytt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:shadowColor="@color/grey"
+        android:text="@string/StringAntall_flyt"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fromTower" />
+
+    <TextView
+        android:id="@+id/tvSekunder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:shadowColor="@color/grey"
+        android:text="@string/Stringsekunder"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvSumFlyt"
+        app:layout_constraintStart_toEndOf="@+id/tvSumFlyt" />
+
+    <TextView
+        android:id="@+id/tvSumFlyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:shadowColor="@color/grey"
+        android:text="@string/String_0_flytt"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvAntallFlytt"
+        app:layout_constraintStart_toEndOf="@+id/tvAntallFlytt" />
+
+    <TextView
+        android:id="@+id/tvSumSekunder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:shadowColor="@color/grey"
+        android:text="@string/String_0_sekunder"
+        android:textColor="@color/darkgrey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvSekunder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvSekunder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,9 @@
     <string name="StringTvAntall_ringer">Antall ringer:</string>
     <string name="StringResultOfSeekbar">3 / 10</string>
     <string name="StringStart">Start</string>
+    <string name="StringtvResultofSeekBar">4/10</string>
+    <string name="StringAntall_flyt">Antall flyt:</string>
+    <string name="String_0_flytt">0 flytt</string>
+    <string name="Stringsekunder">Sekunder:</string>
+    <string name="String_0_sekunder">0 sekunder</string>
 </resources>
