@@ -15,6 +15,6 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/tower" />
+    <item android:drawable="@drawable/tower3" />
 
 </layer-list>

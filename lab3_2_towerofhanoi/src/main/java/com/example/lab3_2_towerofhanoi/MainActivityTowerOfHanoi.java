@@ -78,13 +78,14 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private final class MyTouchListener implements View.OnTouchListener {
 
         @SuppressLint("ClickableViewAccessibility")
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+        public boolean onTouch(View viewToBeDragged, MotionEvent motionEvent) {
+            LinearLayout owner = (LinearLayout) viewToBeDragged.getParent();
+            View top = owner.getChildAt(0);
+            if (viewToBeDragged == top || owner.getChildCount() == 1) {
                 ClipData data = ClipData.newPlainText("", "");
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
-                        view);
-                view.startDrag(data, shadowBuilder, view, 0);
-                view.setVisibility(View.INVISIBLE);
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(viewToBeDragged);
+                viewToBeDragged.startDrag(data, shadowBuilder, viewToBeDragged, 0);
+                viewToBeDragged.setVisibility(View.INVISIBLE);
                 return true;
             } else {
                 return false;
