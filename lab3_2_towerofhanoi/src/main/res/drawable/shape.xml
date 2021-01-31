@@ -13,5 +13,5 @@
                 android:topRightRadius="2dp" />
         </shape>
     </item>
-    <item android:drawable="@color/tower2_background" />
+    <item android:drawable="@drawable/tower" />
 </layer-list>

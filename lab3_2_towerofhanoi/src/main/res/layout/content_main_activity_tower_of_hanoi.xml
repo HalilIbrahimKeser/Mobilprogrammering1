@@ -66,7 +66,7 @@
         android:indeterminate="false"
         android:isScrollContainer="true"
         android:max="10"
-        android:progress="3"
+        android:progress="4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -99,30 +99,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btStart" >
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <LinearLayout
+            android:id="@+id/fromlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rectangle_xsmall" />
+            android:layout_height="match_parent"
+            android:background="@mipmap/tower2"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="100dp"
+            android:paddingRight="5dp">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rectangle_small" />
+            <ImageView
+                android:id="@+id/myimage1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/StringExample"
+                app:srcCompat="@drawable/rectangle_xsmall" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rectangle_normal" />
+            <ImageView
+                android:id="@+id/myimage2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/StringExample"
+                app:srcCompat="@drawable/rectangle_small" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:srcCompat="@drawable/rectangle_big" />
+            <ImageView
+                android:id="@+id/myimage3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/StringAntall_flyt"
+                app:srcCompat="@drawable/rectangle_normal" />
+
+            <ImageView
+                android:id="@+id/myimage4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:contentDescription="@string/StringExample"
+                app:srcCompat="@drawable/rectangle_big" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -138,7 +153,18 @@
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toEndOf="@+id/fromTower"
         app:layout_constraintTop_toBottomOf="@+id/btStart"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0" >
+
+        <LinearLayout
+            android:id="@+id/auxlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/tower2"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="95dp"
+            android:paddingRight="5dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/toTower"
@@ -150,7 +176,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/auxTower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btStart"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0" >
+
+        <LinearLayout
+            android:id="@+id/tolayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/tower2"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="95dp"
+            android:paddingRight="5dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvAntallFlytt"

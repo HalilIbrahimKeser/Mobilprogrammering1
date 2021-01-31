@@ -1,5 +1,8 @@
 package com.example.lab3_2_towerofhanoi;
 
+import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,10 +11,14 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -25,6 +32,15 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         setContentView(R.layout.activity_main_tower_of_hanoi);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        findViewById(R.id.myimage1).setOnTouchListener(new MyTouchListener());
+        findViewById(R.id.myimage2).setOnTouchListener(new MyTouchListener());
+        findViewById(R.id.myimage3).setOnTouchListener(new MyTouchListener());
+        findViewById(R.id.myimage4).setOnTouchListener(new MyTouchListener());
+
+        findViewById(R.id.fromlayout).setOnDragListener(new MyDragListener());
+        findViewById(R.id.auxlayout).setOnDragListener(new MyDragListener());
+        findViewById(R.id.tolayout).setOnDragListener(new MyDragListener());
 
         sBar = findViewById(R.id.seekBarDisks);
         tvResultOfSeekbar = findViewById(R.id.tvResultOfSeekbar);
@@ -57,6 +73,60 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 //            }
 //        });
 
+    }
+
+    private final class MyTouchListener implements View.OnTouchListener {
+
+        @SuppressLint("ClickableViewAccessibility")
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                        view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                view.setVisibility(View.INVISIBLE);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    class MyDragListener implements View.OnDragListener {
+        Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
+        Drawable normalShape = getResources().getDrawable(R.drawable.shape);
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int action = event.getAction();
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // do nothing
+                    break;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    v.setBackground(enterShape);
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    v.setBackground(normalShape);
+                    break;
+                case DragEvent.ACTION_DROP:
+                    // Dropped, reassign View to ViewGroup
+                    View view = (View) event.getLocalState();
+                    ViewGroup owner = (ViewGroup) view.getParent();
+                    owner.removeView(view);
+                    LinearLayout container = (LinearLayout) v;
+                    container.addView(view);
+                    view.setVisibility(View.VISIBLE);
+                    break;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    v.setBackground(normalShape);
+                    v.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
     }
 
     @Override
