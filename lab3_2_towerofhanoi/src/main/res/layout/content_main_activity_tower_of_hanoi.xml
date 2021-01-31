@@ -89,25 +89,29 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <LinearLayout
-        android:id="@+id/fromTower"
-        android:layout_width="130dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="4dp"
+        android:id="@+id/layoutTowers"
+        android:layout_width="391dp"
+        android:layout_height="213dp"
         android:layout_marginTop="56dp"
-        android:background="@mipmap/tower2"
-        android:orientation="vertical"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStart" >
+        app:layout_constraintTop_toBottomOf="@+id/btStart">
 
         <LinearLayout
             android:id="@+id/fromlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/tower2"
+            android:layout_weight="1"
+            android:background="@drawable/tower3"
+            android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="5dp"
-            android:paddingTop="100dp"
-            android:paddingRight="5dp">
+            android:paddingTop="50dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="30dp">
 
             <ImageView
                 android:id="@+id/myimage1"
@@ -137,56 +141,38 @@
                 android:layout_gravity="end"
                 android:contentDescription="@string/StringExample"
                 app:srcCompat="@drawable/rectangle_big" />
+
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/auxTower"
-        android:layout_width="130dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        android:background="@mipmap/tower2"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/fromTower"
-        app:layout_constraintEnd_toStartOf="@+id/toTower"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toEndOf="@+id/fromTower"
-        app:layout_constraintTop_toBottomOf="@+id/btStart"
-        app:layout_constraintVertical_bias="1.0" >
 
         <LinearLayout
             android:id="@+id/auxlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/tower2"
+            android:layout_weight="1"
+            android:background="@drawable/tower3"
+            android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="5dp"
             android:paddingTop="95dp"
-            android:paddingRight="5dp" />
-    </LinearLayout>
+            android:paddingRight="5dp"
+            android:paddingBottom="30dp">
 
-    <LinearLayout
-        android:id="@+id/toTower"
-        android:layout_width="130dp"
-        android:layout_height="200dp"
-        android:layout_marginEnd="4dp"
-        android:background="@mipmap/tower2"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/auxTower"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStart"
-        app:layout_constraintVertical_bias="1.0" >
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/tolayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/tower2"
+            android:layout_weight="1"
+            android:background="@drawable/tower3"
+            android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="5dp"
             android:paddingTop="95dp"
-            android:paddingRight="5dp" />
+            android:paddingRight="5dp"
+            android:paddingBottom="30dp">
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -201,7 +187,7 @@
         android:textColor="@color/darkgrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fromTower" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutTowers" />
 
     <TextView
         android:id="@+id/tvSekunder"

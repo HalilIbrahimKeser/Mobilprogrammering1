@@ -13,4 +13,6 @@
     <string name="Stringsekunder">Sekunder:</string>
     <string name="String_0_sekunder">0 sekunder</string>
     <string name="StringExample">---</string>
+    <string name="String_nytt_spill">Nytt spill</string>
+    <string name="String_avslutt">Avslutt</string>
 </resources>

@@ -10,7 +10,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,10 +24,24 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
 
 public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private SeekBar sBar;
     private TextView tvResultOfSeekbar;
+
+    public boolean booleanSpillStarted = false;
+    public boolean booleanSpillerVunnet = false;
+    public boolean booleanStartTimer = false;
+
+    private long sumSekunder = 0;
+    private TextView tvSumSekunder;
+    private Timer timer;
+    private Handler mainHandler;
+    private static final int MAX_TIME = 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,9 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         setContentView(R.layout.activity_main_tower_of_hanoi);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mainHandler = new Handler(Looper.getMainLooper());
+        tvSumSekunder = findViewById(R.id.tvSumSekunder);
 
         findViewById(R.id.myimage1).setOnTouchListener(new MyTouchListener());
         findViewById(R.id.myimage2).setOnTouchListener(new MyTouchListener());
@@ -94,34 +114,45 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     }
 
     class MyDragListener implements View.OnDragListener {
+        //Drawable entershape1 = ResourcesCompat.getDrawable(null, R.drawable.shape, null);
         Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
         Drawable normalShape = getResources().getDrawable(R.drawable.shape);
 
         @Override
-        public boolean onDrag(View v, DragEvent event) {
+        public boolean onDrag(View view, DragEvent event) {
             int action = event.getAction();
+            boolean dragInterrupted = false;
+
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
                     // do nothing
                     break;
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    v.setBackground(enterShape);
+                    view.setBackground(enterShape);
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
-                    v.setBackground(normalShape);
+                    view.setBackground(normalShape);
                     break;
                 case DragEvent.ACTION_DROP:
+                    View topElement = null;
+                    View nexttopElement = null;
+                    LinearLayout container = (LinearLayout) view;
+                    if (container.getChildCount()>0)
+                        topElement = container.getChildAt(0);
+                        nexttopElement = container.getChildAt(1);
+
+
                     // Dropped, reassign View to ViewGroup
-                    View view = (View) event.getLocalState();
-                    ViewGroup owner = (ViewGroup) view.getParent();
-                    owner.removeView(view);
-                    LinearLayout container = (LinearLayout) v;
-                    container.addView(view);
-                    view.setVisibility(View.VISIBLE);
+                    View viewToBeDragged = (View) event.getLocalState();
+                    ViewGroup owner = (ViewGroup) viewToBeDragged.getParent();
+                    owner.removeView(viewToBeDragged);
+
+                    container.addView(viewToBeDragged);
+                    viewToBeDragged.setVisibility(View.VISIBLE);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
-                    v.setBackground(normalShape);
-                    v.setVisibility(View.VISIBLE);
+                    view.setBackground(normalShape);
+                    view.setVisibility(View.VISIBLE);
                     break;
                 default:
                     break;
@@ -137,18 +168,24 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_newgame:
+                this.recreate();
+                break;
+            case R.id.action_endgame:
+                this.finish();
+                break;
+            case R.id.action_settings :
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + id);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
