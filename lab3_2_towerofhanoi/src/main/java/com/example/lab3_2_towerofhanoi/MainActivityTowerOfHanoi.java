@@ -5,12 +5,8 @@ import android.content.ClipData;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -21,12 +17,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private SeekBar sBar;
@@ -36,13 +34,14 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     public boolean booleanSpillerVunnet = false;
     public boolean booleanStartTimer = false;
 
-    private long sumSekunder = 0;
-    private TextView tvSumSekunder;
+    private long elapsedSeconds = 0;
+    private TextView tvElapsetTid;
     private Timer timer;
     private Handler mainHandler;
     private static final int MAX_TIME = 1000;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +50,35 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mainHandler = new Handler(Looper.getMainLooper());
-        tvSumSekunder = findViewById(R.id.tvSumSekunder);
+        tvElapsetTid = findViewById(R.id.tvElapsetTid);
 
-        findViewById(R.id.myimage1).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.myimage2).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.myimage3).setOnTouchListener(new MyTouchListener());
-        findViewById(R.id.myimage4).setOnTouchListener(new MyTouchListener());
+        TextView btStartGame = findViewById(R.id.btStartGame);
 
-        findViewById(R.id.fromlayout).setOnDragListener(new MyDragListener());
-        findViewById(R.id.auxlayout).setOnDragListener(new MyDragListener());
-        findViewById(R.id.tolayout).setOnDragListener(new MyDragListener());
+        // Setter onTouchListener
+        ImageView myimage1 = findViewById(R.id.myimage1);
+        myimage1.setOnTouchListener(new MyTouchListener());
+        myimage1.setTag("boksXSmall");
+        ImageView myimage2 = findViewById(R.id.myimage2);
+        myimage2.setOnTouchListener(new MyTouchListener());
+        myimage2.setTag("boksSmall");
+        ImageView myimage3 = findViewById(R.id.myimage3);
+        myimage3.setOnTouchListener(new MyTouchListener());
+        myimage3.setTag("boksNormal");
+        ImageView myimage4 = findViewById(R.id.myimage4);
+        myimage4.setOnTouchListener(new MyTouchListener());
+        myimage4.setTag("boksBig");
+
+        // Setter onDraListener
+        LinearLayout fromlayout = findViewById(R.id.fromlayout);
+        fromlayout.setOnDragListener(new MyDragListener());
+        fromlayout.setTag("fromlayout");
+        LinearLayout auxlayout = findViewById(R.id.auxlayout);
+        auxlayout.setOnDragListener(new MyDragListener());
+        auxlayout.setTag("auxlayout");
+        LinearLayout tolayout = findViewById(R.id.tolayout);
+        tolayout.setOnDragListener(new MyDragListener());
+        tolayout.setTag("tolayout");
+
 
         sBar = findViewById(R.id.seekBarDisks);
         tvResultOfSeekbar = findViewById(R.id.tvResultOfSeekbar);
@@ -84,14 +102,21 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
             }
         });
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        btStartGame.setOnClickListener(v -> {
+            if(!booleanSpillStarted && !booleanSpillerVunnet) {
+                startSpill();
+                booleanStartTimer = true;
+                startTimer(tvElapsetTid);
+            }
+        });
+
+    }
+
+    private void startSpill() {
+        booleanSpillStarted = true;
+    }
+
+    public void spillVunnetOgFerdig() {
 
     }
 
@@ -123,41 +148,55 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
             int action = event.getAction();
             boolean dragInterrupted = false;
 
-            switch (event.getAction()) {
-                case DragEvent.ACTION_DRAG_STARTED:
-                    // do nothing
-                    break;
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    view.setBackground(enterShape);
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    view.setBackground(normalShape);
-                    break;
-                case DragEvent.ACTION_DROP:
-                    View topElement = null;
-                    View nexttopElement = null;
-                    LinearLayout container = (LinearLayout) view;
-                    if (container.getChildCount()>0)
-                        topElement = container.getChildAt(0);
-                        nexttopElement = container.getChildAt(1);
+            View draggedView = (View) event.getLocalState();
+            LinearLayout receiveContainer = (LinearLayout) view;
+            if(booleanSpillStarted && !booleanSpillerVunnet) {
+                switch (action) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        // do nothing
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        view.setBackground(enterShape);
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        view.setBackground(normalShape);
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        String draggedViewTag = draggedView.getTag().toString();
+                        String draggedToContainerTag = receiveContainer.getTag().toString();
+                        dragInterrupted = draggedViewTag.equals("boksXSmall") && draggedToContainerTag.equals("tolayout");
 
+                        View topElement = null;
+                        View nexttopElement = null;
+                        //LinearLayout receiveContainer = (LinearLayout) view;
+                        if (receiveContainer.getChildCount()>0)
+                            topElement = receiveContainer.getChildAt(0);
+                            nexttopElement = receiveContainer.getChildAt(1);
 
-                    // Dropped, reassign View to ViewGroup
-                    View viewToBeDragged = (View) event.getLocalState();
-                    ViewGroup owner = (ViewGroup) viewToBeDragged.getParent();
-                    owner.removeView(viewToBeDragged);
-
-                    container.addView(viewToBeDragged);
-                    viewToBeDragged.setVisibility(View.VISIBLE);
-                    break;
-                case DragEvent.ACTION_DRAG_ENDED:
-                    view.setBackground(normalShape);
-                    view.setVisibility(View.VISIBLE);
-                    break;
-                default:
-                    break;
+                        if (dragInterrupted) {
+                            return false;
+                        } else {
+                            // Dropped, reassign View to ViewGroup
+                            //View draggedView = (View) event.getLocalState();
+                            ViewGroup owner = (ViewGroup) draggedView.getParent();
+                            owner.removeView(draggedView);
+                            receiveContainer.addView(draggedView);
+                        }
+                        draggedView.setVisibility(View.VISIBLE);
+                        break;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        draggedView.setVisibility(View.VISIBLE);
+                        receiveContainer.setBackground(normalShape);
+                        view.setBackground(normalShape);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }else {
+                String tempString1 = getResources().getString(R.string.StringStartTheGameFirst);
+                Toast.makeText(this, (tempString1), Toast.LENGTH_SHORT).show();
             }
-            return true;
         }
     }
 
@@ -187,5 +226,51 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                 throw new IllegalStateException("Unexpected value: " + id);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void startTimer(View view) {
+        if(booleanStartTimer) {
+            timer = new Timer();
+            try {
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (elapsedSeconds < MAX_TIME) {
+                            elapsedSeconds++;
+
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tvElapsetTid.setText(String.valueOf(elapsedSeconds));
+                                }
+                            });
+                        } else {
+                            elapsedSeconds = 0;
+                            timer.cancel();
+                            timer.purge();
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tvElapsetTid.setText(getResources().getString(R.string.String00_00));
+                                }
+                            });
+                        }
+                    }
+                }, 0, 1000);
+            } catch (IllegalArgumentException | IllegalStateException iae) {
+                iae.printStackTrace();
+            }
+        }
+
+    }
+
+    private void stopTimer(View view) {
+        if (timer!=null) {
+            elapsedSeconds = 0;
+            tvElapsetTid.setText(getResources().getString(R.string.String00_00));
+            timer.cancel();
+            timer.purge();
+        }
     }
 }

@@ -74,7 +74,7 @@
 
 
     <TextView
-        android:id="@+id/btStart"
+        android:id="@+id/btStartGame"
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:layout_marginTop="24dp"
@@ -98,7 +98,7 @@
         android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStart">
+        app:layout_constraintTop_toBottomOf="@+id/btStartGame">
 
         <LinearLayout
             android:id="@+id/fromlayout"
@@ -212,7 +212,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvAntallFlytt" />
 
     <TextView
-        android:id="@+id/tvSumSekunder"
+        android:id="@+id/tvElapsetTid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
