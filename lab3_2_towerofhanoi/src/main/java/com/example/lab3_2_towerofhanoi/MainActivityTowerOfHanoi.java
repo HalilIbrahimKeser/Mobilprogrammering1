@@ -30,7 +30,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityTowerOfHanoi extends AppCompatActivity {
-    //private static BreakIterator tvSumFlyt;
     public TextView tvResultOfSeekbar;
     public TextView tvSumFlyt;
     public int count = 0;
@@ -133,7 +132,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     }
 
     private final class MyTouchListener implements View.OnTouchListener {
-
         @SuppressLint("ClickableViewAccessibility")
         public boolean onTouch(View viewToBeDragged, MotionEvent motionEvent) {
             if(booleanSpillStarted && !booleanSpillerVunnet) {
@@ -158,15 +156,12 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         Resources res = getResources();
         Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
         Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
-
         @Override
         public boolean onDrag(View view, DragEvent event) {
             int action = event.getAction();
             boolean dragInterrupted = false;
-
             View draggedView = (View) event.getLocalState();
             LinearLayout receiveContainer = (LinearLayout) view;
-
             if(tolayout.getChildCount()>3) {
                 booleanSpillerVunnet = true;
                 booleanSpillStarted = false;
@@ -174,9 +169,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                 tvElapsetTid.setText(String.valueOf(elapsedSeconds));
                 String tempString3 = getResources().getString(R.string.StringAntalltrekk) + count;
                 Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
-
             }
-
             if(booleanSpillStarted && !booleanSpillerVunnet) {
                 switch (action) {
                     case DragEvent.ACTION_DRAG_STARTED:
@@ -197,10 +190,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         if (receiveContainer.getChildCount()>0) {
                             topElement = receiveContainer.getChildAt(0);
                             String topElementTag = topElement.getTag().toString();
-
                             int draggedViewWidth = draggedView.getWidth();
                             int topElementWidth = topElement.getWidth();
-
                             if (draggedViewWidth > topElementWidth) {
                                 dragInterrupted = true;
                             }
@@ -209,8 +200,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         if (dragInterrupted) {
                             return false;
                         } else {
-                            // Dropped, reassign View to ViewGroup
-                            //View draggedView = (View) event.getLocalState();
                             ViewGroup owner = (ViewGroup) draggedView.getParent();
                             owner.removeView(draggedView);
                             receiveContainer.addView(draggedView);
@@ -221,16 +210,20 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         draggedView.setVisibility(View.VISIBLE);
+                        //draggedView.set
                         receiveContainer.setBackground(normalShape);
                         view.setBackground(normalShape);
+                       // if (receiveContainer.getChildCount()>0) {
+                        //    topElement = receiveContainer.getChildAt(0);
 
+                        //}
                         break;
                     default:
                         break;
                 }
                 return true;
             }else {
-                String tempString1 = getResources().getString(R.string.StringStartTheGameFirst);
+                String tempString1 = getResources().getString(R.string.StringStartSpilletPaNytt);
                 Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
             }
             return false;

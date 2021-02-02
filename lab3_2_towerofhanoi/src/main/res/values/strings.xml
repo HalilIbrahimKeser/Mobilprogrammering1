@@ -18,4 +18,5 @@
     <string name="String00_00">00:00</string>
     <string name="StringStartTheGameFirst">Du må starte spillet først!</string>
     <string name="StringAntalltrekk">"Antall trekk = "</string>
+    <string name="StringStartSpilletPaNytt">Start nytt spill fra menu...</string>
 </resources>
