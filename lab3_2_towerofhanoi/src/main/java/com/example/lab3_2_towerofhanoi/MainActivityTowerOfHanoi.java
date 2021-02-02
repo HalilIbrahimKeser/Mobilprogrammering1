@@ -2,11 +2,14 @@ package com.example.lab3_2_towerofhanoi;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.icu.text.BreakIterator;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -27,8 +30,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityTowerOfHanoi extends AppCompatActivity {
-    private SeekBar sBar;
-    private TextView tvResultOfSeekbar;
+    //private static BreakIterator tvSumFlyt;
+    public TextView tvResultOfSeekbar;
+    public TextView tvSumFlyt;
+    public int count = 0;
 
     public boolean booleanSpillStarted = false;
     public boolean booleanSpillerVunnet = false;
@@ -40,7 +45,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private Handler mainHandler;
     private static final int MAX_TIME = 1000;
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
         mainHandler = new Handler(Looper.getMainLooper());
         tvElapsetTid = findViewById(R.id.tvElapsetTid);
+        tvSumFlyt = findViewById(R.id.tvSumFlyt);
 
         TextView btStartGame = findViewById(R.id.btStartGame);
 
@@ -80,7 +85,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         tolayout.setTag("tolayout");
 
 
-        sBar = findViewById(R.id.seekBarDisks);
+        SeekBar sBar = findViewById(R.id.seekBarDisks);
         tvResultOfSeekbar = findViewById(R.id.tvResultOfSeekbar);
         String tempString1 = sBar.getProgress() + " / " + sBar.getMax();
         tvResultOfSeekbar.setText(tempString1);
@@ -124,24 +129,30 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
         @SuppressLint("ClickableViewAccessibility")
         public boolean onTouch(View viewToBeDragged, MotionEvent motionEvent) {
-            LinearLayout owner = (LinearLayout) viewToBeDragged.getParent();
-            View top = owner.getChildAt(0);
-            if (viewToBeDragged == top || owner.getChildCount() == 1) {
-                ClipData data = ClipData.newPlainText("", "");
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(viewToBeDragged);
-                viewToBeDragged.startDrag(data, shadowBuilder, viewToBeDragged, 0);
-                viewToBeDragged.setVisibility(View.INVISIBLE);
-                return true;
-            } else {
-                return false;
+            if(booleanSpillStarted && !booleanSpillerVunnet) {
+                LinearLayout owner = (LinearLayout) viewToBeDragged.getParent();
+                View top = owner.getChildAt(0);
+                if (viewToBeDragged == top || owner.getChildCount() == 1) {
+                    ClipData data = ClipData.newPlainText("", "");
+                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(viewToBeDragged);
+                    viewToBeDragged.startDrag(data, shadowBuilder, viewToBeDragged, 0);
+                    viewToBeDragged.setVisibility(View.INVISIBLE);
+                    return true;
+                } else {
+                    return false;
+                }
             }
+            return false;
         }
     }
 
     class MyDragListener implements View.OnDragListener {
-        //Drawable entershape1 = ResourcesCompat.getDrawable(null, R.drawable.shape, null);
-        Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
-        Drawable normalShape = getResources().getDrawable(R.drawable.shape);
+        Resources res = getResources();
+        Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
+        Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
+
+        //Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
+        //Drawable normalShape = getResources().getDrawable(R.drawable.shape);
 
         @Override
         public boolean onDrag(View view, DragEvent event) {
@@ -164,14 +175,34 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     case DragEvent.ACTION_DROP:
                         String draggedViewTag = draggedView.getTag().toString();
                         String draggedToContainerTag = receiveContainer.getTag().toString();
-                        dragInterrupted = draggedViewTag.equals("boksXSmall") && draggedToContainerTag.equals("tolayout");
-
+                        View viewToBeDroped = (View) event.getLocalState();
                         View topElement = null;
                         View nexttopElement = null;
                         //LinearLayout receiveContainer = (LinearLayout) view;
-                        if (receiveContainer.getChildCount()>0)
+
+                        if (receiveContainer.getChildCount()>0) {
                             topElement = receiveContainer.getChildAt(0);
-                            nexttopElement = receiveContainer.getChildAt(1);
+                            String topElementTag = topElement.getTag().toString();
+                            int topElementWidth = topElement.getWidth();
+                            int viewToBeDropedWidth = viewToBeDroped.getWidth();
+
+                            if (topElementWidth > viewToBeDropedWidth) {
+                                dragInterrupted = true;
+                            }
+
+
+                            /**
+                            String nexttopElementTag= topElement.getTag().toString();
+                            //boksXSmall, boksSmall, boksNormal, boksBig
+                            if(topElementTag.contains("boksBig")){
+                                dragInterrupted=true;
+                            }else if (topElementTag.contains("boksNormal") && nexttopElementTag.contains("boksSmall")){
+                                dragInterrupted=true;
+                            }else if (topElementTag.contains("boksNormal") && nexttopElementTag.contains("boksXSmall")){
+                                dragInterrupted=true;
+                            }else dragInterrupted= topElementTag.contains("boksSmall") && nexttopElementTag.contains("boksXSmall");
+                             */
+                        }
 
                         if (dragInterrupted) {
                             return false;
@@ -183,11 +214,14 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                             receiveContainer.addView(draggedView);
                         }
                         draggedView.setVisibility(View.VISIBLE);
+                        MainActivityTowerOfHanoi.this.count++;
+                        tvSumFlyt.setText(String.valueOf(count));
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         draggedView.setVisibility(View.VISIBLE);
                         receiveContainer.setBackground(normalShape);
                         view.setBackground(normalShape);
+
                         break;
                     default:
                         break;
@@ -195,8 +229,9 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                 return true;
             }else {
                 String tempString1 = getResources().getString(R.string.StringStartTheGameFirst);
-                Toast.makeText(this, (tempString1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
             }
+            return false;
         }
     }
 
