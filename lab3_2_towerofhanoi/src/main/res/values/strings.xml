@@ -17,4 +17,5 @@
     <string name="String_avslutt">Avslutt</string>
     <string name="String00_00">00:00</string>
     <string name="StringStartTheGameFirst">Du må starte spillet først!</string>
+    <string name="StringAntalltrekk">"Antall trekk = "</string>
 </resources>

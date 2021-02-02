@@ -48,6 +48,10 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private Handler mainHandler;
     private static final int MAX_TIME = 1000;
 
+    LinearLayout fromlayout = null;
+    LinearLayout auxlayout = null;
+    LinearLayout tolayout = null;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +81,13 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         myimage4.setTag("myimage4");
 
         // Setter onDraListener
-        LinearLayout fromlayout = findViewById(R.id.fromlayout);
+        fromlayout = findViewById(R.id.fromlayout);
         fromlayout.setOnDragListener(new MyDragListener());
         fromlayout.setTag("fromlayout");
-        LinearLayout auxlayout = findViewById(R.id.auxlayout);
+        auxlayout = findViewById(R.id.auxlayout);
         auxlayout.setOnDragListener(new MyDragListener());
         auxlayout.setTag("auxlayout");
-        LinearLayout tolayout = findViewById(R.id.tolayout);
+        tolayout = findViewById(R.id.tolayout);
         tolayout.setOnDragListener(new MyDragListener());
         tolayout.setTag("tolayout");
 
@@ -141,11 +145,11 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     viewToBeDragged.startDrag(data, shadowBuilder, viewToBeDragged, 0);
                     viewToBeDragged.setVisibility(View.INVISIBLE);
                     return true;
-                } else {
-                    String tempString1 = getResources().getString(R.string.StringStartTheGameFirst);
-                    Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
                 }
-            }
+            } else if (!booleanSpillStarted){
+                    String tempString4 = getResources().getString(R.string.StringStartTheGameFirst);
+                    Toast.makeText(MainActivityTowerOfHanoi.this, tempString4, Toast.LENGTH_SHORT).show();
+                }
             return false;
         }
     }
@@ -155,9 +159,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
         Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
 
-        //Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
-        //Drawable normalShape = getResources().getDrawable(R.drawable.shape);
-
         @Override
         public boolean onDrag(View view, DragEvent event) {
             int action = event.getAction();
@@ -165,6 +166,16 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
             View draggedView = (View) event.getLocalState();
             LinearLayout receiveContainer = (LinearLayout) view;
+
+            if(tolayout.getChildCount()>3) {
+                booleanSpillerVunnet = true;
+                booleanSpillStarted = false;
+                stopTimer(null);
+                tvElapsetTid.setText(String.valueOf(elapsedSeconds));
+                String tempString3 = getResources().getString(R.string.StringAntalltrekk) + count;
+                Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
+
+            }
 
             if(booleanSpillStarted && !booleanSpillerVunnet) {
                 switch (action) {
@@ -182,7 +193,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         String draggedToContainerTag = receiveContainer.getTag().toString();
                         View topElement = null;
                         View nexttopElement = null;
-                        //LinearLayout receiveContainer = (LinearLayout) view;
 
                         if (receiveContainer.getChildCount()>0) {
                             topElement = receiveContainer.getChildAt(0);
@@ -194,19 +204,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                             if (draggedViewWidth > topElementWidth) {
                                 dragInterrupted = true;
                             }
-
-
-                            /**
-                            String nexttopElementTag= topElement.getTag().toString();
-                            //myimage1, myimage2, myimage3, myimage4
-                            if(topElementTag.contains("boksBig")){
-                                dragInterrupted=true;
-                            }else if (topElementTag.contains("boksNormal") && nexttopElementTag.contains("boksSmall")){
-                                dragInterrupted=true;
-                            }else if (topElementTag.contains("boksNormal") && nexttopElementTag.contains("boksXSmall")){
-                                dragInterrupted=true;
-                            }else dragInterrupted= topElementTag.contains("boksSmall") && nexttopElementTag.contains("boksXSmall");
-                             */
                         }
 
                         if (dragInterrupted) {
