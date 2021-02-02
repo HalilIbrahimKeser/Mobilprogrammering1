@@ -35,6 +35,9 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     public TextView tvSumFlyt;
     public int count = 0;
 
+    int topElementWidth = 0;
+    int viewToBeDropedWidth = 0;
+
     public boolean booleanSpillStarted = false;
     public boolean booleanSpillerVunnet = false;
     public boolean booleanStartTimer = false;
@@ -62,16 +65,16 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         // Setter onTouchListener
         ImageView myimage1 = findViewById(R.id.myimage1);
         myimage1.setOnTouchListener(new MyTouchListener());
-        myimage1.setTag("boksXSmall");
+        myimage1.setTag("myimage1");
         ImageView myimage2 = findViewById(R.id.myimage2);
         myimage2.setOnTouchListener(new MyTouchListener());
-        myimage2.setTag("boksSmall");
+        myimage2.setTag("myimage2");
         ImageView myimage3 = findViewById(R.id.myimage3);
         myimage3.setOnTouchListener(new MyTouchListener());
-        myimage3.setTag("boksNormal");
+        myimage3.setTag("myimage3");
         ImageView myimage4 = findViewById(R.id.myimage4);
         myimage4.setOnTouchListener(new MyTouchListener());
-        myimage4.setTag("boksBig");
+        myimage4.setTag("myimage4");
 
         // Setter onDraListener
         LinearLayout fromlayout = findViewById(R.id.fromlayout);
@@ -110,8 +113,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         btStartGame.setOnClickListener(v -> {
             if(!booleanSpillStarted && !booleanSpillerVunnet) {
                 startSpill();
-                booleanStartTimer = true;
-                startTimer(tvElapsetTid);
             }
         });
 
@@ -119,6 +120,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
     private void startSpill() {
         booleanSpillStarted = true;
+        booleanStartTimer = true;
+        startTimer(tvElapsetTid);
     }
 
     public void spillVunnetOgFerdig() {
@@ -139,7 +142,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     viewToBeDragged.setVisibility(View.INVISIBLE);
                     return true;
                 } else {
-                    return false;
+                    String tempString1 = getResources().getString(R.string.StringStartTheGameFirst);
+                    Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
                 }
             }
             return false;
@@ -148,8 +152,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
     class MyDragListener implements View.OnDragListener {
         Resources res = getResources();
-        Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
-        Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
+        Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
+        Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
 
         //Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
         //Drawable normalShape = getResources().getDrawable(R.drawable.shape);
@@ -161,6 +165,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
 
             View draggedView = (View) event.getLocalState();
             LinearLayout receiveContainer = (LinearLayout) view;
+
             if(booleanSpillStarted && !booleanSpillerVunnet) {
                 switch (action) {
                     case DragEvent.ACTION_DRAG_STARTED:
@@ -175,7 +180,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     case DragEvent.ACTION_DROP:
                         String draggedViewTag = draggedView.getTag().toString();
                         String draggedToContainerTag = receiveContainer.getTag().toString();
-                        View viewToBeDroped = (View) event.getLocalState();
                         View topElement = null;
                         View nexttopElement = null;
                         //LinearLayout receiveContainer = (LinearLayout) view;
@@ -183,17 +187,18 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         if (receiveContainer.getChildCount()>0) {
                             topElement = receiveContainer.getChildAt(0);
                             String topElementTag = topElement.getTag().toString();
-                            int topElementWidth = topElement.getWidth();
-                            int viewToBeDropedWidth = viewToBeDroped.getWidth();
 
-                            if (topElementWidth > viewToBeDropedWidth) {
+                            int draggedViewWidth = draggedView.getWidth();
+                            int topElementWidth = topElement.getWidth();
+
+                            if (draggedViewWidth > topElementWidth) {
                                 dragInterrupted = true;
                             }
 
 
                             /**
                             String nexttopElementTag= topElement.getTag().toString();
-                            //boksXSmall, boksSmall, boksNormal, boksBig
+                            //myimage1, myimage2, myimage3, myimage4
                             if(topElementTag.contains("boksBig")){
                                 dragInterrupted=true;
                             }else if (topElementTag.contains("boksNormal") && nexttopElementTag.contains("boksSmall")){
