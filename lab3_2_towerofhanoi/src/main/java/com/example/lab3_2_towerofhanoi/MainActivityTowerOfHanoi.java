@@ -4,19 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.icu.text.BreakIterator;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -25,31 +21,21 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivityTowerOfHanoi extends AppCompatActivity {
-    public TextView tvResultOfSeekbar;
-    public TextView tvSumFlyt;
+    LinearLayout fromlayout, auxlayout, tolayout;
+    public TextView tvResultOfSeekbar, tvSumFlyt, tvMessage;
     public int count = 0;
 
-    int topElementWidth = 0;
-    int viewToBeDropedWidth = 0;
+    public boolean booleanSpillStarted, booleanSpillerVunnet, booleanStartTimer, booleanTidIkkeSattPaTextFelt = false;
 
-    public boolean booleanSpillStarted = false;
-    public boolean booleanSpillerVunnet = false;
-    public boolean booleanStartTimer = false;
-
-    private long elapsedSeconds = 0;
+    private long elapsedSeconds, sumElapsedSeconds = 0;
     private TextView tvElapsetTid;
     private Timer timer;
     private Handler mainHandler;
     private static final int MAX_TIME = 1000;
-
-    LinearLayout fromlayout = null;
-    LinearLayout auxlayout = null;
-    LinearLayout tolayout = null;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -64,6 +50,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         tvSumFlyt = findViewById(R.id.tvSumFlyt);
 
         TextView btStartGame = findViewById(R.id.btStartGame);
+        tvMessage = findViewById(R.id.tvMessage);
 
         // Setter onTouchListener
         ImageView myimage1 = findViewById(R.id.myimage1);
@@ -90,7 +77,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         tolayout.setOnDragListener(new MyDragListener());
         tolayout.setTag("tolayout");
 
-
+        //For videre utvikling av semi dynamisk antall disker
         SeekBar sBar = findViewById(R.id.seekBarDisks);
         tvResultOfSeekbar = findViewById(R.id.tvResultOfSeekbar);
         String tempString1 = sBar.getProgress() + " / " + sBar.getMax();
@@ -114,20 +101,33 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         });
 
         btStartGame.setOnClickListener(v -> {
-            if(!booleanSpillStarted && !booleanSpillerVunnet) {
-                startSpill();
-            }
-        });
+            if(!booleanSpillStarted && !booleanSpillerVunnet) { startSpill(); } });
 
     }
 
     private void startSpill() {
+        booleanTidIkkeSattPaTextFelt = true;
         booleanSpillStarted = true;
         booleanStartTimer = true;
         startTimer(tvElapsetTid);
+        tvMessage.setText(null);
     }
 
     public void spillVunnetOgFerdig() {
+        booleanSpillerVunnet = true;
+        booleanSpillStarted = false;
+        sumElapsedSeconds = elapsedSeconds;
+        if (booleanSpillerVunnet && booleanTidIkkeSattPaTextFelt){
+            tvElapsetTid.setText(String.valueOf(sumElapsedSeconds));
+            booleanTidIkkeSattPaTextFelt = false;
+        }
+
+
+
+        String tempString1 = getResources().getString(R.string.StringAntalltrekk) + count;
+        Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
+        tvMessage.setText(R.string.StringYouWin);
+        stopTimer(null);
 
     }
 
@@ -145,8 +145,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     return true;
                 }
             } else if (!booleanSpillStarted){
-                    String tempString4 = getResources().getString(R.string.StringStartTheGameFirst);
-                    Toast.makeText(MainActivityTowerOfHanoi.this, tempString4, Toast.LENGTH_SHORT).show();
+                    String tempString2 = getResources().getString(R.string.StringStartTheGameFirst);
+                    Toast.makeText(MainActivityTowerOfHanoi.this, tempString2, Toast.LENGTH_SHORT).show();
                 }
             return false;
         }
@@ -156,20 +156,20 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         Resources res = getResources();
         Drawable enterShape = ResourcesCompat.getDrawable(res, R.drawable.shape_droptarget, null);
         Drawable normalShape = ResourcesCompat.getDrawable(res, R.drawable.shape, null);
+        View topElement = null;
+        boolean dragInterrupted;
+
         @Override
         public boolean onDrag(View view, DragEvent event) {
             int action = event.getAction();
-            boolean dragInterrupted = false;
+            int draggedViewWidth, topElementWidth;
             View draggedView = (View) event.getLocalState();
             LinearLayout receiveContainer = (LinearLayout) view;
+
             if(tolayout.getChildCount()>3) {
-                booleanSpillerVunnet = true;
-                booleanSpillStarted = false;
-                stopTimer(null);
-                tvElapsetTid.setText(String.valueOf(elapsedSeconds));
-                String tempString3 = getResources().getString(R.string.StringAntalltrekk) + count;
-                Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
+                spillVunnetOgFerdig();
             }
+
             if(booleanSpillStarted && !booleanSpillerVunnet) {
                 switch (action) {
                     case DragEvent.ACTION_DRAG_STARTED:
@@ -182,19 +182,14 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         view.setBackground(normalShape);
                         break;
                     case DragEvent.ACTION_DROP:
-                        String draggedViewTag = draggedView.getTag().toString();
-                        String draggedToContainerTag = receiveContainer.getTag().toString();
-                        View topElement = null;
-                        View nexttopElement = null;
-
-                        if (receiveContainer.getChildCount()>0) {
+                        //Sjekk om image som legges inn er mindre enn image som ligger på topp
+                        if (receiveContainer.getChildCount() > 0) {
                             topElement = receiveContainer.getChildAt(0);
-                            String topElementTag = topElement.getTag().toString();
-                            int draggedViewWidth = draggedView.getWidth();
-                            int topElementWidth = topElement.getWidth();
-                            if (draggedViewWidth > topElementWidth) {
-                                dragInterrupted = true;
-                            }
+                            draggedViewWidth = draggedView.getWidth();
+                            topElementWidth = topElement.getWidth();
+
+                            //Sjekk om dragged har større bredde en top for å avbryte.
+                            dragInterrupted = draggedViewWidth > topElementWidth && topElement != null || draggedViewWidth == topElementWidth;
                         }
 
                         if (dragInterrupted) {
@@ -202,7 +197,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         } else {
                             ViewGroup owner = (ViewGroup) draggedView.getParent();
                             owner.removeView(draggedView);
-                            receiveContainer.addView(draggedView);
+                            receiveContainer.addView(draggedView, 0);
                         }
                         draggedView.setVisibility(View.VISIBLE);
                         MainActivityTowerOfHanoi.this.count++;
@@ -210,21 +205,18 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         draggedView.setVisibility(View.VISIBLE);
-                        //draggedView.set
                         receiveContainer.setBackground(normalShape);
                         view.setBackground(normalShape);
-                       // if (receiveContainer.getChildCount()>0) {
-                        //    topElement = receiveContainer.getChildAt(0);
-
-                        //}
+                        dragInterrupted = false;
                         break;
                     default:
                         break;
                 }
                 return true;
             }else {
-                String tempString1 = getResources().getString(R.string.StringStartSpilletPaNytt);
-                Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
+                String tempString3 = getResources().getString(R.string.StringStartSpilletPaNytt);
+                Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
+
             }
             return false;
         }
@@ -241,7 +233,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         switch (id) {
             case R.id.action_newgame:
                 this.recreate();
@@ -268,7 +259,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                     public void run() {
                         if (elapsedSeconds < MAX_TIME) {
                             elapsedSeconds++;
-
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -298,7 +288,6 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     private void stopTimer(View view) {
         if (timer!=null) {
             elapsedSeconds = 0;
-            tvElapsetTid.setText(getResources().getString(R.string.String00_00));
             timer.cancel();
             timer.purge();
         }

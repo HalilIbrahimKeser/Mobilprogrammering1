@@ -13,13 +13,15 @@
 
     <TextView
         android:id="@+id/tvToptext1"
-        android:layout_width="309dp"
-        android:layout_height="43dp"
+        android:layout_width="247dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
         android:paddingStart="10dp"
         android:paddingEnd="15dp"
         android:text="@string/StringToptext"
         android:textColor="@color/teal_700"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/layoutTowers"
+        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,77 +33,79 @@
         android:paddingEnd="15dp"
         android:text="@string/StringTvToptext2"
         android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/btStartGame"
+        app:layout_constraintEnd_toEndOf="@+id/tvToptext1"
+        app:layout_constraintHorizontal_bias="0.849"
         app:layout_constraintStart_toStartOf="@+id/tvToptext1"
-        app:layout_constraintTop_toBottomOf="@+id/tvToptext1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvToptext1"
+        app:layout_constraintVertical_bias="0.789" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:paddingStart="10dp"
         android:paddingEnd="15dp"
         android:text="@string/StringTvAntall_ringer"
         android:textColor="@color/darkgrey"
-        app:layout_constraintStart_toStartOf="@+id/tvToptext2"
-        app:layout_constraintTop_toBottomOf="@+id/tvToptext2" />
+        app:layout_constraintEnd_toEndOf="@+id/btStartGame"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btStartGame" />
 
     <TextView
         android:id="@+id/tvResultOfSeekbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="@string/StringtvResultofSeekBar"
         android:text="@string/StringResultOfSeekbar"
         android:textColor="@color/darkgrey"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarDisks"
-        app:layout_constraintEnd_toEndOf="@+id/seekBarDisks"
-        app:layout_constraintStart_toStartOf="@+id/seekBarDisks"
-        app:layout_constraintTop_toBottomOf="@+id/tvToptext1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <SeekBar
         android:id="@+id/seekBarDisks"
         android:layout_width="200dp"
         android:layout_height="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:indeterminate="false"
         android:isScrollContainer="true"
         android:max="10"
         android:progress="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/tvToptext2" />
-
+        app:layout_constraintStart_toEndOf="@+id/tvResultOfSeekbar"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/btStartGame"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bt_shape"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/StringStart"
         android:textAlignment="gravity"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarDisks"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/tvToptext2"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvToptext1" />
 
     <LinearLayout
         android:id="@+id/layoutTowers"
-        android:layout_width="381dp"
-        android:layout_height="212dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="450dp"
+        android:layout_height="241dp"
+        android:layout_marginEnd="8dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStartGame">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/fromlayout"
@@ -111,7 +115,7 @@
             android:background="@drawable/tower3"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="30dp">
+            android:paddingBottom="40dp">
 
             <ImageView
                 android:id="@+id/myimage1"
@@ -158,7 +162,7 @@
             android:background="@drawable/tower3"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="30dp">
+            android:paddingBottom="40dp">
 
         </LinearLayout>
 
@@ -170,7 +174,7 @@
             android:background="@drawable/tower3"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="30dp">
+            android:paddingBottom="40dp">
 
         </LinearLayout>
 
@@ -178,51 +182,50 @@
 
     <TextView
         android:id="@+id/tvAntallFlytt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="93dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
         android:shadowColor="@color/grey"
         android:text="@string/StringAntall_flyt"
         android:textColor="@color/darkgrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutTowers" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvSekunder"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvSekunder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
         android:shadowColor="@color/grey"
         android:text="@string/Stringsekunder"
         android:textColor="@color/darkgrey"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvSumFlyt"
-        app:layout_constraintStart_toEndOf="@+id/tvSumFlyt" />
+        app:layout_constraintEnd_toStartOf="@+id/layoutTowers"
+        app:layout_constraintStart_toEndOf="@+id/tvAntallFlytt"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarDisks" />
 
     <TextView
         android:id="@+id/tvSumFlyt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:shadowColor="@color/grey"
         android:text="@string/String_0_flytt"
         android:textColor="@color/darkgrey"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvAntallFlytt"
-        app:layout_constraintStart_toEndOf="@+id/tvAntallFlytt" />
+        app:layout_constraintEnd_toEndOf="@+id/tvAntallFlytt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAntallFlytt" />
 
     <TextView
         android:id="@+id/tvElapsetTid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:shadowColor="@color/grey"
         android:text="@string/String_0_sekunder"
         android:textColor="@color/darkgrey"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvSekunder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvSekunder" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvSumFlyt"
+        app:layout_constraintEnd_toStartOf="@+id/layoutTowers"
+        app:layout_constraintStart_toEndOf="@+id/tvSumFlyt" />
 
     <TextView
         android:id="@+id/tvMessage"
@@ -231,8 +234,8 @@
         android:textColor="#408A66"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/layoutTowers"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSekunder" />
+        app:layout_constraintTop_toBottomOf="@+id/tvElapsetTid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

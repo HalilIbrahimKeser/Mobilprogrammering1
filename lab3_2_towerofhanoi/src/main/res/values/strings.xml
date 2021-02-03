@@ -19,4 +19,6 @@
     <string name="StringStartTheGameFirst">Du må starte spillet først!</string>
     <string name="StringAntalltrekk">"Antall trekk = "</string>
     <string name="StringStartSpilletPaNytt">Start nytt spill fra menu...</string>
+    <string name="StringYouWin">Du har vunnet!!</string>
+    <string name="StringTotaltid">"Sum tid brukt i sekunder: "</string>
 </resources>
