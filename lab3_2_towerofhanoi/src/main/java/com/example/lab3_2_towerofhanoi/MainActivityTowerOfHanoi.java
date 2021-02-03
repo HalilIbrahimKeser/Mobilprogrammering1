@@ -28,10 +28,9 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     LinearLayout fromlayout, auxlayout, tolayout;
     public TextView tvResultOfSeekbar, tvSumFlyt, tvMessage;
     public int count = 0;
-
     public boolean booleanSpillStarted, booleanSpillerVunnet, booleanStartTimer, booleanTidIkkeSattPaTextFelt = false;
 
-    private long elapsedSeconds, sumElapsedSeconds = 0;
+    private long elapsedSeconds;
     private TextView tvElapsetTid;
     private Timer timer;
     private Handler mainHandler;
@@ -55,27 +54,20 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
         // Setter onTouchListener
         ImageView myimage1 = findViewById(R.id.myimage1);
         myimage1.setOnTouchListener(new MyTouchListener());
-        myimage1.setTag("myimage1");
         ImageView myimage2 = findViewById(R.id.myimage2);
         myimage2.setOnTouchListener(new MyTouchListener());
-        myimage2.setTag("myimage2");
         ImageView myimage3 = findViewById(R.id.myimage3);
         myimage3.setOnTouchListener(new MyTouchListener());
-        myimage3.setTag("myimage3");
         ImageView myimage4 = findViewById(R.id.myimage4);
         myimage4.setOnTouchListener(new MyTouchListener());
-        myimage4.setTag("myimage4");
 
         // Setter onDraListener
         fromlayout = findViewById(R.id.fromlayout);
         fromlayout.setOnDragListener(new MyDragListener());
-        fromlayout.setTag("fromlayout");
         auxlayout = findViewById(R.id.auxlayout);
         auxlayout.setOnDragListener(new MyDragListener());
-        auxlayout.setTag("auxlayout");
         tolayout = findViewById(R.id.tolayout);
         tolayout.setOnDragListener(new MyDragListener());
-        tolayout.setTag("tolayout");
 
         //For videre utvikling av semi dynamisk antall disker
         SeekBar sBar = findViewById(R.id.seekBarDisks);
@@ -116,19 +108,15 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
     public void spillVunnetOgFerdig() {
         booleanSpillerVunnet = true;
         booleanSpillStarted = false;
-        sumElapsedSeconds = elapsedSeconds;
+        long sumElapsedSeconds = elapsedSeconds;
         if (booleanSpillerVunnet && booleanTidIkkeSattPaTextFelt){
             tvElapsetTid.setText(String.valueOf(sumElapsedSeconds));
             booleanTidIkkeSattPaTextFelt = false;
         }
-
-
-
         String tempString1 = getResources().getString(R.string.StringAntalltrekk) + count;
         Toast.makeText(MainActivityTowerOfHanoi.this, tempString1, Toast.LENGTH_SHORT).show();
         tvMessage.setText(R.string.StringYouWin);
         stopTimer(null);
-
     }
 
     private final class MyTouchListener implements View.OnTouchListener {
@@ -147,8 +135,7 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
             } else if (!booleanSpillStarted){
                     String tempString2 = getResources().getString(R.string.StringStartTheGameFirst);
                     Toast.makeText(MainActivityTowerOfHanoi.this, tempString2, Toast.LENGTH_SHORT).show();
-                }
-            return false;
+                } return false;
         }
     }
 
@@ -211,14 +198,12 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         break;
                     default:
                         break;
-                }
-                return true;
+                } return true;
             }else {
                 String tempString3 = getResources().getString(R.string.StringStartSpilletPaNytt);
                 Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
 
-            }
-            return false;
+            } return false;
         }
     }
 
@@ -245,10 +230,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + id);
-        }
-        return super.onOptionsItemSelected(item);
+        } return super.onOptionsItemSelected(item);
     }
-
 
     private void startTimer(View view) {
         if(booleanStartTimer) {
