@@ -200,8 +200,8 @@ public class MainActivityTowerOfHanoi extends AppCompatActivity {
                         break;
                 } return true;
             }else {
-                String tempString3 = getResources().getString(R.string.StringStartSpilletPaNytt);
-                Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
+//                String tempString3 = getResources().getString(R.string.StringStartSpilletPaNytt);
+//                Toast.makeText(MainActivityTowerOfHanoi.this, tempString3, Toast.LENGTH_SHORT).show();
 
             } return false;
         }
