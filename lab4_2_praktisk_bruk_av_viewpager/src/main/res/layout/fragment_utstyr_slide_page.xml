@@ -24,10 +24,12 @@
 
     <ImageView
         android:id="@+id/ivBilde"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="220dp"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:contentDescription="@string/ddd"
+        android:minWidth="200dp"
         android:scaleType="fitXY" />
 
     <EditText
