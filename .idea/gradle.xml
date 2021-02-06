@@ -12,9 +12,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/appbartest1" />
+            <option value="$PROJECT_DIR$/bottomnavigationdemo1" />
             <option value="$PROJECT_DIR$/datecalc" />
             <option value="$PROJECT_DIR$/draganddrop" />
             <option value="$PROJECT_DIR$/dynamiskgrid" />
+            <option value="$PROJECT_DIR$/fragment1_1" />
+            <option value="$PROJECT_DIR$/fragment2_1" />
+            <option value="$PROJECT_DIR$/fragment3_1" />
             <option value="$PROJECT_DIR$/huskeliste1" />
             <option value="$PROJECT_DIR$/huskeliste2" />
             <option value="$PROJECT_DIR$/instanceStateDemo" />
@@ -27,8 +31,12 @@
             <option value="$PROJECT_DIR$/lab2_1_bondesjakk" />
             <option value="$PROJECT_DIR$/lab3_1_draganddrop" />
             <option value="$PROJECT_DIR$/lab3_2_towerofhanoi" />
+            <option value="$PROJECT_DIR$/lab4_1_wievpager" />
+            <option value="$PROJECT_DIR$/lab4_2_praktisk_bruk_av_viewpager" />
             <option value="$PROJECT_DIR$/lifeCycleDemo" />
+            <option value="$PROJECT_DIR$/navigationdrawerdemo1" />
             <option value="$PROJECT_DIR$/spinnertest1" />
+            <option value="$PROJECT_DIR$/viewpager2utstyr0" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
