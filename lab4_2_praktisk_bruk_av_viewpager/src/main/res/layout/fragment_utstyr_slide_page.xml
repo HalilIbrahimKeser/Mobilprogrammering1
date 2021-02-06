@@ -7,13 +7,12 @@
     android:orientation="vertical"
     tools:context=".UtstyrSlidePageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:layout_margin="10dp"
-        android:text="UTSTYR:" />
+        android:text="@string/utstyr" />
     <TextView
         android:id="@+id/tvProdusent"
         android:layout_width="match_parent"
@@ -21,21 +20,29 @@
         android:textSize="22sp"
         android:layout_margin="10dp"
         android:background="#2196F3"
-        android:text="..."/>
+        android:text="@string/str_ff"/>
 
     <ImageView
         android:id="@+id/ivBilde"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_margin="10dp"
-        android:layout_centerVertical="true"
-        android:scaleType="fitXY"
-        />
+        android:contentDescription="@string/ddd"
+        android:scaleType="fitXY" />
 
     <EditText
         android:id="@+id/etDittNavn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textSize="22sp"/>
+        android:hint="@string/navn"
+        android:inputType="text"
+        android:textSize="22sp"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/tvURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textview" />
 </LinearLayout>

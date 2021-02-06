@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Lab4_2_Praktisk_bruk_av_ViewPager</string>
+    <string name="utstyr">UTSTYR:</string>
+    <string name="str_ff">...</string>
+    <string name="navn">navn</string>
+    <string name="ddd">ddd</string>
+    <string name="textview">TextView</string>
 </resources>

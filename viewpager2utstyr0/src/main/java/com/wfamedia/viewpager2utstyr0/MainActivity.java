@@ -26,20 +26,13 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
 
-        // Oppretter (/finner) ViewModel-objektet:
         myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
-        // Legger data i ViewModel-objektet:
         myViewModel.setLabUtstyr(new UtstyrsListe().getUtstyr());
-        // Abonnerer på endringer:
         myViewModel.getLabUtstyr().observe(this, labUtstyr -> {
             Toast.makeText(this, "Utstyr endret ...", Toast.LENGTH_SHORT).show();
         });
     }
 
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
         public ScreenSlidePagerAdapter(FragmentActivity fa) {
             super(fa);

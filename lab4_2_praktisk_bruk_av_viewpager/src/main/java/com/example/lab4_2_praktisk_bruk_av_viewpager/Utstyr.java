@@ -4,18 +4,18 @@ public class Utstyr {
     private String type;
     private String produsent;
     private String modell;
-    private long innkjøpt;
+    private long innkjopt;
     private char status; // (utlånt eller ikke)
-    private String utlånt_til;
+    private String utlant_til;
     private String bildeUrl;
 
-    public Utstyr(String type, String produsent, String modell, long innkjøpt, char status, String utlånt_til, String bildeUrl) {
+    public Utstyr(String type, String produsent, String modell, long innkjopt, char status, String utlant_til, String bildeUrl) {
         this.type = type;
         this.produsent = produsent;
         this.modell = modell;
-        this.innkjøpt = innkjøpt;
+        this.innkjopt = innkjopt;
         this.status = status;
-        this.utlånt_til = utlånt_til;
+        this.utlant_til = utlant_til;
         this.bildeUrl = bildeUrl;
     }
 
@@ -43,12 +43,12 @@ public class Utstyr {
         this.modell = modell;
     }
 
-    public long getInnkjøpt() {
-        return innkjøpt;
+    public long getInnkjopt() {
+        return innkjopt;
     }
 
-    public void setInnkjøpt(long innkjøpt) {
-        this.innkjøpt = innkjøpt;
+    public void setInnkjopt(long innkjopt) {
+        this.innkjopt = innkjopt;
     }
 
     public char getStatus() {
@@ -59,12 +59,12 @@ public class Utstyr {
         this.status = status;
     }
 
-    public String getUtlånt_til() {
-        return utlånt_til;
+    public String getUtlant_til() {
+        return utlant_til;
     }
 
-    public void setUtlånt_til(String utlånt_til) {
-        this.utlånt_til = utlånt_til;
+    public void setUtlant_til(String utlant_til) {
+        this.utlant_til = utlant_til;
     }
 
     public String getBildeUrl() {
@@ -81,9 +81,9 @@ public class Utstyr {
                 "type='" + type + '\'' +
                 ", produsent='" + produsent + '\'' +
                 ", modell='" + modell + '\'' +
-                ", innkjøpt=" + innkjøpt +
+                ", innkjøpt=" + innkjopt +
                 ", status=" + status +
-                ", utlånt_til='" + utlånt_til + '\'' +
+                ", utlånt_til='" + utlant_til + '\'' +
                 ", bildeUrl='" + bildeUrl + '\'' +
                 '}';
     }
