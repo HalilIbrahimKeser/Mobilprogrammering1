@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ViewAnimator;
-
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.lab5_1_recyclerview_og_retrofit.logger.Log;
 import com.example.lab5_1_recyclerview_og_retrofit.logger.LogFragment;
 import com.example.lab5_1_recyclerview_og_retrofit.logger.LogWrapper;
@@ -16,8 +14,6 @@ import com.example.lab5_1_recyclerview_og_retrofit.logger.MessageOnlyLogFilter;
 public class MainActivity extends SampleActivityBase {
 
     public static final String TAG = "MainActivity";
-
-    // Whether the Log Fragment is currently shown
     private boolean mLogShown;
 
     @Override
@@ -50,17 +46,15 @@ public class MainActivity extends SampleActivityBase {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.menu_toggle_log:
-                mLogShown = !mLogShown;
-                ViewAnimator output = (ViewAnimator) findViewById(R.id.sample_output);
-                if (mLogShown) {
-                    output.setDisplayedChild(1);
-                } else {
-                    output.setDisplayedChild(0);
-                }
-                supportInvalidateOptionsMenu();
-                return true;
+        if (item.getItemId() == R.id.menu_toggle_log) {
+            mLogShown = !mLogShown;
+            ViewAnimator output = (ViewAnimator) findViewById(R.id.sample_output);
+            if (mLogShown) {
+                output.setDisplayedChild(1);
+            } else {
+                output.setDisplayedChild(0);
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
