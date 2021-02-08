@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab5.1 Recycler View og Retrofit</string>
+    <string name="element_text">Element</string>
+    <string name="grid_layout_manager">Grid Layout Manager</string>
+    <string name="linear_layout_manager">Linear Layout Manager</string>
+    <string name="intro_message">Hello!</string>
+</resources>

@@ -1,3 +1,4 @@
+include ':lab5_1_recyclerview_og_retrofit'
 include ':lab4_2_praktisk_bruk_av_viewpager'
 include ':viewpager2utstyr0'
 include ':navigationdrawerdemo1'
