@@ -10,7 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app1" />
+            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/appbartest1" />
             <option value="$PROJECT_DIR$/bottomnavigationdemo1" />
             <option value="$PROJECT_DIR$/datecalc" />
@@ -36,6 +36,9 @@
             <option value="$PROJECT_DIR$/lab5_1_recyclerview_og_retrofit" />
             <option value="$PROJECT_DIR$/lifeCycleDemo" />
             <option value="$PROJECT_DIR$/navigationdrawerdemo1" />
+            <option value="$PROJECT_DIR$/recyclerviewdemo1" />
+            <option value="$PROJECT_DIR$/retrofithttpgson1" />
+            <option value="$PROJECT_DIR$/retrofithttpgson2" />
             <option value="$PROJECT_DIR$/spinnertest1" />
             <option value="$PROJECT_DIR$/viewpager2utstyr0" />
           </set>
