@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lab5_1_recyclerview_og_retrofit.adapter.CustomAdapter;
+
 
 public class RecyclerViewFragment extends Fragment {
 
@@ -57,7 +59,7 @@ public class RecyclerViewFragment extends Fragment {
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new CustomAdapter(mDataset);
+        //mAdapter = new CustomAdapter(mDataset);
 
         mRecyclerView.setAdapter(mAdapter);
 
