@@ -10,7 +10,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/albumsforuser2021" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app1" />
             <option value="$PROJECT_DIR$/appbartest1" />
             <option value="$PROJECT_DIR$/bottomnavigationdemo1" />
             <option value="$PROJECT_DIR$/datecalc" />
@@ -34,6 +36,7 @@
             <option value="$PROJECT_DIR$/lab4_1_wievpager" />
             <option value="$PROJECT_DIR$/lab4_2_praktisk_bruk_av_viewpager" />
             <option value="$PROJECT_DIR$/lab5_1_recyclerview_og_retrofit" />
+            <option value="$PROJECT_DIR$/lab5_3_retfrofitt_recyclerview_fragmenter" />
             <option value="$PROJECT_DIR$/lifeCycleDemo" />
             <option value="$PROJECT_DIR$/navigationdrawerdemo1" />
             <option value="$PROJECT_DIR$/recyclerviewdemo1" />
