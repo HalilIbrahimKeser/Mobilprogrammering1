@@ -1,4 +1,4 @@
-include ':lab5_3_retfrofitt_recyclerview_fragmenter'
+include ':lab5_3_retfrofit_recyclerview_fragmenter'
 include ':albumsforuser2021'
 include ':retrofithttpgson2'
 include ':retrofithttpgson1'
