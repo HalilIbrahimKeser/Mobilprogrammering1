@@ -21,7 +21,7 @@ public class AlbumsRepository {
     }
 
     private Retrofit retrofit;
-    private repoAPI repoAPI;
+    private jsonPlaceHolderApi repoAPI;
     private MutableLiveData<String> errorMessage;
     private MutableLiveData<List<Album>> albumsData;
 
@@ -34,7 +34,7 @@ public class AlbumsRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        repoAPI = retrofit.create(repoAPI.class);
+        repoAPI = retrofit.create(jsonPlaceHolderApi.class);
     }
 
     public MutableLiveData<List<Album>> getAlbumsForUser(int userId) {
