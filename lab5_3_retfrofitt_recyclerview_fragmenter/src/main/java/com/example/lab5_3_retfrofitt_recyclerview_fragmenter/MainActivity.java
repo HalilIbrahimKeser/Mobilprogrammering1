@@ -6,16 +6,38 @@ import android.os.Bundle;
 
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.fragments.AlbumsFragment;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
+
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, AlbumsFragment.newInstance())
-                    .commitNow();
+            fragment = AlbumsFragment.newInstance(1);
+            replaceFragmentWidth(fragment, false);
         }
+    }
+
+    public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (addTobackStack)
+            fragmentManager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .add(R.id.containerFragment, newFragment)
+                    .commit();
+        else
+            fragmentManager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.containerFragment, newFragment)
+                    .commit();
     }
 }
