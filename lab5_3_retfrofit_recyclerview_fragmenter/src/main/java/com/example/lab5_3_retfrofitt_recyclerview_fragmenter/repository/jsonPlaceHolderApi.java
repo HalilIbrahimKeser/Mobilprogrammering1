@@ -1,5 +1,6 @@
 package com.example.lab5_3_retfrofitt_recyclerview_fragmenter.repository;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Album;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Photo;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.User;
 
 import java.util.List;
@@ -15,4 +16,11 @@ public interface jsonPlaceHolderApi {
 
     @GET("/albums/")
     Call<List<Album>> getAlbumsForUser(@Query("userId") Integer userId);
+
+    @GET("/photos/")
+    Call<List<Photo>> getPhotos(@Query("albumId") Integer albumId);
+
+    @GET("/photo/")
+    Call<List<Photo>> getPhoto(@Query("albumId") Integer albumId);
+
 }

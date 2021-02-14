@@ -2,11 +2,6 @@ package com.example.lab5_3_retfrofitt_recyclerview_fragmenter.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,23 +9,34 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.MainActivity;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.R;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.AlbumAdapter;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.UserAdapter;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Album;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.User;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.viewmodel.myViewModel;
 
 import java.util.List;
 
-public class AlbumsFragment extends Fragment {
+public class UsersFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private int userId;
-    private RecyclerView albumsRecyclerView;
-    private AlbumAdapter albumAdapter;
-    protected List<Album> myDataset;
-    private myViewModel albumsViewModel;
+    private RecyclerView usersRecyclerView;
+    private UserAdapter usersAdapter;
+    protected List<User> usersDataset;
+    private myViewModel userViewModel;
 
-    public AlbumsFragment() {
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public UsersFragment() {
         // Required empty public constructor
     }
 
@@ -39,9 +45,8 @@ public class AlbumsFragment extends Fragment {
         super.onAttach(context);
     }
 
-
-    public static AlbumsFragment newInstance(int userId) {
-        AlbumsFragment fragment = new AlbumsFragment();
+    public static UsersFragment newInstance(int userId) {
+        UsersFragment fragment = new UsersFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, userId);
         fragment.setArguments(args);
@@ -59,8 +64,8 @@ public class AlbumsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_albums, container, false);
+        View rootView;
+        rootView = inflater.inflate(R.layout.fragment_users, container, false);
         return rootView;
     }
 
@@ -68,35 +73,49 @@ public class AlbumsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        albumsViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
-        albumsViewModel.getAlbumsForUser(this.userId).observe(getViewLifecycleOwner(), allAlbums -> {
+        userViewModel.getUsers().observe(getViewLifecycleOwner(), allUsers -> {
+            this.usersDataset = allUsers;
 
-            this.myDataset = allAlbums;
+            usersRecyclerView = view.findViewById(R.id.usersRecyclerView);
 
-            // Fyller recycler view-lista:
-            albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-            albumsRecyclerView.setLayoutManager(layoutManager);
-            albumAdapter = new AlbumAdapter(this.myDataset);
-            albumAdapter.setClickListener(new AlbumAdapter.ItemClickListener() {
+            usersRecyclerView.setLayoutManager(layoutManager);
+            usersAdapter = new UserAdapter(this.usersDataset);
+            usersAdapter.setClickListener(new UserAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    Log.i("TAG", "Du klikke på " + albumAdapter.getItem(position).getTitle() + " som ligger i posisjon " + position);
+                    Log.i("TAG", "Du klikte på " + usersAdapter.getItem(position).getName() + " som ligger i posisjon " + position);
 
-                    Long albumIdlong = myDataset.get(position).getId();
+                    long userIdlong = usersDataset.get(position).getId();
 
-                    // Fragmenttransaksjonen, dvs. bytte av fragment, gjøres her av aktiviteten:
-                    DetailsFragment detailsFragment = DetailsFragment.newInstance(albumIdlong.intValue());
+                    DetailsFragment detailsFragment = DetailsFragment.newInstance((int) userIdlong);
                     if (isAdded()) {
                         ((MainActivity)getActivity()).replaceFragmentWidth(detailsFragment, true);
                     }
                 }
             });
-            albumsRecyclerView.setAdapter(this.albumAdapter);
-            albumAdapter.setLocalDataSet(allAlbums);
-            albumAdapter.notifyDataSetChanged();
+            usersRecyclerView.setAdapter(this.usersAdapter);
+            usersAdapter.setLocalDataSet(allUsers);
+            usersAdapter.notifyDataSetChanged();
         });
 
     }
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
