@@ -10,22 +10,32 @@
 
 
     <TextView
-        android:id="@+id/tvDetails"
+        android:id="@+id/tvPhotoName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="15dp"
         android:layout_weight="1"
         android:text=""
-        android:textSize="24sp" />
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvPhotoUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text=""
+        android:textSize="12sp" />
+
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="5"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/bilde" />
+        android:layout_weight="10"
+        android:contentDescription="@string/bilde"
+        tools:src="@tools:sample/avatars" />
 
 </LinearLayout>

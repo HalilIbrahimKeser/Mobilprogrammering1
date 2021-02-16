@@ -22,16 +22,14 @@ import java.util.List;
 
 public class PhotoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
-    private int albumId;
     private int photoId;
+    private String photoUrl;
     private RecyclerView photoRecyclerView;
     private PhotoAdapter photoAdapter;
     protected List<Photo> photosDataset;
     private myViewModel photoViewModel;
 
-    public PhotoFragment() {
-        // Required empty public constructor
-    }
+    public PhotoFragment() {}
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,9 +55,7 @@ public class PhotoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_photos, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_photos, container, false);
     }
 
     @Override
@@ -74,12 +70,12 @@ public class PhotoFragment extends Fragment {
             photoRecyclerView = view.findViewById(R.id.photosRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             photoRecyclerView.setLayoutManager(layoutManager);
+
             photoAdapter = new PhotoAdapter(this.photosDataset);
             photoAdapter.setClickListener((view1, position) -> {
                 Log.i("TAG", "Du klikte bilde \"" + photoAdapter.getItem(position).getTitle() +
                         "\" som ligger i posisjon " + position);
                 Integer photoIdlong = photosDataset.get(position).getId();
-
 
                 SinglePhotoFragment singlePhotoFragment = SinglePhotoFragment.newInstance(photoIdlong);
                 if (isAdded()) {

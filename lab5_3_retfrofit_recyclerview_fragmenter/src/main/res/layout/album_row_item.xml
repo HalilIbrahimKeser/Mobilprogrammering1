@@ -15,14 +15,12 @@
         android:layout_gravity="center"
         android:padding="5dp"
         android:textAlignment="center"
-        android:textSize="25sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:background="#E1D8D5" />
 
 </LinearLayout>

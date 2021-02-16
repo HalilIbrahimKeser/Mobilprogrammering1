@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -12,9 +13,10 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.R;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Photo;
+
 import java.util.List;
 
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder> {
+public class SinglePhotoAdapter extends RecyclerView.Adapter<SinglePhotoAdapter.MyViewHolder> {
 
     private List<Photo> photoDataSet;
     private ItemClickListener itemClickListener;
@@ -24,37 +26,40 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView tvPhoto;
-        private final ImageView ivTumbnail;
+        private final TextView tvPhotoName;
+        private final TextView tvPhotoUrl;
+        private final ImageView ivImage;
 
         public MyViewHolder(View view) {
             super(view);
-            tvPhoto = view.findViewById(R.id.tvPhoto);
-            ivTumbnail = view.findViewById(R.id.ivTumbnail);
-            tvPhoto.setOnClickListener(this);
-            ivTumbnail.setOnClickListener(this);
+            tvPhotoName = view.findViewById(R.id.tvPhotoName);
+            tvPhotoUrl = view.findViewById(R.id.tvPhotoUrl);
+            ivImage = view.findViewById(R.id.ivImage);
+            tvPhotoName.setOnClickListener(this);
+            ivImage.setOnClickListener(this);
+            tvPhotoUrl.setOnClickListener(this);
         }
 
         public TextView getTvPhoto() {
-            return tvPhoto;
+            return tvPhotoName;
         }
 
         @Override
         public void onClick(View view) {
-            if (PhotoAdapter.this.itemClickListener != null) {
+            if (SinglePhotoAdapter.this.itemClickListener != null) {
                 int pos = getAdapterPosition();
                 itemClickListener.onItemClick(view, pos);
             }
         }
     }
 
-    public PhotoAdapter(List<Photo> dataSet) {
+    public SinglePhotoAdapter(List<Photo> dataSet) {
         photoDataSet = dataSet;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.photo_row_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_single_photo, viewGroup, false);
         return new MyViewHolder(view);
     }
 
@@ -68,7 +73,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                 .build());
         Glide.with(myViewHolder.itemView.getContext())
                 .load(url)
-                .into(myViewHolder.ivTumbnail);
+                .into(myViewHolder.ivImage);
 
     }
 
@@ -77,7 +82,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         return photoDataSet.size();
     }
 
-    public void setClickListener(PhotoAdapter.ItemClickListener itemClickListener) {
+    public void setClickListener(SinglePhotoAdapter.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 

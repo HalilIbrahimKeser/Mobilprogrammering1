@@ -24,9 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class myRepository {
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
     private static myRepository repository;
-//    private static myRepository albumsRepository;
-//    private static myRepository usersRepository;
-//    private static myRepository photossRepository;
 
     public static myRepository getInstance(){
         if (repository == null){
@@ -107,7 +104,6 @@ public class myRepository {
                 }
                 List<Photo> photos = response.body();
                 photosData.setValue(photos);
-//                photo =
             }
 
             @Override
