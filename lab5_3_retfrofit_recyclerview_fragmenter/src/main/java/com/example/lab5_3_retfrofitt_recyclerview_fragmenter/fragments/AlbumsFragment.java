@@ -21,6 +21,7 @@ import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Album;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.viewmodel.myViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AlbumsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -30,9 +31,7 @@ public class AlbumsFragment extends Fragment {
     protected List<Album> myDataset;
     private myViewModel albumsViewModel;
 
-    public AlbumsFragment() {
-        // Required empty public constructor
-    }
+    public AlbumsFragment() {}
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,9 +56,7 @@ public class AlbumsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_albums, container, false);
         return rootView;
     }
@@ -74,23 +71,19 @@ public class AlbumsFragment extends Fragment {
 
             this.myDataset = allAlbums;
 
-            // Fyller recycler view-lista:
             albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             albumsRecyclerView.setLayoutManager(layoutManager);
             albumAdapter = new AlbumAdapter(this.myDataset);
-            albumAdapter.setClickListener(new AlbumAdapter.ItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Log.i("TAG", "Du klikke på " + albumAdapter.getItem(position).getTitle() + " som ligger i posisjon " + position);
+            albumAdapter.setClickListener((view1, position) -> {
+                Log.i("TAG", "Du klikke album på \"" + albumAdapter.getItem(position).getTitle() +
+                        "\" som ligger i posisjon " + position);
 
-                    Long albumIdlong = myDataset.get(position).getId();
+                Long albumIdlong = myDataset.get(position).getId();
 
-                    // Fragmenttransaksjonen, dvs. bytte av fragment, gjøres her av aktiviteten:
-                    DetailsFragment detailsFragment = DetailsFragment.newInstance(albumIdlong.intValue());
-                    if (isAdded()) {
-                        ((MainActivity)getActivity()).replaceFragmentWidth(detailsFragment, true);
-                    }
+                PhotoFragment photoFragment = PhotoFragment.newInstance(albumIdlong.intValue());
+                if (isAdded()) {
+                    ((MainActivity) requireActivity()).replaceFragmentWidth(photoFragment, true);
                 }
             });
             albumsRecyclerView.setAdapter(this.albumAdapter);

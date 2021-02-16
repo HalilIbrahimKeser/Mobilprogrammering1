@@ -10,31 +10,32 @@ import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.repository.myReposi
 
 import java.util.List;
 
-// ViewModel:
+import okhttp3.ResponseBody;
+
 public class myViewModel extends ViewModel {
-    private final myRepository albumsRepository;
-    private final myRepository usersRepository;
-    private final myRepository photosRepository;
+    private final myRepository myRepository;
 
     public myViewModel() {
-        albumsRepository = myRepository.getInstance();
-        usersRepository = myRepository.getInstance();
-        photosRepository = myRepository.getInstance();
+        myRepository = com.example.lab5_3_retfrofitt_recyclerview_fragmenter.repository.myRepository.getInstance();
     }
 
     public MutableLiveData<List<User>> getUsers() {
-        return usersRepository.getUsers();
+        return myRepository.getUsers();
     }
 
     public MutableLiveData<List<Album>> getAlbumsForUser(int userId) {
-        return albumsRepository.getAlbumsForUser(userId);
+        return myRepository.getAlbumsForUser(userId);
     }
 
     public MutableLiveData<List<Photo>> getPhotos(int albumId) {
-        return photosRepository.getPhotos(albumId);
+        return myRepository.getPhotos(albumId);
+    }
+
+    public MutableLiveData<ResponseBody> getPhoto(String url) {
+        return myRepository.getPhoto(url);
     }
 
     public MutableLiveData<String> getErrorMessage() {
-        return albumsRepository.getErrorMessage();
+        return myRepository.getErrorMessage();
     }
 }

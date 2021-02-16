@@ -8,37 +8,26 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.MainActivity;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.R;
-import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.AlbumAdapter;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.UserAdapter;
-import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Album;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.User;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.viewmodel.myViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class UsersFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
-    private int userId;
     private RecyclerView usersRecyclerView;
     private UserAdapter usersAdapter;
     protected List<User> usersDataset;
-    private myViewModel userViewModel;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public UsersFragment() {
-        // Required empty public constructor
-    }
+    public UsersFragment() {}
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,13 +46,12 @@ public class UsersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.userId = getArguments().getInt(ARG_PARAM1);
+            int userId = getArguments().getInt(ARG_PARAM1);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView;
         rootView = inflater.inflate(R.layout.fragment_users, container, false);
         return rootView;
@@ -72,8 +60,7 @@ public class UsersFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        userViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        myViewModel userViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
         userViewModel.getUsers().observe(getViewLifecycleOwner(), allUsers -> {
             this.usersDataset = allUsers;
@@ -83,30 +70,22 @@ public class UsersFragment extends Fragment {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             usersRecyclerView.setLayoutManager(layoutManager);
             usersAdapter = new UserAdapter(this.usersDataset);
-            usersAdapter.setClickListener(new UserAdapter.ItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Log.i("TAG", "Du klikte på " + usersAdapter.getItem(position).getName() + " som ligger i posisjon " + position);
+            usersAdapter.setClickListener((view1, position) -> {
+                Log.i("TAG", "Du klikte på bruker \"" + usersAdapter.getItem(position).getName() +
+                        "\" som ligger i posisjon " + position);
 
-                    long userIdlong = usersDataset.get(position).getId();
+                long userIdlong = usersDataset.get(position).getId();
 
-                    DetailsFragment detailsFragment = DetailsFragment.newInstance((int) userIdlong);
-                    if (isAdded()) {
-                        ((MainActivity)getActivity()).replaceFragmentWidth(detailsFragment, true);
-                    }
+                AlbumsFragment albumsFragment = AlbumsFragment.newInstance((int) userIdlong);
+                if (isAdded()) {
+                    ((MainActivity) requireActivity()).replaceFragmentWidth(albumsFragment, true);
                 }
             });
             usersRecyclerView.setAdapter(this.usersAdapter);
             usersAdapter.setLocalDataSet(allUsers);
             usersAdapter.notifyDataSetChanged();
         });
-
     }
-
-
-
-
-
 }
 
 

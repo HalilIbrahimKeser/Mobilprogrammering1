@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.fragments.AlbumsFragment;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.fragments.UsersFragment;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.User;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            Fragment fragment = AlbumsFragment.newInstance(1);
+            Fragment fragment = UsersFragment.newInstance(1);
             replaceFragmentWidth(fragment, false);
         }
     }
