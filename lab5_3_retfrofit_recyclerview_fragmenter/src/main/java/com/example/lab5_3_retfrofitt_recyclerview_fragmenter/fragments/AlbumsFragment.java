@@ -75,6 +75,7 @@ public class AlbumsFragment extends Fragment {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             albumsRecyclerView.setLayoutManager(layoutManager);
             albumAdapter = new AlbumAdapter(this.myDataset);
+
             albumAdapter.setClickListener((view1, position) -> {
                 Log.i("TAG", "Du klikke album på \"" + albumAdapter.getItem(position).getTitle() +
                         "\" som ligger i posisjon " + position);

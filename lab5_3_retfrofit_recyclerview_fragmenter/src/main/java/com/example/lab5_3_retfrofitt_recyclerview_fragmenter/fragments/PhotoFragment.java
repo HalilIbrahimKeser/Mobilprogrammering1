@@ -76,8 +76,11 @@ public class PhotoFragment extends Fragment {
                 Log.i("TAG", "Du klikte bilde \"" + photoAdapter.getItem(position).getTitle() +
                         "\" som ligger i posisjon " + position);
                 Integer photoIdlong = photosDataset.get(position).getId();
+                String photoUrl = photosDataset.get(position).getUrl();
 
-                SinglePhotoFragment singlePhotoFragment = SinglePhotoFragment.newInstance(photoIdlong);
+
+
+                SinglePhotoFragment singlePhotoFragment = SinglePhotoFragment.newInstance(photoIdlong, photoUrl);
                 if (isAdded()) {
                     ((MainActivity) requireActivity()).replaceFragmentWidth(singlePhotoFragment, true);
                 }

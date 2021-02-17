@@ -34,18 +34,15 @@ public class myRepository {
 
     private final jsonPlaceHolderApi repoAPI;
     private final MutableLiveData<String> errorMessage;
-
     private final MutableLiveData<List<Album>> albumsData;
     private final MutableLiveData<List<User>> userData;
     private final MutableLiveData<List<Photo>> photosData;
-    private final MutableLiveData<List<Photo>> photo;
 
     private myRepository() {
         errorMessage = new MutableLiveData<>();
         userData = new MutableLiveData<>();
         albumsData = new MutableLiveData<>();
         photosData = new MutableLiveData<>();
-        photo = new MutableLiveData<>();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -112,30 +109,6 @@ public class myRepository {
             }
         });
         return photosData;
-    }
-
-    public MutableLiveData<ResponseBody> getPhoto(String url) {
-        Call<ResponseBody> call = repoAPI.getPhoto(url);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-                assert response.body() != null;
-                Bitmap bmp = BitmapFactory.decodeStream(response.body().byteStream());
-//                ImageView ivImage = view.findViewById(R.id.ivImage);
-//                ivImage.setImageBitmap(bmp);
-//
-//                photo.setValue(bmp);
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                errorMessage.setValue(t.getMessage());
-            }
-        });
-        return null;
     }
 
     public MutableLiveData<String> getErrorMessage() {

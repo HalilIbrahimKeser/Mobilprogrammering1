@@ -14,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.R;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.PhotoAdapter;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.SinglePhotoAdapter;
@@ -25,6 +28,7 @@ import java.util.List;
 public class SinglePhotoFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     private int photoId;
     private String photoUrl;
     private SinglePhotoAdapter singlePhotoAdapter;
@@ -34,10 +38,11 @@ public class SinglePhotoFragment extends Fragment {
 
     public SinglePhotoFragment() {}
 
-    public static SinglePhotoFragment newInstance(Integer photoId) {
+    public static SinglePhotoFragment newInstance(Integer photoId, String photoUrl) {
         SinglePhotoFragment fragment = new SinglePhotoFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, photoId);
+        args.putString(ARG_PARAM2, photoUrl);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +52,7 @@ public class SinglePhotoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             photoId = getArguments().getInt(ARG_PARAM1);
+            photoUrl = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -63,11 +69,12 @@ public class SinglePhotoFragment extends Fragment {
         photoViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
         photoAdapter = new PhotoAdapter(this.photosDataset);
-        photoUrl = photosDataset.get(this.photoId).getUrl();
 
-        singlePhotoAdapter = new SinglePhotoAdapter(this.photosDataset);
-        singlePhotoAdapter.notifyDataSetChanged();
-        ivImage.setImageURI(Uri.parse(photoUrl));
-
+        GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
+                .addHeader("User-Agent", "android")
+                .build());
+        Glide.with(getContext())
+                .load(url)
+                .into(ivImage);
     }
 }

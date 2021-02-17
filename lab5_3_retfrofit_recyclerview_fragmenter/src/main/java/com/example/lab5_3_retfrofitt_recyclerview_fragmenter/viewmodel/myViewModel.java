@@ -31,10 +31,6 @@ public class myViewModel extends ViewModel {
         return myRepository.getPhotos(albumId);
     }
 
-    public MutableLiveData<ResponseBody> getPhoto(String url) {
-        return myRepository.getPhoto(url);
-    }
-
     public MutableLiveData<String> getErrorMessage() {
         return myRepository.getErrorMessage();
     }
