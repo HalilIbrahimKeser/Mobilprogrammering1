@@ -25,11 +25,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView tvPhoto;
+        private final TextView tvPhotoID;
         private final ImageView ivTumbnail;
 
         public MyViewHolder(View view) {
             super(view);
             tvPhoto = view.findViewById(R.id.tvPhoto);
+            tvPhotoID = view.findViewById(R.id.tvPhotoID);
             ivTumbnail = view.findViewById(R.id.ivTumbnail);
             tvPhoto.setOnClickListener(this);
             ivTumbnail.setOnClickListener(this);
@@ -37,6 +39,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
         public TextView getTvPhoto() {
             return tvPhoto;
+        }
+
+        public TextView getTvPhotoID() {
+            return tvPhotoID;
         }
 
         @Override
@@ -61,7 +67,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
-        myViewHolder.getTvPhoto().setText(photoDataSet.get(position).getTitle());
+        String str = "Photo: " + photoDataSet.get(position).getTitle();
+        myViewHolder.getTvPhoto().setText(str);
+
+        String str1 = "Id: " + photoDataSet.get(position).getId();
+        String str2 = "    Url: " + photoDataSet.get(position).getUrl();
+        myViewHolder.getTvPhotoID().setText(str1 + str2);
+
         String photoUrl = photoDataSet.get(position).getUrl();
         GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
                 .addHeader("User-Agent", "android")
@@ -80,7 +92,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     public void setClickListener(PhotoAdapter.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
-
 
     public Photo getItem(int id) {
         return photoDataSet.get(id);

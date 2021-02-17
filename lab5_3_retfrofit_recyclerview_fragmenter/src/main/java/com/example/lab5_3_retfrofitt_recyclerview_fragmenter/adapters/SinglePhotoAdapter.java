@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,23 +25,14 @@ public class SinglePhotoAdapter extends RecyclerView.Adapter<SinglePhotoAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView tvPhotoName;
-        private final TextView tvPhotoUrl;
         private final ImageView ivImage;
 
         public MyViewHolder(View view) {
             super(view);
-            tvPhotoName = view.findViewById(R.id.tvPhotoName);
-            tvPhotoUrl = view.findViewById(R.id.tvPhotoUrl);
             ivImage = view.findViewById(R.id.ivImage);
-            tvPhotoName.setOnClickListener(this);
-            ivImage.setOnClickListener(this);
-            tvPhotoUrl.setOnClickListener(this);
+            ivImage.setOnClickListener(this);  //fjernes
         }
 
-        public TextView getTvPhoto() {
-            return tvPhotoName;
-        }
 
         @Override
         public void onClick(View view) {
@@ -59,14 +49,13 @@ public class SinglePhotoAdapter extends RecyclerView.Adapter<SinglePhotoAdapter.
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_single_photo, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.single_photo_row_item, viewGroup, false);
         return new MyViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
-        myViewHolder.getTvPhoto().setText(photoDataSet.get(position).getTitle());
         String photoUrl = photoDataSet.get(position).getUrl();
         GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
                 .addHeader("User-Agent", "android")
@@ -74,7 +63,6 @@ public class SinglePhotoAdapter extends RecyclerView.Adapter<SinglePhotoAdapter.
         Glide.with(myViewHolder.itemView.getContext())
                 .load(url)
                 .into(myViewHolder.ivImage);
-
     }
 
     @Override
@@ -85,7 +73,6 @@ public class SinglePhotoAdapter extends RecyclerView.Adapter<SinglePhotoAdapter.
     public void setClickListener(SinglePhotoAdapter.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
-
 
     public Photo getItem(int id) {
         return photoDataSet.get(id);

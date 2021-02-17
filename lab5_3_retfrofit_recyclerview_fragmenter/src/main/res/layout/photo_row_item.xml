@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
@@ -16,12 +16,10 @@
 
         <ImageView
             android:id="@+id/ivTumbnail"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="start"
             android:contentDescription="@string/tumbnail"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -34,8 +32,18 @@
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/tvPhotoID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"

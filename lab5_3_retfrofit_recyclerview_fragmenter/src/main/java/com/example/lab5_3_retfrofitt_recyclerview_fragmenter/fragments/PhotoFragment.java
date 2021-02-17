@@ -66,11 +66,11 @@ public class PhotoFragment extends Fragment {
 
         photoViewModel.getPhotos(this.photoId).observe(getViewLifecycleOwner(), allPhotos -> {
             this.photosDataset = allPhotos;
-
+            //
             photoRecyclerView = view.findViewById(R.id.photosRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             photoRecyclerView.setLayoutManager(layoutManager);
-
+            //
             photoAdapter = new PhotoAdapter(this.photosDataset);
             photoAdapter.setClickListener((view1, position) -> {
                 Log.i("TAG", "Du klikte bilde \"" + photoAdapter.getItem(position).getTitle() +

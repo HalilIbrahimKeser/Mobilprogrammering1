@@ -1,4 +1,4 @@
-#Sun Jan 31 13:04:36 CET 2021
+#Tue Feb 16 23:57:54 CET 2021
 base.0=B\:\\androidstudio_app\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
