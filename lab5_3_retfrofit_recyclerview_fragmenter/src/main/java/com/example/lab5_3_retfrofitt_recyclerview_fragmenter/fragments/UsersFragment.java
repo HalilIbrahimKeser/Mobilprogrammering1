@@ -66,12 +66,14 @@ public class UsersFragment extends Fragment {
             this.usersDataset = allUsers;
 
             usersRecyclerView = view.findViewById(R.id.usersRecyclerView);
-
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             usersRecyclerView.setLayoutManager(layoutManager);
+
             usersAdapter = new UserAdapter(this.usersDataset);
             usersAdapter.setClickListener((view1, position) -> {
-                Log.i("TAG", "Du klikte på bruker \"" + usersAdapter.getItem(position).getName() +
+
+                Log.i("TAG", "Du klikte på bruker \"" +
+                        usersAdapter.getItem(position).getName() +
                         "\" som ligger i posisjon " + position);
 
                 long userIdlong = usersDataset.get(position).getId();

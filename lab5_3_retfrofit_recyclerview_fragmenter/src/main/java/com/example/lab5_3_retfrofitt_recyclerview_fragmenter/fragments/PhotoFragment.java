@@ -23,11 +23,9 @@ import java.util.List;
 public class PhotoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private int photoId;
-    private String photoUrl;
     private RecyclerView photoRecyclerView;
     private PhotoAdapter photoAdapter;
     protected List<Photo> photosDataset;
-    private myViewModel photoViewModel;
 
     public PhotoFragment() {}
 
@@ -35,7 +33,6 @@ public class PhotoFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
-
 
     public static PhotoFragment newInstance(int AlbumId) {
         PhotoFragment fragment = new PhotoFragment();
@@ -61,24 +58,24 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        photoViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        myViewModel photoViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
         photoViewModel.getPhotos(this.photoId).observe(getViewLifecycleOwner(), allPhotos -> {
             this.photosDataset = allPhotos;
-            //
+
             photoRecyclerView = view.findViewById(R.id.photosRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             photoRecyclerView.setLayoutManager(layoutManager);
-            //
+
             photoAdapter = new PhotoAdapter(this.photosDataset);
             photoAdapter.setClickListener((view1, position) -> {
-                Log.i("TAG", "Du klikte bilde \"" + photoAdapter.getItem(position).getTitle() +
+
+                Log.i("TAG", "Du klikte bilde \"" +
+                        photoAdapter.getItem(position).getTitle() +
                         "\" som ligger i posisjon " + position);
+
                 Integer photoIdlong = photosDataset.get(position).getId();
                 String photoUrl = photosDataset.get(position).getUrl();
-
-
 
                 SinglePhotoFragment singlePhotoFragment = SinglePhotoFragment.newInstance(photoIdlong, photoUrl);
                 if (isAdded()) {

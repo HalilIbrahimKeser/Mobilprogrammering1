@@ -29,12 +29,8 @@ public class SinglePhotoFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private int photoId;
     private String photoUrl;
-    private SinglePhotoAdapter singlePhotoAdapter;
-    private PhotoAdapter photoAdapter;
     protected List<Photo> photosDataset;
-    private myViewModel photoViewModel;
 
     public SinglePhotoFragment() {}
 
@@ -51,7 +47,7 @@ public class SinglePhotoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            photoId = getArguments().getInt(ARG_PARAM1);
+            int photoId = getArguments().getInt(ARG_PARAM1);
             photoUrl = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -66,9 +62,8 @@ public class SinglePhotoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView ivImage = view.findViewById(R.id.ivImage);
-        photoViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
-
-        photoAdapter = new PhotoAdapter(this.photosDataset);
+        myViewModel photoViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        PhotoAdapter photoAdapter = new PhotoAdapter(this.photosDataset);
 
         GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
                 .addHeader("User-Agent", "android")

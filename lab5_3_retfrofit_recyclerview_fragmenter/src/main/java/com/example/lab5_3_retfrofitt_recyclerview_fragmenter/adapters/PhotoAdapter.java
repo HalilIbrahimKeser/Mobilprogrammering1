@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -26,15 +28,15 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView tvPhoto;
         private final TextView tvPhotoID;
-        private final ImageView ivTumbnail;
+        private final ImageView ivThumbnail;
 
         public MyViewHolder(View view) {
             super(view);
             tvPhoto = view.findViewById(R.id.tvPhoto);
             tvPhotoID = view.findViewById(R.id.tvPhotoID);
-            ivTumbnail = view.findViewById(R.id.ivTumbnail);
+            ivThumbnail = view.findViewById(R.id.ivTumbnail);
             tvPhoto.setOnClickListener(this);
-            ivTumbnail.setOnClickListener(this);
+            ivThumbnail.setOnClickListener(this);
         }
 
         public TextView getTvPhoto() {
@@ -58,20 +60,22 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         photoDataSet = dataSet;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.photo_row_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).
+                inflate(R.layout.photo_row_item, viewGroup, false);
         return new MyViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
-        String str = "Photo: " + photoDataSet.get(position).getTitle();
+        String str = "Bilde: " + photoDataSet.get(position).getTitle();
         myViewHolder.getTvPhoto().setText(str);
 
         String str1 = "Id: " + photoDataSet.get(position).getId();
-        String str2 = "    Url: " + photoDataSet.get(position).getUrl();
+        String str2 = "\nUrl: " + photoDataSet.get(position).getUrl();
         myViewHolder.getTvPhotoID().setText(str1 + str2);
 
         String photoUrl = photoDataSet.get(position).getUrl();
@@ -80,7 +84,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
                 .build());
         Glide.with(myViewHolder.itemView.getContext())
                 .load(url)
-                .into(myViewHolder.ivTumbnail);
+                .into(myViewHolder.ivThumbnail);
 
     }
 

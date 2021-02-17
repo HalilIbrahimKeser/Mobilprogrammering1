@@ -2,7 +2,6 @@ package com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models;
 
 
 import android.location.Address;
-
 import com.google.gson.annotations.SerializedName;
 
 public class User {
@@ -20,8 +19,8 @@ public class User {
     @SerializedName("website")
     private String website = "";
 
-    private Address address = null;
-    private Company company = null;
+    private Address address = null;  //android.location.Address;
+    private Company company = null;  //java nested class
 
     public User(long id, String name, String username, String email, String phone,
                 String website, Address address, Company company) {
@@ -36,7 +35,7 @@ public class User {
     }
 
     private static class Company {
-        private String name, catchPhrase, bs = "";
+        private String name, catchPhrase, bs;
     }
 
     public long getId() {

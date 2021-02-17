@@ -29,7 +29,6 @@ public class AlbumsFragment extends Fragment {
     private RecyclerView albumsRecyclerView;
     private AlbumAdapter albumAdapter;
     protected List<Album> myDataset;
-    private myViewModel albumsViewModel;
 
     public AlbumsFragment() {}
 
@@ -37,7 +36,6 @@ public class AlbumsFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
-
 
     public static AlbumsFragment newInstance(int userId) {
         AlbumsFragment fragment = new AlbumsFragment();
@@ -57,32 +55,31 @@ public class AlbumsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_albums, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_albums, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        albumsViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        myViewModel albumsViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
         albumsViewModel.getAlbumsForUser(this.userId).observe(getViewLifecycleOwner(), allAlbums -> {
-
             this.myDataset = allAlbums;
 
             albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             albumsRecyclerView.setLayoutManager(layoutManager);
-            albumAdapter = new AlbumAdapter(this.myDataset);
 
+            albumAdapter = new AlbumAdapter(this.myDataset);
             albumAdapter.setClickListener((view1, position) -> {
-                Log.i("TAG", "Du klikke album på \"" + albumAdapter.getItem(position).getTitle() +
+
+                Log.i("TAG", "Du klikte album \"" +
+                        albumAdapter.getItem(position).getTitle() +
                         "\" som ligger i posisjon " + position);
 
-                Long albumIdlong = myDataset.get(position).getId();
+                long albumIdlong = myDataset.get(position).getId();
 
-                PhotoFragment photoFragment = PhotoFragment.newInstance(albumIdlong.intValue());
+                PhotoFragment photoFragment = PhotoFragment.newInstance((int) albumIdlong);
                 if (isAdded()) {
                     ((MainActivity) requireActivity()).replaceFragmentWidth(photoFragment, true);
                 }
