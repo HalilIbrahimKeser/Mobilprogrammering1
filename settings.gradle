@@ -1,3 +1,8 @@
+include ':myasynctask1'
+include ':livedata1'
+include ':customview1'
+include ':albumsforuser2021utvidet'
+include ':albumsforuser2021httpurlcon'
 include ':lab5_3_retfrofit_recyclerview_fragmenter'
 include ':albumsforuser2021'
 include ':retrofithttpgson2'

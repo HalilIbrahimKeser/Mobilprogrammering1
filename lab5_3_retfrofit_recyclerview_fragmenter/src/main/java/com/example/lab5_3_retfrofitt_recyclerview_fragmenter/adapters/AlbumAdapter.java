@@ -25,7 +25,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
 
         public MyViewHolder(View view) {
             super(view);
-            tvAlbum = (TextView) view.findViewById(R.id.tvAlbum);
+            tvAlbum = view.findViewById(R.id.tvAlbum);
             tvAlbum.setOnClickListener(this);
         }
 
