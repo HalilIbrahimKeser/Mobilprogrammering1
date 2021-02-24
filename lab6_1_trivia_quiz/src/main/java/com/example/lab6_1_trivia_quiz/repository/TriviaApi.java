@@ -11,7 +11,7 @@ public interface TriviaApi {
     Call<List<Results>> getAllResults();
 
     @GET("/api.php?")
-    Call<List<Results>> getResult(
+    Call<List<Results>> getResults(
             @Query("amount") Integer amount,
             @Query("category") Integer category,
             @Query("difficulty") String difficulty,

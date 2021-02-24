@@ -37,7 +37,7 @@ public class myRepository {
     }
 
     public MutableLiveData<List<Results>> getResults(int amount, int category, String difficulty, String type) {
-        Call<List<Results>> call = repoAPI.getResult((amount), (category), (difficulty), (type));
+        Call<List<Results>> call = repoAPI.getResults((amount), (category), (difficulty), (type));
         call.enqueue(new Callback<List<Results>>() {
             @Override
             public void onResponse(@NonNull Call<List<Results>> call, @NonNull Response<List<Results>> response) {
