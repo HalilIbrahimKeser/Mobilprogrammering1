@@ -1,3 +1,5 @@
+include ':lab6_1_trivia_quiz'
+include ':lab6_0_delt_fillager'
 include ':simplefile2'
 include ':simplefile0'
 include ':mySimplePreferenceTest1'
