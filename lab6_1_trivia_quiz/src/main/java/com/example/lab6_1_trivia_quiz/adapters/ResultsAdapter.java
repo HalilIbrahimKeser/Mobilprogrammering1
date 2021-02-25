@@ -18,32 +18,33 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
 
     private List<Results> resultsDataSet;
     private ItemClickListener itemClickListener;
+    private String fileNameInternal = "running_quiz.json";
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView tvPhoto;
-        private final TextView tvPhotoID;
-        private final ImageView ivThumbnail;
+        //private final TextView tvPhoto;
+        //private final TextView tvPhotoID;
+        //private final ImageView ivThumbnail;
 
         public MyViewHolder(View view) {
             super(view);
-            tvPhoto = view.findViewById(R.id.tvPhoto);
-            tvPhotoID = view.findViewById(R.id.tvPhotoID);
-            ivThumbnail = view.findViewById(R.id.ivTumbnail);
-            tvPhoto.setOnClickListener(this);
-            ivThumbnail.setOnClickListener(this);
+            //tvPhoto = view.findViewById(R.id.tvPhoto);
+            //tvPhotoID = view.findViewById(R.id.tvPhotoID);
+            //ivThumbnail = view.findViewById(R.id.ivTumbnail);
+            //tvPhoto.setOnClickListener(this);
+            //ivThumbnail.setOnClickListener(this);
         }
 
-        public TextView getTvPhoto() {
-            return tvPhoto;
-        }
+        //public TextView getTvPhoto() {
+        //return tvPhoto;
+        //}
 
-        public TextView getTvPhotoID() {
-            return tvPhotoID;
-        }
+        //public TextView getTvPhotoID() {
+        //return tvPhotoID;
+        //}
 
         @Override
         public void onClick(View view) {
@@ -61,21 +62,16 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.results_row_item, viewGroup, false);
-        return new MyViewHolder(view);
+        //View view = LayoutInflater.from(viewGroup.getContext()).
+        //inflate(R.layout.results_row_item, viewGroup, false);
+        //return new MyViewHolder(view);
+        return null;
     }
 
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
-        String str = "Bilde: " + resultsDataSet.get(position).getTitle();
-        myViewHolder.getTvPhoto().setText(str);
-
-        String str1 = "Id: " + resultsDataSet.get(position).getId();
-        String str2 = "\nUrl: " + resultsDataSet.get(position).getUrl();
-        myViewHolder.getTvPhotoID().setText(str1 + str2);
-
+        /*
         String photoUrl = resultsDataSet.get(position).getUrl();
         GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
                 .addHeader("User-Agent", "android")
@@ -83,6 +79,8 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
         Glide.with(myViewHolder.itemView.getContext())
                 .load(url)
                 .into(myViewHolder.ivThumbnail);
+
+         */
 
     }
 
@@ -99,7 +97,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
         return resultsDataSet.get(id);
     }
 
-    public void setLocalDataSet(List<Results> photoDataSet) {
-        this.resultsDataSet = photoDataSet;
+    public void setLocalDataSet(List<Results> resultsDataSet) {
+        this.resultsDataSet = resultsDataSet;
     }
 }

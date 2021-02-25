@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar quizToolbar = findViewById(R.id.quizToolbar);
+        Toolbar quizToolbar = findViewById(R.id.quizToolbar1);
         setSupportActionBar(quizToolbar);
     }
 
@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void replaceFragmentWidth(QuizFragment quizFragment, boolean b) {
-    }
+    //public void replaceFragmentWidth(QuizFragment quizFragment, boolean b) {
+    //}
 }

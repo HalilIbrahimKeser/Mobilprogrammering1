@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class myRepository {
     private static final String BASE_URL = "https://opentdb.com/api.php";
     private static myRepository repository;
+    private String fileNameInternal = "running_quiz.json";
 
     public static myRepository getInstance(){
         if (repository == null){

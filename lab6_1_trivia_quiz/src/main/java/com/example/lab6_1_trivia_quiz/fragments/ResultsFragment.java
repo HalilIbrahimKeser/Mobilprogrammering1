@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.R;
 
+import com.example.lab6_1_trivia_quiz.adapters.ResultsAdapter;
 import com.example.lab6_1_trivia_quiz.models.Results;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
@@ -31,6 +32,7 @@ public class ResultsFragment extends Fragment {
     private RecyclerView ResultsRecyclerView;
     private ResultsAdapter resultsAdapter;
     protected List<Results> myDataset;
+    private String fileNameInternal = "running_quiz.json";
 
     public ResultsFragment() {}
 
@@ -74,9 +76,6 @@ public class ResultsFragment extends Fragment {
         resultsViewModel.getResults(this.amount, this.category, this.difficulty, this.type).observe(getViewLifecycleOwner(), allResults -> {
             this.myDataset = allResults;
 
-//            albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);
-//            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//            albumsRecyclerView.setLayoutManager(layoutManager);
 
             resultsAdapter = new ResultsAdapter(this.myDataset);    //TODO
             resultsAdapter.setClickListener((view1, position) -> {  //TODO
@@ -87,10 +86,10 @@ public class ResultsFragment extends Fragment {
 //
 //                long albumIdlong = myDataset.get(position).getId();
 
-                QuizFragment quizFragment = QuizFragment.newInstance((int) albumIdlong); //TODO
-                if (isAdded()) {
-                    ((MainActivity) requireActivity()).replaceFragmentWidth(quizFragment, true);
-                }
+                //QuizFragment quizFragment = QuizFragment.newInstance((int) albumIdlong); //TODO
+                //if (isAdded()) {
+                 //   ((MainActivity) requireActivity()).replaceFragmentWidth(quizFragment, true);
+                //}
             });
 //            albumsRecyclerView.setAdapter(this.albumAdapter);
             resultsAdapter.setLocalDataSet(allResults);
