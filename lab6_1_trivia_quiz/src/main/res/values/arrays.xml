@@ -1,12 +1,78 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+    <string-array name="cate_titles">
+        <item>Generell kunnskap</item>
+        <item>Underholdning: Bøker</item>
+        <item>Underholdning: Filmer</item>
+        <item>Underholdning: Musikk</item>
+        <item>Underholdning: Musikaler og Teater</item>
+        <item>Underholdning: TV</item>
+        <item>Underholdning: Dataspill</item>
+        <item>Underholdning: Brettspill</item>
+        <item>Vitenskap og Natur</item>
+        <item>Vitenskap: Datamaskiner</item>
+        <item>Vitenskap: Matematikk</item>
+        <item>Mytologi</item>
+        <item>Sport</item>
+        <item>Geografi</item>
+        <item>Historie</item>
+        <item>Politikk</item>
+        <item>Kunst</item>
+        <item>Kjendiser</item>
+        <item>Dyr</item>
+        <item>Kjøretøy</item>
+        <item>Underholdning: Tegneserier</item>
+        <item>Vitenskap: Dingser</item>
+        <item>Underholdning: Anime og Manga</item>
+        <item>Underholdning: Tegnefilmer og Animasjon</item>
+    </string-array>
+    <string-array name="cate_values">
+        <item>General Knowledge</item>
+        <item>Entertainment: Books</item>
+        <item>Entertainment: Movies</item>
+        <item>Entertainment: Music</item>
+        <item>Entertainment: Musicals and Theatres</item>
+        <item>Entertainment: Television</item>
+        <item>Entertainment: Video Games</item>
+        <item>Entertainment: Board Games</item>
+        <item>Science and Nature</item>
+        <item>Science: Computers</item>
+        <item>Science: Matemathics</item>
+        <item>Mytology</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Art</item>
+        <item>Celebrities</item>
+        <item>Animals</item>
+        <item>Vehicles</item>
+        <item>Entertainment: Comics</item>
+        <item>Science: Gadgets</item>
+        <item>Entertainment: Japanese Anime and Manga</item>
+        <item>Entertainment: Cartoon and Animation</item>
     </string-array>
 
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="diff_titles">
+        <item>Lett</item>
+        <item>Medium</item>
+        <item>Vanskelig</item>
+        <item>Alle</item>
+    </string-array>
+    <string-array name="diff_values">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+        <item>any difficulty</item>
+    </string-array>
+
+    <string-array name="type_titles">
+        <item>Flervalgs</item>
+        <item>Sant/Usant</item>
+        <item>Alle</item>
+    </string-array>
+    <string-array name="type_values">
+        <item>Multiple Choice</item>
+        <item>True/false</item>
+        <item>any type</item>
     </string-array>
 </resources>

@@ -1,34 +1,34 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory app:title="@string/messages_header">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <SeekBarPreference
+            app:key="num"
+            android:max="50"
+            app:title="@string/num" />
+
+        <MultiSelectListPreference
+            android:entries="@array/cate_titles"
+            android:entryValues="@array/cate_values"
+            android:key="category"
+            android:summary="Trykk for å se en liste kategorier å velge mellom."
+            android:title="Kategorier:" />
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+            app:key="diff"
+            android:summary="Trykk for å se en liste med vanskeliggrader å velge mellom."
+            android:entries="@array/diff_titles"
+            android:entryValues="@array/diff_values"
+            app:title="@string/diff" />
 
-    </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+        <ListPreference
+            app:key="type"
+            android:summary="Trykk for å se en liste med type spørsmål å velge mellom."
+            android:entries="@array/type_titles"
+            android:entryValues="@array/type_values"
+            app:title="@string/type" />
 
     </PreferenceCategory>
 
