@@ -5,7 +5,9 @@
 
         <SeekBarPreference
             app:key="num"
+            app:min="1"
             android:max="50"
+            app:showSeekBarValue="true"
             app:title="@string/num" />
 
         <MultiSelectListPreference
