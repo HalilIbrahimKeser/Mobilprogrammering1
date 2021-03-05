@@ -1,3 +1,5 @@
+include ':worker_treads_threadpool1'
+include ':worker_threads1'
 include ':lab6_1_trivia_quiz'
 include ':lab6_0_delt_fillager'
 include ':simplefile2'
