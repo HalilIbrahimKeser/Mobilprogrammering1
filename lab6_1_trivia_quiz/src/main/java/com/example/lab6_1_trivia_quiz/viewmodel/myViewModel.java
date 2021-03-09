@@ -2,18 +2,19 @@ package com.example.lab6_1_trivia_quiz.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.lab6_1_trivia_quiz.models.Results;
-import java.util.List;
+
+import com.example.lab6_1_trivia_quiz.models.QuizData;
+import com.example.lab6_1_trivia_quiz.repository.myRepository;
 
 public class myViewModel extends ViewModel {
-    private final com.example.lab6_1_trivia_quiz.repository.myRepository myRepository;
+    private final myRepository myRepository;
 
     public myViewModel() {
         myRepository = com.example.lab6_1_trivia_quiz.repository.myRepository.getInstance();
     }
 
-    public MutableLiveData<List<Results>> getResults(int amount, int category, String difficulty, String type) {
-        return myRepository.getResults(amount, category, difficulty, type);
+    public MutableLiveData<QuizData> getQuiz(String amount, String category, String difficulty, String type) {
+        return myRepository.downloadQuiz(amount, category, difficulty, type);
     }
 
     public MutableLiveData<String> getErrorMessage() {

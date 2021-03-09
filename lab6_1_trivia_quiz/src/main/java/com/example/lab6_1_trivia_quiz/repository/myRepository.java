@@ -1,9 +1,15 @@
 package com.example.lab6_1_trivia_quiz.repository;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-import com.example.lab6_1_trivia_quiz.models.Results;
-import java.util.List;
+
+import com.example.lab6_1_trivia_quiz.models.QuizData;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -11,7 +17,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myRepository {
-    private static final String BASE_URL = "https://opentdb.com/api.php";
     private static myRepository repository;
     private String fileNameInternal = "running_quiz.json";
 
@@ -22,39 +27,43 @@ public class myRepository {
         return repository;
     }
 
-    private final TriviaApi repoAPI;
+    private final TriviaApi triviaApi;
+    private final MutableLiveData<QuizData> quizData;
     private final MutableLiveData<String> errorMessage;
-    private final MutableLiveData<List<Results>> resultsData;
 
     private myRepository() {
         errorMessage = new MutableLiveData<>();
-        resultsData = new MutableLiveData<>();
+        quizData = new MutableLiveData<>();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("https://opentdb.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        repoAPI = retrofit.create(TriviaApi.class);
+        triviaApi = retrofit.create(TriviaApi.class);
     }
 
-    public MutableLiveData<List<Results>> getResults(int amount, int category, String difficulty, String type) {
-        Call<List<Results>> call = repoAPI.getResults((amount), (category), (difficulty), (type));
-        call.enqueue(new Callback<List<Results>>() {
+    public MutableLiveData<QuizData> downloadQuiz(String amount, String category, String difficulty, String type) {
+        // Legger url-parametre i en HashMap:
+        Map<String, String> urlArguments = new HashMap<>();
+        urlArguments.put("amount", amount);
+        urlArguments.put("category", category);
+        urlArguments.put("difficulty", difficulty);
+        urlArguments.put("type", type);
+        Call<QuizData> call = triviaApi.downloadQuiz(urlArguments);
+        call.enqueue(new Callback<QuizData>() {
             @Override
-            public void onResponse(@NonNull Call<List<Results>> call, @NonNull Response<List<Results>> response) {
+            public void onResponse(Call<QuizData> call, Response<QuizData> response) {
                 if (!response.isSuccessful()) {
                     return;
                 }
-                List<Results> results = response.body();
-                resultsData.setValue(results);
+                QuizData data = response.body();
+                quizData.setValue(data);
             }
-
             @Override
-            public void onFailure(@NonNull Call<List<Results>> call, @NonNull Throwable t) {
-                errorMessage.setValue(t.getMessage());
+            public void onFailure(Call<QuizData> call, Throwable t) {
             }
         });
-        return resultsData;
+        return quizData;
     }
 
     public MutableLiveData<String> getErrorMessage() {
