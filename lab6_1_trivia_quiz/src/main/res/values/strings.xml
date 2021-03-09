@@ -3,6 +3,7 @@
     <string name="button_start">Ny Quiz - Fortsett</string>
     <string name="button_null">Nullstill</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_quiz">QuizActivity</string>
     <string name="menuTitleSettings">Settings</string>
     <string name="menuTitleInfo">menuTitleInfo</string>
 

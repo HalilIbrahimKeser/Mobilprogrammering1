@@ -52,11 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-
-        myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
-        myViewModel.getQuiz("10","10", "easy","multiple").observe(this, quizData -> {
-
-            List quizDataResults = quizData.getResults();
-        });
+        Intent intent = new Intent(this, QuizActivity.class);
+        startActivity(intent);
     }
 }
