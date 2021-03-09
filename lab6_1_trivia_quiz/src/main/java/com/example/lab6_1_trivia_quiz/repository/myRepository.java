@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myRepository {
     private static myRepository repository;
-    private String fileNameInternal = "running_quiz.json";
+    private final String fileNameInternal = "running_quiz.json";
 
     public static myRepository getInstance(){
         if (repository == null){

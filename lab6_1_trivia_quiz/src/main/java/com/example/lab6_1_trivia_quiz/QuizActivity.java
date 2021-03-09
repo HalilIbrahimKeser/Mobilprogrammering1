@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.lab6_1_trivia_quiz.fragments.ResultsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class QuizActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
