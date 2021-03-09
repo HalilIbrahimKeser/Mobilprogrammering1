@@ -36,6 +36,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
             //ivThumbnail = view.findViewById(R.id.ivTumbnail);
             //tvPhoto.setOnClickListener(this);
             //ivThumbnail.setOnClickListener(this);
+            //TODO her kommer verdiene som skal sendes med viewholder
         }
 
         //public TextView getTvPhoto() {
@@ -72,6 +73,8 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
         /*
+        //TODO her skal vi binde verdiene og sende med
+
         String photoUrl = resultsDataSet.get(position).getUrl();
         GlideUrl url = new GlideUrl(photoUrl, new LazyHeaders.Builder()
                 .addHeader("User-Agent", "android")

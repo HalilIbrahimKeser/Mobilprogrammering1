@@ -57,6 +57,8 @@
             <option value="$PROJECT_DIR$/simplefile2" />
             <option value="$PROJECT_DIR$/spinnertest1" />
             <option value="$PROJECT_DIR$/viewpager2utstyr0" />
+            <option value="$PROJECT_DIR$/worker_threads1" />
+            <option value="$PROJECT_DIR$/worker_treads_threadpool1" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
