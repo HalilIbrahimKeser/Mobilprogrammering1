@@ -10,7 +10,7 @@
             app:showSeekBarValue="true"
             app:title="@string/num" />
 
-        <MultiSelectListPreference
+        <ListPreference
             android:entries="@array/cate_titles"
             android:entryValues="@array/cate_values"
             android:key="category"
