@@ -63,12 +63,12 @@ public class myRepository {
                 }
                 QuizData data = response.body();
                 quizData.setValue(data);
-                writeToFile(quizData);
-
-                List<Question> results = null;
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("response_code", response_code);
-                jsonObject.put("results", results);
+//                writeToFile(quizData);
+//
+//                List<Question> results = null;
+//                JSONObject jsonObject = new JSONObject();
+//                jsonObject.put("response_code", response_code);
+//                jsonObject.put("results", results);
             }
             @Override
             public void onFailure(Call<QuizData> call, Throwable t) {
@@ -77,18 +77,18 @@ public class myRepository {
         return quizData;
     }
 
-    public void writeToFile(MutableLiveData<QuizData> quizData) {
-        // Convert JsonObject to String Format
-        String questionsString = quizData.toString();
-        FileOutputStream fileOutputStream = null;
-        String filesDir = getFilesDir().toString();
-        try {
-            fileOutputStream = this.openFileOutput(fileNameInternal, Context.MODE_PRIVATE);
-            fileOutputStream.write(questionsString.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void writeToFile(MutableLiveData<QuizData> quizData) {
+//        // Convert JsonObject to String Format
+//        String questionsString = quizData.toString();
+//        FileOutputStream fileOutputStream = null;
+//        String filesDir = getFilesDir().toString();
+//        try {
+//            fileOutputStream = this.openFileOutput(fileNameInternal, Context.MODE_PRIVATE);
+//            fileOutputStream.write(questionsString.getBytes());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public MutableLiveData<String> getErrorMessage() {

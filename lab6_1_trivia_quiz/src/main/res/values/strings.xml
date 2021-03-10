@@ -17,5 +17,7 @@
     <string name="image">image</string>
     <string name="str_trivia_quiz_sp_rsm_l">Trivia Quiz Spørsmål</string>
     <string name="g_tilbake">Gå tilbake</string>
+    <string name="str_question1">Svareksempel dette er et svar</string>
+    <string name="str_spoersmoel">Spørsmål dette er spørsmål</string>
 
 </resources>
