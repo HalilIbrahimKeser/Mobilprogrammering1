@@ -22,10 +22,7 @@ import java.util.List;
 
 public class QuizFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
-    private String amount;
-    private String category;
-    private String difficulty;
-    private String type;
+    String amount, category, difficulty, type = null;
 
     private QuizAdapter quizAdapter;
     protected List<QuizData> quizData;

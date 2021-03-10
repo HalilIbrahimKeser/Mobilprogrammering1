@@ -3,17 +3,15 @@ package com.example.lab6_1_trivia_quiz;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 public class QuestionsView extends LinearLayout {
-    private EditText questionNumber;
-    private EditText questionNumSlashNum;
-
+    private TextView tvQuestionNumber, tvQuestionNumSlashNum, tvQuestion;
+    private RadioButton rbAnswer1, rbAnswer2, rbAnswer3, rbAnswer4;
 
     public QuestionsView(Context context) {
         super(context);
@@ -38,15 +36,21 @@ public class QuestionsView extends LinearLayout {
     private void init() {
         //Merk bruk av LayoutInflater:
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.clearable_edit_text, this, true);
-        questionNumber = findViewById(R.id.questionNumber);
-        clearButton = findViewById(R.id.clearButton);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.setText("");
-            }
-        });
+        layoutInflater.inflate(R.layout.fragment_quiz_slide_screen, this, true);
+//        tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
+//        tvQuestionNumSlashNum = findViewById(R.id.tvQuestionNumSlashNum);
+        tvQuestion = findViewById(R.id.tvQuestion);
+        rbAnswer1 = findViewById(R.id.rbAnswer1);
+        rbAnswer2 = findViewById(R.id.rbAnswer2);
+        rbAnswer3 = findViewById(R.id.rbAnswer3);
+        rbAnswer4 = findViewById(R.id.rbAnswer4);
+
+//        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText(""));
+//        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText(""));
+        tvQuestion.setOnClickListener(v -> tvQuestion.setText(""));
+        rbAnswer1.setOnClickListener(v -> rbAnswer1.setText(""));
+        rbAnswer2.setOnClickListener(v -> rbAnswer2.setText(""));
+        rbAnswer3.setOnClickListener(v -> rbAnswer3.setText(""));
+        rbAnswer4.setOnClickListener(v -> rbAnswer4.setText(""));
     }
-}
 }

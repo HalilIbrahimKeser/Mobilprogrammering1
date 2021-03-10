@@ -19,5 +19,7 @@
     <string name="g_tilbake">Gå tilbake</string>
     <string name="str_question1">Svareksempel dette er et svar</string>
     <string name="str_spoersmoel">Spørsmål dette er spørsmål</string>
+    <string name="str_question1of10">Spørsmål 1/10</string>
+    <string name="str_num">5</string>
 
 </resources>
