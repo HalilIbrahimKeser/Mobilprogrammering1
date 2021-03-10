@@ -63,7 +63,7 @@ public class AlbumsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         myViewModel albumsViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
-        albumsViewModel.getAlbumsForUser(this.userId).observe(getViewLifecycleOwner(), allAlbums -> {
+        albumsViewModel.getAlbumsForUser(this.userId).observe(getViewLifecycleOwner(), (List<Album> allAlbums) -> {
             this.myDataset = allAlbums;
 
             albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);

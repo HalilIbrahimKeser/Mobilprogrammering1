@@ -2,6 +2,7 @@ package com.example.lab6_1_trivia_quiz.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.adapters.QuizAdapter;
+import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
@@ -25,7 +29,7 @@ public class QuizFragment extends Fragment {
 
     private QuizAdapter quizAdapter;
     protected List<QuizData> quizData;
-    private String fileNameInternal = "running_quiz.json";
+    private final String fileNameInternal = "running_quiz.json";
 
     public QuizFragment() {}
 
@@ -66,29 +70,26 @@ public class QuizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         myViewModel resultsViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
 
-        resultsViewModel.getQuiz(this.amount, this.category, this.difficulty, this.type).observe(getViewLifecycleOwner(),
-                allResults -> {
-            //this.myDataset = allResults;
-
-
-            quizAdapter = new QuizAdapter(this.quizData);    //TODO
-            quizAdapter.setClickListener((view1, position) -> {  //TODO
-
+//        resultsViewModel.getQuiz(this.amount, this.category, this.difficulty, this.type).observe(getViewLifecycleOwner(),
+//                (List<QuizData> allResults) -> {
+//            this.quizData = allResults;
+//
+//
+//            quizAdapter = new QuizAdapter(this.quizData);    //TODO
+//            quizAdapter.setClickListener((view1, position) -> {  //TODO
+//
 //                Log.i("TAG", "Du klikte quiz \"" +
-//                        resultsAdapter.getItem(position).getTitle() +
+//                        quizAdapter.getItem(position).getResults() +
 //                        "\" som ligger i posisjon " + position);
 //
-//                long albumIdlong = myDataset.get(position).getId();
-
-                //QuizFragment quizFragment = QuizFragment.newInstance((int) albumIdlong); //TODO
-                //if (isAdded()) {
-                 //   ((MainActivity) requireActivity()).replaceFragmentWidth(quizFragment, true);
-                //}
-            });
-//            albumsRecyclerView.setAdapter(this.albumAdapter);
-            //resultsAdapter.setLocalDataSet(allResults);
-            quizAdapter.notifyDataSetChanged();
-        });
+//                QuizFragment quizFragment = QuizFragment.newInstance(amount, category, difficulty, type);
+//                if (isAdded()) {
+//                    ((MainActivity) requireActivity()).replaceFragmentWidth(quizFragment, true);
+//                }
+//            });
+//            quizAdapter.setLocalDataSet(allResults);
+//            quizAdapter.notifyDataSetChanged();
+//        });
 
     }
 }

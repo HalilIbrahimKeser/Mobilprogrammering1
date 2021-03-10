@@ -1,13 +1,18 @@
 package com.example.lab6_1_trivia_quiz.repository;
 
-import android.widget.Toast;
+import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -58,6 +63,12 @@ public class myRepository {
                 }
                 QuizData data = response.body();
                 quizData.setValue(data);
+                writeToFile(quizData);
+
+                List<Question> results = null;
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("response_code", response_code);
+                jsonObject.put("results", results);
             }
             @Override
             public void onFailure(Call<QuizData> call, Throwable t) {
@@ -65,6 +76,20 @@ public class myRepository {
         });
         return quizData;
     }
+
+    public void writeToFile(MutableLiveData<QuizData> quizData) {
+        // Convert JsonObject to String Format
+        String questionsString = quizData.toString();
+        FileOutputStream fileOutputStream = null;
+        String filesDir = getFilesDir().toString();
+        try {
+            fileOutputStream = this.openFileOutput(fileNameInternal, Context.MODE_PRIVATE);
+            fileOutputStream.write(questionsString.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public MutableLiveData<String> getErrorMessage() {
         return errorMessage;
