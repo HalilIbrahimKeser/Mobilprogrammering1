@@ -2,20 +2,22 @@ package com.example.lab6_1_trivia_quiz;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.lab6_1_trivia_quiz.fragments.ResultsFragment;
+import com.example.lab6_1_trivia_quiz.models.Question;
+import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
+import java.io.File;
+import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
+    private myRepository myRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,15 @@ public class QuizActivity extends AppCompatActivity {
 
         myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
         myViewModel.getQuiz("10","10", "easy","multiple").observe(this, quizData -> {
-
-            List quizDataResults = quizData.getResults();
         });
+
+        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
+        File yourFile = new File(path);
+        if (yourFile.exists()) {
+            myRepo.readInternalFile(getApplicationContext());
+        } else {
+            //myRepo.writeInternalFile(getApplicationContext(), (ArrayList<Question>) quizDataResults);
+        }
     }
 
     public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {
@@ -45,5 +53,4 @@ public class QuizActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, newFragment)
                     .commit();
     }
-
 }
