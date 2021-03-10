@@ -1,13 +1,29 @@
 package com.example.lab6_1_trivia_quiz.repository;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.lab6_1_trivia_quiz.MainActivity;
+import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -18,10 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myRepository {
     private static myRepository repository;
-    private String fileNameInternal = "running_quiz.json";
+    //private String fileNameInternal = "running_quiz.json";
 
-    public static myRepository getInstance(){
-        if (repository == null){
+    public static myRepository getInstance() {
+        if (repository == null) {
             repository = new myRepository();
         }
         return repository;
@@ -42,6 +58,10 @@ public class myRepository {
         triviaApi = retrofit.create(TriviaApi.class);
     }
 
+    public MutableLiveData<String> getErrorMessage() {
+        return errorMessage;
+    }
+
     public MutableLiveData<QuizData> downloadQuiz(String amount, String category, String difficulty, String type) {
         // Legger url-parametre i en HashMap:
         Map<String, String> urlArguments = new HashMap<>();
@@ -59,6 +79,7 @@ public class myRepository {
                 QuizData data = response.body();
                 quizData.setValue(data);
             }
+
             @Override
             public void onFailure(Call<QuizData> call, Throwable t) {
             }
@@ -66,7 +87,45 @@ public class myRepository {
         return quizData;
     }
 
-    public MutableLiveData<String> getErrorMessage() {
-        return errorMessage;
+    //LES fra INTERN fil:
+    public ArrayList<Question> readInternalFile(Context context) {
+        StringBuilder stringBuilder = new StringBuilder();
+        FileInputStream fileInputStream = null;
+
+        try {
+            fileInputStream = context.openFileInput("running_quiz.json");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            String line = reader.readLine();
+            while (line != null) {
+                stringBuilder.append(line);
+            }
+            line = reader.readLine();
+            String jsonArrayAsString = stringBuilder.toString();
+            //Konverterfra JSON til ArrayList<Question>
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<Question>>(){}.getType();
+            ArrayList<Question> tmpList = gson.fromJson(jsonArrayAsString, type);
+            return tmpList;}
+        catch (FileNotFoundException e) {
+            //e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            // Error occurred when opening raw file for reading.
+            return null;
+        }
+    }
+
+
+    public void writeInternalFile(Context context, ArrayList<Question> tmpList) {
+        Gson gson = new Gson();
+        String questionListAsString = gson.toJson(tmpList);
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = context.openFileOutput("running_quiz.json", Context.MODE_PRIVATE);
+            fileOutputStream.write(questionListAsString.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
