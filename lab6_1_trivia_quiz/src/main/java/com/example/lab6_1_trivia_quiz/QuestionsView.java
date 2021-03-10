@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import com.example.lab6_1_trivia_quiz.models.Question;
 
 import androidx.annotation.Nullable;
+
+import com.example.lab6_1_trivia_quiz.models.Question;
 
 public class QuestionsView extends LinearLayout {
     private TextView tvQuestionNumber, tvQuestionNumSlashNum, tvQuestion;
