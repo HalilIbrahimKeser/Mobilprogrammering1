@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
     // Menu icons are inflated just as they were with actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,18 +54,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuizActivity.class);
         startActivity(intent);
     }
-
-//    public void replaceFragmentWidth(QuizFragment quizFragment, boolean b) {
-//
-//    }
 }
-
-//    myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
-//        myViewModel.getQuiz("10","10", "easy","multiple").observe(this, quizData -> {
-//                List<Question> quizDataResults = quizData.getResults();
-//        StringBuilder string = new StringBuilder();
-//        for (int i = 0; i < 10; i++) {
-//        string.append(i + 1).append(": ").append(quizDataResults.get(i).getCorrect_answer()).append(", ");
-//        }
-//        Log.i("test", string + "\n");
-//        });

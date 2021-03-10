@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class QuizActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class QuizActivity extends AppCompatActivity{
     private myRepository myRepo;
     Map<String, ?> sharePrefs;
 
