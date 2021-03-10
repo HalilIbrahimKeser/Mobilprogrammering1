@@ -1,24 +1,17 @@
 package com.example.lab6_1_trivia_quiz.adapters;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaders;
-import com.example.lab6_1_trivia_quiz.R;
-import com.example.lab6_1_trivia_quiz.models.Results;
+import com.example.lab6_1_trivia_quiz.models.QuizData;
 import java.util.List;
 
-public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHolder> {
+public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder> {
 
-    private List<Results> resultsDataSet;
+    private List<QuizData> quizData;
     private ItemClickListener itemClickListener;
-    private String fileNameInternal = "running_quiz.json";
+    private final String fileNameInternal = "running_quiz.json";
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
@@ -49,20 +42,20 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
 
         @Override
         public void onClick(View view) {
-            if (ResultsAdapter.this.itemClickListener != null) {
+            if (QuizAdapter.this.itemClickListener != null) {
                 int pos = getAdapterPosition();
                 itemClickListener.onItemClick(view, pos);
             }
         }
     }
 
-    public ResultsAdapter(List<Results> dataSet) {
-        resultsDataSet = dataSet;
+    public QuizAdapter(List<QuizData> dataSet) {
+        quizData = dataSet;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         //View view = LayoutInflater.from(viewGroup.getContext()).
         //inflate(R.layout.results_row_item, viewGroup, false);
         //return new MyViewHolder(view);
@@ -71,7 +64,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder myViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
         /*
         //TODO her skal vi binde verdiene og sende med
 
@@ -89,18 +82,18 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return resultsDataSet.size();
+        return quizData.size();
     }
 
-    public void setClickListener(ResultsAdapter.ItemClickListener itemClickListener) {
+    public void setClickListener(QuizAdapter.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    public Results getItem(int id) {
-        return resultsDataSet.get(id);
+    public QuizData getItem(int id) {
+        return quizData.get(id);
     }
 
-    public void setLocalDataSet(List<Results> resultsDataSet) {
-        this.resultsDataSet = resultsDataSet;
+    public void setLocalDataSet(List<QuizData> quizData) {
+        this.quizData = quizData;
     }
 }
