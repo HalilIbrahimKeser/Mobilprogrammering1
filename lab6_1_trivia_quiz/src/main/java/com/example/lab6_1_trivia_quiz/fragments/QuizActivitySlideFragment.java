@@ -56,21 +56,12 @@ public class QuizActivitySlideFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
-
-        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), AllQuiz -> {
+        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
             QuizData quiz = AllQuiz.getResults();
 
             TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
             tvQuestionNumber.setText(Question);
 
-            ImageView ivBilde = view.findViewById(R.id.ivBilde);
-            Glide
-                    .with(this)
-                    .load(utstyr.getBildeUrl())
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_baseline_search_24)
-                    .error(R.drawable.ic_baseline_report_gmailerrorred_24)
-                    .into(ivBilde);
         });
     }
 
