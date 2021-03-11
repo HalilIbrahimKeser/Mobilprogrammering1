@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,6 @@ public class QuizActivitySlideFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private int position;
     String amount, category, difficulty, type = null;
-
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
 
     public QuizActivitySlideFragment() {
@@ -47,7 +47,6 @@ public class QuizActivitySlideFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_quiz_slide_screen, container, false);
     }
 
@@ -56,12 +55,25 @@ public class QuizActivitySlideFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
-//        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
-//            QuizData quiz = AllQuiz.getResults();
-//
-//            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
-//            tvQuestionNumber.setText(Question);
-//        });
-    }
+        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
+            //QuizData quiz = AllQuiz.getResults();
 
+            //Hardkoder verdier
+            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
+            TextView tvQuestionNumSlashNum = view.findViewById(R.id.tvQuestionNumSlashNum);
+            TextView tvQuestion = view.findViewById(R.id.tvQuestion);
+            RadioButton rbAnswer1 = view.findViewById(R.id.rbAnswer1);
+            RadioButton rbAnswer2 = view.findViewById(R.id.rbAnswer2);
+            RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
+            RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
+
+            tvQuestionNumber.setText("1");
+            tvQuestionNumSlashNum.setText("Spørsmål 1/10");
+            tvQuestion.setText("Hva heter USA sin president?");
+            rbAnswer1.setText("Donald Duck");
+            rbAnswer2.setText("Barrack Biden");
+            rbAnswer3.setText("Joe Biden");
+            rbAnswer4.setText("Jørgen Rypdal Junior");
+        });
+    }
 }

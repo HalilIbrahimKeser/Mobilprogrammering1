@@ -10,8 +10,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="415dp"
-        android:layout_height="611dp"
-        android:layout_above="@id/bottom_navigation"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quizToolbar1" />
@@ -33,6 +33,7 @@
         android:layout_height="74dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/buttom_background"
+        android:onClick="startGame"
         android:paddingBottom="15dp"
         android:text="@string/button_start"
         android:textAlignment="center"
@@ -46,6 +47,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/buttom_background"
+        android:onClick="resetGame"
         android:paddingBottom="15dp"
         android:text="@string/button_null"
         android:textAlignment="center"
@@ -66,20 +68,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/Theme.AppCompat.Light" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="9dp"
-        android:background="@color/teal_700"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNull"
-        app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

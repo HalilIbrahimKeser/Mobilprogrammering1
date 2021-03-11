@@ -17,7 +17,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         setContentView(R.layout.activity_screen_slide);
 
         viewPager = findViewById(R.id.pager);
-        viewPager.setPageTransformer(new DepthPageTransformer());
+        viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);

@@ -37,7 +37,6 @@ public class QuestionsView extends LinearLayout {
     }
 
     private void init() {
-        //Merk bruk av LayoutInflater:
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.fragment_quiz_slide_screen, this, true);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
@@ -48,12 +47,12 @@ public class QuestionsView extends LinearLayout {
         rbAnswer3 = findViewById(R.id.rbAnswer3);
         rbAnswer4 = findViewById(R.id.rbAnswer4);
 
-        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText("1"));
-        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText("Spørsmål 1/10"));
-        tvQuestion.setOnClickListener(v -> tvQuestion.setText("Hva heter USA sin president?"));
-        rbAnswer1.setOnClickListener(v -> rbAnswer1.setText("Donald Duck"));
-        rbAnswer2.setOnClickListener(v -> rbAnswer2.setText("Joe Obama"));
-        rbAnswer3.setOnClickListener(v -> rbAnswer3.setText("Joe Biden"));
-        rbAnswer4.setOnClickListener(v -> rbAnswer4.setText("Jørgen Rypdal Junior"));
+//        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText("1"));
+//        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText("Spørsmål 1/10"));
+//        tvQuestion.setOnClickListener(v -> tvQuestion.setText("Hva heter USA sin president?"));
+//        rbAnswer1.setOnClickListener(v -> rbAnswer1.setText("Donald Duck"));
+//        rbAnswer2.setOnClickListener(v -> rbAnswer2.setText("Joe Obama"));
+//        rbAnswer3.setOnClickListener(v -> rbAnswer3.setText("Joe Biden"));
+//        rbAnswer4.setOnClickListener(v -> rbAnswer4.setText("Jørgen Rypdal Junior"));
     }
 }
