@@ -40,16 +40,16 @@ public class QuestionsView extends LinearLayout {
         //Merk bruk av LayoutInflater:
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.fragment_quiz_slide_screen, this, true);
-//        tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
-//        tvQuestionNumSlashNum = findViewById(R.id.tvQuestionNumSlashNum);
+        tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
+        tvQuestionNumSlashNum = findViewById(R.id.tvQuestionNumSlashNum);
         tvQuestion = findViewById(R.id.tvQuestion);
         rbAnswer1 = findViewById(R.id.rbAnswer1);
         rbAnswer2 = findViewById(R.id.rbAnswer2);
         rbAnswer3 = findViewById(R.id.rbAnswer3);
         rbAnswer4 = findViewById(R.id.rbAnswer4);
 
-//        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText(""));
-//        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText(""));
+        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText(""));
+        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText(""));
         tvQuestion.setOnClickListener(v -> tvQuestion.setText(""));
         rbAnswer1.setOnClickListener(v -> rbAnswer1.setText(""));
         rbAnswer2.setOnClickListener(v -> rbAnswer2.setText(""));
