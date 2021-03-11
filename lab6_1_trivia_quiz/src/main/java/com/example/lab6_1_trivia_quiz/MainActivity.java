@@ -9,7 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
 import com.example.lab6_1_trivia_quiz.fragments.QuizFragment;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
@@ -28,6 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     protected QuizData quizData;
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter pagerAdapter;
+    private static final int NUM_PAGES = 10;
+    private myViewModel myViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar quizToolbar = findViewById(R.id.quizToolbar1);
         setSupportActionBar(quizToolbar);
+
+        viewPager = findViewById(R.id.viewPager);
+        pagerAdapter = new ScreenSlidePagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
     }
 
     public void settingsActivity(MenuItem item) {
@@ -53,5 +67,20 @@ public class MainActivity extends AppCompatActivity {
     public void startGame(View view) {
         Intent intent = new Intent(this, QuizActivity.class);
         startActivity(intent);
+    }
+    private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
+        public ScreenSlidePagerAdapter(FragmentActivity fa) {
+            super(fa);
+        }
+
+        @Override
+        public Fragment createFragment(int position) {
+            return QuizActivitySlideFragment.newInstance(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return NUM_PAGES;
+        }
     }
 }

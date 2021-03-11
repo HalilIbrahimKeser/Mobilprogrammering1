@@ -48,12 +48,12 @@ public class QuestionsView extends LinearLayout {
         rbAnswer3 = findViewById(R.id.rbAnswer3);
         rbAnswer4 = findViewById(R.id.rbAnswer4);
 
-        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText(""));
-        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText(""));
-        tvQuestion.setOnClickListener(v -> tvQuestion.setText(""));
-        rbAnswer1.setOnClickListener(v -> rbAnswer1.setText(""));
-        rbAnswer2.setOnClickListener(v -> rbAnswer2.setText(""));
-        rbAnswer3.setOnClickListener(v -> rbAnswer3.setText(""));
-        rbAnswer4.setOnClickListener(v -> rbAnswer4.setText(""));
+        tvQuestionNumber.setOnClickListener(v -> tvQuestionNumber.setText("1"));
+        tvQuestionNumSlashNum.setOnClickListener(v -> tvQuestionNumSlashNum.setText("Spørsmål 1/10"));
+        tvQuestion.setOnClickListener(v -> tvQuestion.setText("Hva heter USA sin president?"));
+        rbAnswer1.setOnClickListener(v -> rbAnswer1.setText("Donald Duck"));
+        rbAnswer2.setOnClickListener(v -> rbAnswer2.setText("Joe Obama"));
+        rbAnswer3.setOnClickListener(v -> rbAnswer3.setText("Joe Biden"));
+        rbAnswer4.setOnClickListener(v -> rbAnswer4.setText("Jørgen Rypdal Junior"));
     }
 }

@@ -56,13 +56,12 @@ public class QuizActivitySlideFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
-        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
-            QuizData quiz = AllQuiz.getResults();
-
-            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
-            tvQuestionNumber.setText(Question);
-
-        });
+//        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
+//            QuizData quiz = AllQuiz.getResults();
+//
+//            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
+//            tvQuestionNumber.setText(Question);
+//        });
     }
 
 }
