@@ -22,5 +22,6 @@
     <string name="str_spoersmoel">Spørsmål dette er spørsmål</string>
     <string name="str_question1of10">Spørsmål 1/10</string>
     <string name="str_num">5</string>
+    <string name="str_description">This is a picture</string>
 
 </resources>

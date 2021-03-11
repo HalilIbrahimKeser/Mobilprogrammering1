@@ -3,11 +3,8 @@ package com.example.lab6_1_trivia_quiz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -18,14 +15,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity{
@@ -49,7 +42,7 @@ public class QuizActivity extends AppCompatActivity{
         });
 
         viewPager = findViewById(R.id.viewPager);
-        viewPager.setPageTransformer(new ZoomOutPageTransformer());
+        viewPager.setPageTransformer(new zDepthPageTransformer());
 
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);

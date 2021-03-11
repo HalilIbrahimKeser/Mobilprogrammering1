@@ -59,19 +59,15 @@ public class QuizActivitySlideFragment extends Fragment {
             //QuizData quiz = AllQuiz.getResults();
 
             //Hardkoder verdier
-            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
-            TextView tvQuestionNumSlashNum = view.findViewById(R.id.tvQuestionNumSlashNum);
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);
             RadioButton rbAnswer1 = view.findViewById(R.id.rbAnswer1);
             RadioButton rbAnswer2 = view.findViewById(R.id.rbAnswer2);
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
-            tvQuestionNumber.setText("1");
-            tvQuestionNumSlashNum.setText("Spørsmål 1/10");
             tvQuestion.setText("Hva heter USA sin president?");
             rbAnswer1.setText("Donald Duck");
-            rbAnswer2.setText("Barrack Biden");
+            rbAnswer2.setText("Are Abraham Lincoln");
             rbAnswer3.setText("Joe Biden");
             rbAnswer4.setText("Jørgen Rypdal Junior");
         });
