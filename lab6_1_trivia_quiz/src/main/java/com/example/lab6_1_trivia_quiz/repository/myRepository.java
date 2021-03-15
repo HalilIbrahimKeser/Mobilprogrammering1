@@ -41,7 +41,7 @@ public class myRepository {
     }
 
     private final TriviaApi triviaApi;
-    private final MutableLiveData<QuizData> quizData;
+    private final MutableLiveData<ArrayList<Question>> quizData;
     private final MutableLiveData<String> errorMessage;
 
     private myRepository() {
@@ -59,7 +59,7 @@ public class myRepository {
         return errorMessage;
     }
 
-    public MutableLiveData<QuizData> downloadQuiz(String amount, String category, String difficulty, String type) {
+    public MutableLiveData<ArrayList<Question>> downloadQuiz(String amount, String category, String difficulty, String type) {
         // Legger url-parametre i en HashMap:
         Map<String, String> urlArguments = new HashMap<>();
         urlArguments.put("amount", amount);
@@ -74,7 +74,10 @@ public class myRepository {
                     return;
                 }
                 QuizData data = response.body();
-                quizData.setValue(data);
+                ArrayList<Question> tmp = data.getResults();
+                quizData.setValue(tmp);
+                //MutableLiveData<ArrayList<Question>> downloadedQuestions = (MutableLiveData<ArrayList<Question>>)data.getResults();
+                //downloadedQuestions.setValue(data);
             }
 
             @Override
