@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
 import com.example.lab6_1_trivia_quiz.models.Question;
@@ -27,6 +29,9 @@ import java.util.Map;
 public class QuizActivity extends AppCompatActivity {
     private myRepository myRepo;
     Map<String, ?> sharePrefs;
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter pagerAdapter;
+    private static final int NUM_PAGES = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
