@@ -8,10 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
@@ -50,15 +53,6 @@ public class QuizActivity extends AppCompatActivity {
 
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
-
-
-        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
-        File yourFile = new File(path);
-        if (yourFile.exists()) {
-            myRepo.readInternalFile(getApplicationContext());
-        } else {
-            //myRepo.writeInternalFile(getApplicationContext(), (ArrayList<Question>) quizDataResults);
-        }
     }
 
     public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {
