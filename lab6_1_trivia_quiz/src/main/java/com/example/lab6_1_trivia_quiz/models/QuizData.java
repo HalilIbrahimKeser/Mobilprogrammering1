@@ -1,10 +1,11 @@
 package com.example.lab6_1_trivia_quiz.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuizData {
     private int response_code;
-    private List<Question> results;
+    private ArrayList<Question> results;
 
     public QuizData() {
         this.response_code = response_code;
@@ -15,7 +16,7 @@ public class QuizData {
         return response_code;
     }
 
-    public List<Question> getResults() {
+    public ArrayList<Question> getResults() {
         return results;
     }
 }

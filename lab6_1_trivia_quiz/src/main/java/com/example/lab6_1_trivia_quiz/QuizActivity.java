@@ -3,43 +3,47 @@ package com.example.lab6_1_trivia_quiz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
+import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class QuizActivity extends AppCompatActivity{
+public class QuizActivity extends AppCompatActivity {
     private myRepository myRepo;
     Map<String, ?> sharePrefs;
-    private ViewPager2 viewPager;
-    private FragmentStateAdapter pagerAdapter;
-    private static final int NUM_PAGES = 10;
-    private myViewModel myViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Map<String, ?> sharedPrefs = sharedPreferences.getAll();
-                myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
-        myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")),
-                String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
-            //List<Question> questions = quizData.getResults();
-        });
+
+        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
+        File yourFile = new File(path);
+        if (!yourFile.exists()) {
+            myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            Map<String, ?> sharedPrefs = sharedPreferences.getAll();
+            myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
+                myRepo = myRepository.getInstance();
+                myRepo.writeInternalFile(this, quizData);
+            });
+        } else {
+            myRepo = myRepository.getInstance();
+            myRepo.readInternalFile(getApplicationContext());
+        }
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setPageTransformer(new zDepthPageTransformer());
