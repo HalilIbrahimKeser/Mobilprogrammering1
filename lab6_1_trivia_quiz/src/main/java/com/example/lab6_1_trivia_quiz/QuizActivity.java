@@ -1,5 +1,6 @@
 package com.example.lab6_1_trivia_quiz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.example.lab6_1_trivia_quiz.models.Question;
+import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
@@ -25,24 +28,55 @@ public class QuizActivity extends AppCompatActivity {
     private myRepository myRepo;
     Map<String, ?> sharePrefs;
 
+    public QuizActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Map<String, ?> sharedPrefs = sharedPreferences.getAll();
-                myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
-        myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
-            //List<Question> questions = quizData.getResults();
-        });
 
         String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
         File yourFile = new File(path);
-        if (yourFile.exists()) {
-            myRepo.readInternalFile(getApplicationContext());
+        if (!yourFile.exists()) {
+            myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            Map<String, ?> sharedPrefs = sharedPreferences.getAll();
+            myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
+                myRepo = myRepository.getInstance();
+                myRepo.writeInternalFile(this, quizData);
+            });
         } else {
-            //myRepo.writeInternalFile(getApplicationContext(), (ArrayList<Question>) quizDataResults);
+            myRepo = myRepository.getInstance();
+            myRepo.readInternalFile(getApplicationContext());
         }
+
+
+        /*
+        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
+        File yourFile = new File(path);
+        if (!yourFile.exists()) {
+            //myRepo.readInternalFile(getApplicationContext());
+            myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            Map<String, ?> sharedPrefs = sharedPreferences.getAll();
+            myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
+                //ArrayList<Question> data = (ArrayList<Question>) quizData.getResults();
+                //myRepo.writeInternalFile(getApplicationContext(), data);
+            });
+        } else {
+            //List<Question> questions = quizData.getResults();
+            //quizDataResults = myViewModel.getQuizArray();
+            //myRepo.writeInternalFile(getApplicationContext(), quizDataResults);
+        }
+
+
+
+         */
+
+
+
+
     }
 
     public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {

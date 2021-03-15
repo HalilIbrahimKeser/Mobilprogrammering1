@@ -1,14 +1,21 @@
 package com.example.lab6_1_trivia_quiz.repository;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.lab6_1_trivia_quiz.MainActivity;
+import com.example.lab6_1_trivia_quiz.QuizActivity;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
+import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,8 +40,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myRepository {
-    private static myRepository repository;
-    //private String fileNameInternal = "running_quiz.json";
+    private static myRepository repository = new myRepository();
+    private final QuizActivity quizActivity = new QuizActivity();
 
     public static myRepository getInstance() {
         if (repository == null) {
@@ -44,7 +51,8 @@ public class myRepository {
     }
 
     private final TriviaApi triviaApi;
-    private final MutableLiveData<QuizData> quizData;
+    private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
+    private final MutableLiveData<ArrayList<Question>> quizData;
     private final MutableLiveData<String> errorMessage;
 
     private myRepository() {
@@ -62,22 +70,25 @@ public class myRepository {
         return errorMessage;
     }
 
-    public MutableLiveData<QuizData> downloadQuiz(String amount, String category, String difficulty, String type) {
+    public MutableLiveData<ArrayList<Question>> downloadQuiz(String amount, String category, String difficulty, String type) {
         // Legger url-parametre i en HashMap:
         Map<String, String> urlArguments = new HashMap<>();
-        urlArguments.put("amount", amount);
-        urlArguments.put("category", category);
-        urlArguments.put("difficulty", difficulty);
-        urlArguments.put("type", type);
+        urlArguments.put("amount", "5");
+        urlArguments.put("category", "29");
+        urlArguments.put("difficulty", "easy");
+        urlArguments.put("type", "multiple");
         Call<QuizData> call = triviaApi.downloadQuiz(urlArguments);
         call.enqueue(new Callback<QuizData>() {
             @Override
-            public void onResponse(Call<QuizData> call, Response<QuizData> response) {
+            public void onResponse(@NonNull Call<QuizData> call, @NonNull Response<QuizData> response) {
                 if (!response.isSuccessful()) {
                     return;
                 }
                 QuizData data = response.body();
-                quizData.setValue(data);
+                ArrayList<Question> tmp = data.getResults();
+                quizData.setValue(tmp);
+                //MutableLiveData<ArrayList<Question>> downloadedQuestions = (MutableLiveData<ArrayList<Question>>)data.getResults();
+                //downloadedQuestions.setValue(data);
             }
 
             @Override
@@ -117,6 +128,7 @@ public class myRepository {
     }
 
 
+    @SuppressLint("SdCardPath")
     public void writeInternalFile(Context context, ArrayList<Question> tmpList) {
         Gson gson = new Gson();
         String questionListAsString = gson.toJson(tmpList);
