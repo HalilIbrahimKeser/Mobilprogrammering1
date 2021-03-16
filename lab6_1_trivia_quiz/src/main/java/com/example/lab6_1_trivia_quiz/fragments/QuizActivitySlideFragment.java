@@ -14,16 +14,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.example.lab6_1_trivia_quiz.QuizActivity;
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizActivitySlideFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private int position;
     String amount, category, difficulty, type = null;
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
+    protected ArrayList<Question> quizData;
 
     public QuizActivitySlideFragment() {
         // Required empty public constructor
@@ -55,8 +60,8 @@ public class QuizActivitySlideFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
-        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (QuizData AllQuiz) -> {
-            //QuizData quiz = AllQuiz.getResults();
+        myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (ArrayList<Question> AllQuiz) -> {
+            this.quizData = AllQuiz;
 
             //Hardkoder verdier
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);
@@ -65,7 +70,7 @@ public class QuizActivitySlideFragment extends Fragment {
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
-            tvQuestion.setText("Hva heter USA sin president?");
+            tvQuestion.setText(quizData.get(position).getQuestion());
             rbAnswer1.setText("Donald Duck");
             rbAnswer2.setText("Are Abraham Lincoln");
             rbAnswer3.setText("Joe Biden");

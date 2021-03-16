@@ -27,8 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
-    private myRepository myRepo;
-    Map<String, ?> sharePrefs;
+    private myRepository myRepo = myRepository.getInstance();
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
     private static final int NUM_PAGES = 10;
@@ -45,11 +44,9 @@ public class QuizActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             Map<String, ?> sharedPrefs = sharedPreferences.getAll();
             myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
-                myRepo = myRepository.getInstance();
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
-            myRepo = myRepository.getInstance();
             myRepo.readInternalFile(getApplicationContext());
         }
 
