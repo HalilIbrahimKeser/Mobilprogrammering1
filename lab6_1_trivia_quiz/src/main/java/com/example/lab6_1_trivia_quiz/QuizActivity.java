@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -31,6 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
     private static final int NUM_PAGES = 10;
+    private MutableLiveData<ArrayList<Question>> quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,9 @@ public class QuizActivity extends AppCompatActivity {
             });
         } else {
         ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
+        //myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
+        //quizData = new MutableLiveData<>();
+        //quizData.setValue(test);
         }
 
         viewPager = findViewById(R.id.viewPager);
