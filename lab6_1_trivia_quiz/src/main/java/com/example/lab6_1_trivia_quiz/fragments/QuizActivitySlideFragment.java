@@ -21,6 +21,7 @@ import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuizActivitySlideFragment extends Fragment {
@@ -62,17 +63,22 @@ public class QuizActivitySlideFragment extends Fragment {
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
         myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (ArrayList<Question> AllQuiz) -> {
             this.quizData = AllQuiz;
-            //Todo
 
-            //Hardkoder verdier
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);
             RadioButton rbAnswer1 = view.findViewById(R.id.rbAnswer1);
             RadioButton rbAnswer2 = view.findViewById(R.id.rbAnswer2);
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
+            //List<String> alternatives = new ArrayList<>();
+            //alternatives.add(quizData.get(position).getCorrect_answer());
+            //alternatives.add(quizData.get(position).getIncorrect_answers().indexOf([0]));
+            //alternatives.add(incorrect_answers[1]);
+            //alternatives.add(incorrect_answers[2]);
+            //Collections.shuffle(alternatives);
+
             tvQuestion.setText(quizData.get(position).getQuestion());
-            rbAnswer1.setText("Donald Duck");
+            rbAnswer1.setText("Halil Ibrahim Keser");
             rbAnswer2.setText("Are Abraham Lincoln");
             rbAnswer3.setText("Joe Biden");
             rbAnswer4.setText("Jørgen Rypdal Junior");

@@ -96,6 +96,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void BackHome(View view) {
+        //TODO funker ikke
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
