@@ -12,7 +12,8 @@ import java.util.List;
 
 public class myViewModel extends ViewModel {
     private final myRepository myRepository;
-    private ArrayList<Question> quizArray;
+
+    private MutableLiveData<ArrayList<Question>> quizArray;
 
     public myViewModel() {
         myRepository = com.example.lab6_1_trivia_quiz.repository.myRepository.getInstance();
@@ -22,11 +23,11 @@ public class myViewModel extends ViewModel {
         return myRepository.downloadQuiz(amount, category, difficulty, type);
     }
 
-    public ArrayList<Question> getQuizArray() {
+    public MutableLiveData<ArrayList<Question>> getQuizArray() {
         return quizArray;
     }
 
-    public void setQuizArray(ArrayList<Question> quizArray) {
+    public void setQuizArray(MutableLiveData<ArrayList<Question>> quizArray) {
         this.quizArray = quizArray;
     }
 
