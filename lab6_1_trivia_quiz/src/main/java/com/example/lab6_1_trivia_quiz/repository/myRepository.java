@@ -10,6 +10,7 @@ import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
@@ -34,7 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myRepository {
     private static myRepository repository;
-    //private String fileNameInternal = "running_quiz.json";
 
     public static myRepository getInstance() {
         if (repository == null) {
@@ -79,8 +79,6 @@ public class myRepository {
                 QuizData data = response.body();
                 ArrayList<Question> tmp = data.getResults();
                 quizData.setValue(tmp);
-                //MutableLiveData<ArrayList<Question>> downloadedQuestions = (MutableLiveData<ArrayList<Question>>)data.getResults();
-                //downloadedQuestions.setValue(data);
             }
 
             @Override
@@ -100,16 +98,13 @@ public class myRepository {
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
-            while (line != null) {
-                stringBuilder.append(line);
-            }
-            line = reader.readLine();
-            String jsonArrayAsString = stringBuilder.toString();
+            String jsonArrayAsString = line.toString();
             //Konverterfra JSON til ArrayList<Question>
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<Question>>(){}.getType();
             ArrayList<Question> tmpList = gson.fromJson(jsonArrayAsString, type);
-            return tmpList;}
+            return tmpList;
+        }
         catch (FileNotFoundException e) {
             //e.printStackTrace();
             return null;
