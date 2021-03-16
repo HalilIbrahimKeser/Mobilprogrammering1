@@ -4,20 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.bumptech.glide.Glide;
-import com.example.lab6_1_trivia_quiz.QuizActivity;
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.models.Question;
-import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 
 import java.util.ArrayList;
@@ -70,18 +64,18 @@ public class QuizActivitySlideFragment extends Fragment {
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
-            //List<String> alternatives = new ArrayList<>();
-            //alternatives.add(quizData.get(position).getCorrect_answer());
-            //alternatives.add(quizData.get(position).getIncorrect_answers().indexOf([0]));
-            //alternatives.add(incorrect_answers[1]);
-            //alternatives.add(incorrect_answers[2]);
-            //Collections.shuffle(alternatives);
+            List<String> alternatives = new ArrayList<>();
+            alternatives.add(quizData.get(position).getCorrect_answer());
+            alternatives.add(quizData.get(position).getIncorrect_answers().get(0));
+            alternatives.add(quizData.get(position).getIncorrect_answers().get(1));
+            alternatives.add(quizData.get(position).getIncorrect_answers().get(2));
+            Collections.shuffle(alternatives);
 
             tvQuestion.setText(quizData.get(position).getQuestion());
-            rbAnswer1.setText("Halil Ibrahim Keser");
-            rbAnswer2.setText("Are Abraham Lincoln");
-            rbAnswer3.setText("Joe Biden");
-            rbAnswer4.setText("Jørgen Rypdal Junior");
+            rbAnswer1.setText(alternatives.get(0));
+            rbAnswer2.setText(alternatives.get(1));
+            rbAnswer3.setText(alternatives.get(2));
+            rbAnswer4.setText(alternatives.get(3));
         });
     }
 }

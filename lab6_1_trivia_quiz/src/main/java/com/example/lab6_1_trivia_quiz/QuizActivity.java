@@ -45,7 +45,8 @@ public class QuizActivity extends AppCompatActivity {
             myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             Map<String, ?> sharedPrefs = sharedPreferences.getAll();
-            myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")), String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
+            myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")),
+                    String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
@@ -97,8 +98,9 @@ public class QuizActivity extends AppCompatActivity {
 
     public void BackHome(View view) {
         //TODO funker ikke
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        //onBackPressed();
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
     }
 
 }
