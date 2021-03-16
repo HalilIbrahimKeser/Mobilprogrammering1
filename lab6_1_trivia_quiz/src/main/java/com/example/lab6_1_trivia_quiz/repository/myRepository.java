@@ -2,14 +2,16 @@ package com.example.lab6_1_trivia_quiz.repository;
 
 import android.content.Context;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+
 import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.google.gson.Gson;
-import org.json.JSONObject;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
