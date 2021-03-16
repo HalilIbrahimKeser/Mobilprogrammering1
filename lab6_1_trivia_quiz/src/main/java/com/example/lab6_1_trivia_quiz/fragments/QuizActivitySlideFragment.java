@@ -62,6 +62,7 @@ public class QuizActivitySlideFragment extends Fragment {
         myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
         myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (ArrayList<Question> AllQuiz) -> {
             this.quizData = AllQuiz;
+            //Todo
 
             //Hardkoder verdier
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);

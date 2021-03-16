@@ -47,7 +47,7 @@ public class QuizActivity extends AppCompatActivity {
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
-            myRepo.readInternalFile(getApplicationContext());
+        ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
         }
 
         viewPager = findViewById(R.id.viewPager);
