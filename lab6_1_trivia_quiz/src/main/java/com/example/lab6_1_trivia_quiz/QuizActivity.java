@@ -32,17 +32,17 @@ public class QuizActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
     private static final int NUM_PAGES = 10;
-    private MutableLiveData<ArrayList<Question>> quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
 
         String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
         File yourFile = new File(path);
         if (!yourFile.exists()) {
-            myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
+
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             Map<String, ?> sharedPrefs = sharedPreferences.getAll();
             myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")),
@@ -50,10 +50,7 @@ public class QuizActivity extends AppCompatActivity {
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
-        ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
-        //myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
-        //quizData = new MutableLiveData<>();
-        //quizData.setValue(test);
+            ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
         }
 
         viewPager = findViewById(R.id.viewPager);
