@@ -103,7 +103,7 @@ public class myRepository {
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<Question>>(){}.getType();
             ArrayList<Question> tmpList = gson.fromJson(jsonArrayAsString, type);
-            quizData.setValue(tmpList); //la inn denne Halilus
+            quizData.setValue(tmpList);
             return tmpList;
         }
         catch (FileNotFoundException e) {

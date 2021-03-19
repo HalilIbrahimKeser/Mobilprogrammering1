@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="BackHome"
-    android:orientation="vertical"
-    android:weightSum="10">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/quizToolbar1"
@@ -18,21 +16,15 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         app:popupTheme="@style/Theme.AppCompat.Light" />
 
-    <com.example.lab6_1_trivia_quiz.QuizActivityCustomViewTop
-        android:id="@+id/quizActivityCustomView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.example.lab6_1_trivia_quiz.QuizActivityCustomViewTop>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10">
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_weight="10"></androidx.viewpager2.widget.ViewPager2>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottom_navigation1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -40,7 +32,6 @@
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_menu">
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>

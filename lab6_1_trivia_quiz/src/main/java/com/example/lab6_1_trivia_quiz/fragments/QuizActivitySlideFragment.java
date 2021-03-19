@@ -1,6 +1,9 @@
 package com.example.lab6_1_trivia_quiz.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +61,8 @@ public class QuizActivitySlideFragment extends Fragment {
         myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (ArrayList<Question> AllQuiz) -> {
             this.quizData = AllQuiz;
 
+            TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
+            TextView tvQuestionNumSlashNum = view.findViewById(R.id.tvQuestionNumSlashNum);
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);
             RadioButton rbAnswer1 = view.findViewById(R.id.rbAnswer1);
             RadioButton rbAnswer2 = view.findViewById(R.id.rbAnswer2);
@@ -65,17 +70,29 @@ public class QuizActivitySlideFragment extends Fragment {
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
             List<String> alternatives = new ArrayList<>();
-            alternatives.add(quizData.get(position).getCorrect_answer());
-            alternatives.add(quizData.get(position).getIncorrect_answers().get(0));
-            alternatives.add(quizData.get(position).getIncorrect_answers().get(1));
-            alternatives.add(quizData.get(position).getIncorrect_answers().get(2));
+            alternatives.add(decodeHtmlString(quizData.get(position).getCorrect_answer()));
+            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(0)));
+            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(1)));
+            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(2)));
             Collections.shuffle(alternatives);
 
-            tvQuestion.setText(quizData.get(position).getQuestion());
+            tvQuestion.setText(decodeHtmlString(quizData.get(position).getQuestion()));
             rbAnswer1.setText(alternatives.get(0));
             rbAnswer2.setText(alternatives.get(1));
             rbAnswer3.setText(alternatives.get(2));
             rbAnswer4.setText(alternatives.get(3));
+            tvQuestionNumber.setText(String.valueOf(position+1));
+            String str = ((position+1) + "/" + quizData.size());
+            tvQuestionNumSlashNum.setText(str);
         });
+    }
+    private String decodeHtmlString(String stringWithHtmlCodes) {
+        Spanned decodedString = null;
+        if (Build.VERSION.SDK_INT >= 24)
+            decodedString = Html.fromHtml(stringWithHtmlCodes ,
+                    Html.FROM_HTML_MODE_LEGACY);
+        else
+            decodedString = Html.fromHtml(stringWithHtmlCodes);
+        return decodedString.toString();
     }
 }

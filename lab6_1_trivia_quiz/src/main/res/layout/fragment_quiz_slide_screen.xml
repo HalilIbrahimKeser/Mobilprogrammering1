@@ -4,10 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/grey"
+    android:background="@android:color/holo_blue_dark"
     android:gravity="center|fill_vertical"
-    android:orientation="vertical"
-    tools:context=".QuizActivityCustomViewTop">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvQuestionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/circle"
+        android:padding="12dp"
+        android:text="@string/str_num"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="45sp" />
+
+    <TextView
+        android:id="@+id/tvQuestionNumSlashNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/str_question1of10"
+        android:textColor="#414C50"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvQuestion"
@@ -16,9 +37,10 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/str_spoersmoel"
         android:textAlignment="center"
-        android:textColor="#046485"
+        android:textColor="#333B3E"
         android:textSize="18sp" />
 
     <LinearLayout

@@ -38,6 +38,8 @@ public class MyCompoundView extends LinearLayout {
         //Merk bruk av LayoutInflater:
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.clearable_edit_text, this, true);
+
+
         editText = findViewById(R.id.editText);
         clearButton = findViewById(R.id.clearButton);
         clearButton.setOnClickListener(new OnClickListener() {

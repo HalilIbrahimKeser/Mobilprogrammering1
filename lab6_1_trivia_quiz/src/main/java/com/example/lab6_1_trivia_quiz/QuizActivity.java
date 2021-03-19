@@ -3,15 +3,15 @@ package com.example.lab6_1_trivia_quiz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -21,17 +21,17 @@ import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private myRepository myRepo = myRepository.getInstance();
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
-    private static final int NUM_PAGES = 10;
+    private int numPages = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +39,25 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation1);
+        bottomNav.setOnNavigationItemSelectedListener(this);
+
         String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
         File yourFile = new File(path);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Map<String, ?> sharedPrefs = sharedPreferences.getAll();
+        String temp = String.valueOf(sharedPrefs.get("num"));
+        numPages = Integer.parseInt(temp);
         if (!yourFile.exists()) {
 
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            Map<String, ?> sharedPrefs = sharedPreferences.getAll();
+
+
             myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")),
                     String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
-            ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
+            myRepo.readInternalFile(getApplicationContext());
         }
 
         viewPager = findViewById(R.id.viewPager);
@@ -60,21 +67,20 @@ public class QuizActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
     }
 
-    public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        if (addTobackStack)
-            fragmentManager
-                    .beginTransaction()
-                    .setReorderingAllowed(true)
-                    .addToBackStack(null)
-                    .add(R.id.fragment_container, newFragment)
-                    .commit();
-        else
-            fragmentManager
-                    .beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.fragment_container, newFragment)
-                    .commit();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bottom_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.hjem:
+                onBackPressed();
+                break;
+        }
+        return false;
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
@@ -89,15 +95,13 @@ public class QuizActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return NUM_PAGES;
+            return numPages;
         }
     }
 
     public void BackHome(View view) {
-        //TODO funker ikke
-        //onBackPressed();
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
