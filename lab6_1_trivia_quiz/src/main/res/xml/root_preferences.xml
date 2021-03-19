@@ -4,6 +4,7 @@
     <PreferenceCategory app:title="@string/messages_header">
 
         <SeekBarPreference
+            app:defaultValue="3"
             app:key="num"
             app:min="1"
             android:max="50"
@@ -11,6 +12,7 @@
             app:title="@string/num" />
 
         <ListPreference
+            app:defaultValue="9"
             android:entries="@array/cate_titles"
             android:entryValues="@array/cate_values"
             android:key="category"
@@ -18,6 +20,7 @@
             android:title="Kategorier:" />
 
         <ListPreference
+            app:defaultValue="easy"
             app:key="diff"
             android:summary="Trykk for å se en liste med vanskeliggrader å velge mellom."
             android:entries="@array/diff_titles"
@@ -26,6 +29,7 @@
 
 
         <ListPreference
+            app:defaultValue="multiple"
             app:key="type"
             android:summary="Trykk for å se en liste med type spørsmål å velge mellom."
             android:entries="@array/type_titles"

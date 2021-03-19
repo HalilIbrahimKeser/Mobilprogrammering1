@@ -32,7 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
     private static final int NUM_PAGES = 10;
-    private MutableLiveData<ArrayList<Question>> quizData;
+    //private MutableLiveData<ArrayList<Question>> quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class QuizActivity extends AppCompatActivity {
                 myRepo.writeInternalFile(this, quizData);
             });
         } else {
-        ArrayList<Question> test = myRepo.readInternalFile(getApplicationContext());
+        myRepo.readInternalFile(getApplicationContext());
         //myViewModel myViewModel = new ViewModelProvider(this).get(myViewModel.class);
         //quizData = new MutableLiveData<>();
         //quizData.setValue(test);
@@ -63,6 +63,7 @@ public class QuizActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
     }
 
+    /*
     public void replaceFragmentWidth(Fragment newFragment, boolean addTobackStack) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (addTobackStack)
@@ -79,7 +80,9 @@ public class QuizActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, newFragment)
                     .commit();
     }
+     */
 
+    
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
         public ScreenSlidePagerAdapter(FragmentActivity fa) {
             super(fa);
