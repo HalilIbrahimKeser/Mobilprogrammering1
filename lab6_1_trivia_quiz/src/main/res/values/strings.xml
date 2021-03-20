@@ -25,6 +25,11 @@
     <string name="str_num">5</string>
     <string name="str_description">This is a picture</string>
     <string name="fasit">Fasit</string>
+    <string name="Resultater">Resultater</string>
+    <string name="her_kommer_korrekte_svar">Her kommer korrekte svar</string>
+    <string name="resultat_0_0">Resultat: 0/0</string>
+    <string name="karakter_f">Karakter: F</string>
+    <string name="se_fasit">Se fasit?</string>
 
 
 </resources>

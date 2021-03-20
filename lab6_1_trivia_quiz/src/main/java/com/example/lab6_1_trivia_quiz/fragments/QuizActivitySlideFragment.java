@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -16,11 +17,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +38,7 @@ public class QuizActivitySlideFragment extends Fragment {
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
     private int correctAnswersCount = 0;
+    BottomNavigationView bottomNav3;
 
     public QuizActivitySlideFragment() {
         // Required empty public constructor
@@ -76,6 +82,7 @@ public class QuizActivitySlideFragment extends Fragment {
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
+            //Legg alt inn i ny liste og shuffle.
             List<String> alternatives = new ArrayList<>();
             alternatives.add(decodeHtmlString(quizData.get(position).getCorrect_answer()));
             alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(0)));
@@ -83,6 +90,7 @@ public class QuizActivitySlideFragment extends Fragment {
             alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(2)));
             Collections.shuffle(alternatives);
 
+            //Sett text på flere textview
             tvQuestion.setText(decodeHtmlString(quizData.get(position).getQuestion()));
             rbAnswer1.setText(alternatives.get(0));
             rbAnswer2.setText(alternatives.get(1));
@@ -92,6 +100,7 @@ public class QuizActivitySlideFragment extends Fragment {
             String str = ((position + 1) + "/" + quizData.size());
             tvQuestionNumSlashNum.setText(str);
 
+            //Hent besvarelser fra radio knappene
             RadioGroup rbAnswersGroup = view.findViewById(R.id.rbAnswersGroup);
             String correctAnswer = quizData.get(position).getCorrect_answer();
             rbAnswersGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

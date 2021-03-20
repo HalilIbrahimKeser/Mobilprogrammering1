@@ -4,14 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ResultsActivity extends AppCompatActivity {
+
+public class ResultsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private int correctAnswersCount;
     private int correctAnswersSize;
 
@@ -20,6 +23,9 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
+
+        BottomNavigationView bottomNav2 = findViewById(R.id.bottom_navigation2);
+        bottomNav2.setOnNavigationItemSelectedListener(this);
 
         SharedPreferences sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         correctAnswersCount = sharedPref.getInt("count", 0);
@@ -34,6 +40,14 @@ public class ResultsActivity extends AppCompatActivity {
 
         tvResultat.setText(resultat);
         tvKarakter.setText(karakter);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.hjem) {
+            onBackPressed();
+        }
+        return false;
     }
 
     public char calculateResult () {
