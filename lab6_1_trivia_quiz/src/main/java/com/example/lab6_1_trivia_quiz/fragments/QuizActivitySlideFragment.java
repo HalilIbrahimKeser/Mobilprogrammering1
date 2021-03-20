@@ -26,6 +26,7 @@ import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class QuizActivitySlideFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +34,8 @@ public class QuizActivitySlideFragment extends Fragment {
     String amount, category, difficulty, type = null;
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
-    private int correctAnswersCount = 0;
+    private int correctAnswersCount;
+    public static final String sharedCorrectAnswer = "sharedCorrectAnswerKEY";
 
 
     public QuizActivitySlideFragment() {
@@ -95,27 +97,36 @@ public class QuizActivitySlideFragment extends Fragment {
             tvQuestionNumSlashNum.setText(str);
 
             RadioGroup rbAnswersGroup = view.findViewById(R.id.rbAnswersGroup);
+            String correctAnswer = quizData.get(position).getCorrect_answer();
             rbAnswersGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     group.check(checkedId);
-                    if (checkedId == rbAnswer1.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer1.getText().toString())) {
-                        correctAnswersCount++;
-                    } else if (checkedId == rbAnswer2.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer2.getText().toString())) {
-                        correctAnswersCount++;
-                    } else if (checkedId == rbAnswer3.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer3.getText().toString())) {
-                        correctAnswersCount++;
-                    } else if (checkedId == rbAnswer4.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer4.getText().toString())) {
-                        correctAnswersCount++;
+                    if (checkedId == rbAnswer1.getId() && correctAnswer.equals(rbAnswer1.getText().toString())) {
+                        checAnswer();
+                    } else if (checkedId == rbAnswer2.getId() && correctAnswer.equals(rbAnswer2.getText().toString())) {
+                        checAnswer();
+                    } else if (checkedId == rbAnswer3.getId() && correctAnswer.equals(rbAnswer3.getText().toString())) {
+                        checAnswer();
+                    } else if (checkedId == rbAnswer4.getId() && correctAnswer.equals(rbAnswer4.getText().toString())) {
+                        checAnswer();
                     }
                 }
             });
         });
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+    }
+
+    public void checAnswer() {
+        SharedPreferences sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getString(R.string.saved_correctanswer), correctAnswersCount);
+        //editor.putInt(getString(R.string.saved_correctanswer), correctAnswersCount++);
+        //editor.putString(sharedCorrectAnswer, String.valueOf(correctAnswersCount++));
+        correctAnswersCount = correctAnswersCount+1;
+        editor.putInt("count", correctAnswersCount);
+        editor.putInt("countSize", quizData.size());
         editor.apply();
     }
+
     private String decodeHtmlString (String stringWithHtmlCodes){
         Spanned decodedString = null;
         if (Build.VERSION.SDK_INT >= 24)
