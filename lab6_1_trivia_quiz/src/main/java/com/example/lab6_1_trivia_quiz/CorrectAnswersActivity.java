@@ -1,6 +1,5 @@
 package com.example.lab6_1_trivia_quiz;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,8 +20,6 @@ public class CorrectAnswersActivity extends AppCompatActivity {
         setContentView(R.layout.correct_answers);
 
         SharedPreferences sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        //int defaultValue = getResources().getInteger(R.integer.saved_correctanswer_default);
-        //correctAnswersCount = sharedPref.getInt(getString(R.string.saved_correctanswer), defaultValue);
         correctAnswersCount = sharedPref.getInt("count", 0);
         correctAnswersSize = sharedPref.getInt("countSize", 0);
 

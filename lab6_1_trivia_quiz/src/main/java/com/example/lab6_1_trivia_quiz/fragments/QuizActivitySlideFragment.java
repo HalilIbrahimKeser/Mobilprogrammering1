@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,6 @@ import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class QuizActivitySlideFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +33,6 @@ public class QuizActivitySlideFragment extends Fragment {
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
     private int correctAnswersCount;
-    public static final String sharedCorrectAnswer = "sharedCorrectAnswerKEY";
 
 
     public QuizActivitySlideFragment() {
@@ -119,8 +116,6 @@ public class QuizActivitySlideFragment extends Fragment {
     public void checAnswer() {
         SharedPreferences sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        //editor.putInt(getString(R.string.saved_correctanswer), correctAnswersCount++);
-        //editor.putString(sharedCorrectAnswer, String.valueOf(correctAnswersCount++));
         correctAnswersCount = correctAnswersCount+1;
         editor.putInt("count", correctAnswersCount);
         editor.putInt("countSize", quizData.size());

@@ -49,9 +49,6 @@ public class QuizActivity extends AppCompatActivity implements BottomNavigationV
         String temp = String.valueOf(sharedPrefs.get("num"));
         numPages = Integer.parseInt(temp);
         if (!yourFile.exists()) {
-
-
-
             myViewModel.getQuiz(String.valueOf(sharedPrefs.get("num")), String.valueOf(sharedPrefs.get("category")),
                     String.valueOf(sharedPrefs.get("diff")), String.valueOf(sharedPrefs.get("type"))).observe(this, quizData -> {
                 myRepo.writeInternalFile(this, quizData);
