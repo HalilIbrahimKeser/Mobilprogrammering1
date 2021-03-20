@@ -4,4 +4,8 @@
         android:id="@+id/hjem"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/hjem" />
+    <item
+        android:id="@+id/fasit"
+        android:icon="@drawable/ic_baseline_question_answer_24"
+        android:title="@string/fasit" />
 </menu>

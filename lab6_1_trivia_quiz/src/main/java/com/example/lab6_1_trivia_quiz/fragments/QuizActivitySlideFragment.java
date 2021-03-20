@@ -1,5 +1,7 @@
 package com.example.lab6_1_trivia_quiz.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -8,11 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
@@ -27,6 +33,8 @@ public class QuizActivitySlideFragment extends Fragment {
     String amount, category, difficulty, type = null;
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
+    private int correctAnswersCount = 0;
+
 
     public QuizActivitySlideFragment() {
         // Required empty public constructor
@@ -64,6 +72,7 @@ public class QuizActivitySlideFragment extends Fragment {
             TextView tvQuestionNumber = view.findViewById(R.id.tvQuestionNumber);
             TextView tvQuestionNumSlashNum = view.findViewById(R.id.tvQuestionNumSlashNum);
             TextView tvQuestion = view.findViewById(R.id.tvQuestion);
+
             RadioButton rbAnswer1 = view.findViewById(R.id.rbAnswer1);
             RadioButton rbAnswer2 = view.findViewById(R.id.rbAnswer2);
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
@@ -81,15 +90,36 @@ public class QuizActivitySlideFragment extends Fragment {
             rbAnswer2.setText(alternatives.get(1));
             rbAnswer3.setText(alternatives.get(2));
             rbAnswer4.setText(alternatives.get(3));
-            tvQuestionNumber.setText(String.valueOf(position+1));
-            String str = ((position+1) + "/" + quizData.size());
+            tvQuestionNumber.setText(String.valueOf(position + 1));
+            String str = ((position + 1) + "/" + quizData.size());
             tvQuestionNumSlashNum.setText(str);
+
+            RadioGroup rbAnswersGroup = view.findViewById(R.id.rbAnswersGroup);
+            rbAnswersGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    group.check(checkedId);
+                    if (checkedId == rbAnswer1.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer1.getText().toString())) {
+                        correctAnswersCount++;
+                    } else if (checkedId == rbAnswer2.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer2.getText().toString())) {
+                        correctAnswersCount++;
+                    } else if (checkedId == rbAnswer3.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer3.getText().toString())) {
+                        correctAnswersCount++;
+                    } else if (checkedId == rbAnswer4.getId() && quizData.get(position).getCorrect_answer().equals(rbAnswer4.getText().toString())) {
+                        correctAnswersCount++;
+                    }
+                }
+            });
         });
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(getString(R.string.saved_correctanswer), correctAnswersCount);
+        editor.apply();
     }
-    private String decodeHtmlString(String stringWithHtmlCodes) {
+    private String decodeHtmlString (String stringWithHtmlCodes){
         Spanned decodedString = null;
         if (Build.VERSION.SDK_INT >= 24)
-            decodedString = Html.fromHtml(stringWithHtmlCodes ,
+            decodedString = Html.fromHtml(stringWithHtmlCodes,
                     Html.FROM_HTML_MODE_LEGACY);
         else
             decodedString = Html.fromHtml(stringWithHtmlCodes);

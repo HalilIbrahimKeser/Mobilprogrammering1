@@ -23,5 +23,8 @@
     <string name="str_question1of10">Spørsmål 1/10</string>
     <string name="str_num">5</string>
     <string name="str_description">This is a picture</string>
+    <string name="fasit">Fasit</string>
+    <string name="saved_correctanswer" />
+    <string name="saved_correctanswer_default" />
 
 </resources>

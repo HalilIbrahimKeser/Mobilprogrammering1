@@ -18,6 +18,8 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
+            android:name=".CorrectAnswersActivity" />
+        <activity
             android:name=".QuizActivity"
             android:label="@string/title_activity_quiz" />
         <activity android:name=".MainActivity">

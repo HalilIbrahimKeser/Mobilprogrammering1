@@ -79,6 +79,10 @@ public class QuizActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.hjem:
                 onBackPressed();
                 break;
+            case R.id.fasit:
+                Intent intent = new Intent(this, CorrectAnswersActivity.class);
+                startActivity(intent);
+                break;
         }
         return false;
     }
@@ -98,10 +102,4 @@ public class QuizActivity extends AppCompatActivity implements BottomNavigationV
             return numPages;
         }
     }
-
-    public void BackHome(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
 }
