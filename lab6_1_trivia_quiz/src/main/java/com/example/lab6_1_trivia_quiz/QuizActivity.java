@@ -5,26 +5,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.lab6_1_trivia_quiz.fragments.QuizActivitySlideFragment;
-import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.repository.myRepository;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -56,7 +52,7 @@ public class QuizActivity extends AppCompatActivity implements BottomNavigationV
         } else {
             myRepo.readInternalFile(getApplicationContext());
         }
-
+        getSharedPreferences("MyPref",0).edit().clear().apply();
         viewPager = findViewById(R.id.viewPager);
         viewPager.setPageTransformer(new zDepthPageTransformer());
 
@@ -77,7 +73,7 @@ public class QuizActivity extends AppCompatActivity implements BottomNavigationV
                 onBackPressed();
                 break;
             case R.id.fasit:
-                Intent intent = new Intent(this, CorrectAnswersActivity.class);
+                Intent intent = new Intent(this, ResultsActivity.class);
                 startActivity(intent);
                 break;
         }

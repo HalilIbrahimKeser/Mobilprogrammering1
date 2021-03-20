@@ -32,8 +32,7 @@ public class QuizActivitySlideFragment extends Fragment {
     String amount, category, difficulty, type = null;
     private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
-    private int correctAnswersCount;
-
+    private int correctAnswersCount = 0;
 
     public QuizActivitySlideFragment() {
         // Required empty public constructor
@@ -115,8 +114,15 @@ public class QuizActivitySlideFragment extends Fragment {
 
     public void checAnswer() {
         SharedPreferences sharedPref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        if (sharedPref.contains("count")) {
+            correctAnswersCount = sharedPref.getInt("count", 0);
+            correctAnswersCount = correctAnswersCount + 1;
+        } else {
+            correctAnswersCount = correctAnswersCount + 1;
+        }
         SharedPreferences.Editor editor = sharedPref.edit();
-        correctAnswersCount = correctAnswersCount+1;
+        editor.remove("count").apply();
+        editor.remove("countSize").apply();
         editor.putInt("count", correctAnswersCount);
         editor.putInt("countSize", quizData.size());
         editor.apply();
