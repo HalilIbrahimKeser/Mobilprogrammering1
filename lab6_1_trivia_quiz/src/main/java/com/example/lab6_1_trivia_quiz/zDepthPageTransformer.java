@@ -1,7 +1,6 @@
 package com.example.lab6_1_trivia_quiz;
 
 import android.view.View;
-
 import androidx.annotation.RequiresApi;
 import androidx.viewpager2.widget.ViewPager2;
 

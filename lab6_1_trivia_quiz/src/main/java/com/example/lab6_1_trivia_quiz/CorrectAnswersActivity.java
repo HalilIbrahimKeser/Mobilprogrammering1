@@ -2,14 +2,13 @@ package com.example.lab6_1_trivia_quiz;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.lab6_1_trivia_quiz.fragments.CorrectAnswerFragment;
+import com.example.lab6_1_trivia_quiz.fragments.CorrectAnswersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CorrectAnswersActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -19,10 +18,8 @@ public class CorrectAnswersActivity extends AppCompatActivity implements BottomN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_correct_answers);
 
-        if (savedInstanceState == null) {
-            Fragment fragment = CorrectAnswerFragment.newInstance(1);
-            replaceFragmentWidth(fragment, false);
-        }
+        Fragment fragment = CorrectAnswersFragment.newInstance(1);
+        replaceFragmentWidth(fragment, false);
 
         BottomNavigationView bottomNav2 = findViewById(R.id.bottom_navigation3);
         bottomNav2.setOnNavigationItemSelectedListener(this);

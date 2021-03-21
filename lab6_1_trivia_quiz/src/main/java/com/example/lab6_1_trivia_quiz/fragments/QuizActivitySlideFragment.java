@@ -7,26 +7,19 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.R;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.viewmodel.myViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,13 +28,10 @@ public class QuizActivitySlideFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private int position;
     String amount, category, difficulty, type = null;
-    private com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel;
     protected ArrayList<Question> quizData;
     private int correctAnswersCount = 0;
-    BottomNavigationView bottomNav3;
 
     public QuizActivitySlideFragment() {
-        // Required empty public constructor
     }
 
     public static QuizActivitySlideFragment newInstance(int position) {
@@ -69,7 +59,7 @@ public class QuizActivitySlideFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        myViewModel = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+        com.example.lab6_1_trivia_quiz.viewmodel.myViewModel myViewModel = new ViewModelProvider(requireActivity()).get(com.example.lab6_1_trivia_quiz.viewmodel.myViewModel.class);
         myViewModel.getQuiz(amount, category, difficulty, type).observe(getViewLifecycleOwner(), (ArrayList<Question> AllQuiz) -> {
             this.quizData = AllQuiz;
 
@@ -138,12 +128,8 @@ public class QuizActivitySlideFragment extends Fragment {
     }
 
     private String decodeHtmlString (String stringWithHtmlCodes){
-        Spanned decodedString = null;
-        if (Build.VERSION.SDK_INT >= 24)
-            decodedString = Html.fromHtml(stringWithHtmlCodes,
-                    Html.FROM_HTML_MODE_LEGACY);
-        else
-            decodedString = Html.fromHtml(stringWithHtmlCodes);
+        Spanned decodedString;
+        decodedString = Html.fromHtml(stringWithHtmlCodes, Html.FROM_HTML_MODE_LEGACY);
         return decodedString.toString();
     }
 }

@@ -1,7 +1,6 @@
 package com.example.lab6_1_trivia_quiz;
 
 import android.view.View;
-
 import androidx.viewpager2.widget.ViewPager2;
 
 public class zZoomOutPageTransformer implements ViewPager2.PageTransformer {

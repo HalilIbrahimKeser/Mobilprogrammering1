@@ -1,7 +1,6 @@
 package com.example.lab6_1_trivia_quiz.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class QuizData {
     private int response_code;

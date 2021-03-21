@@ -1,18 +1,14 @@
 package com.example.lab6_1_trivia_quiz.repository;
 
+import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-
-import com.example.lab6_1_trivia_quiz.MainActivity;
 import com.example.lab6_1_trivia_quiz.models.Question;
 import com.example.lab6_1_trivia_quiz.models.QuizData;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,9 +20,7 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +41,7 @@ public class myRepository {
     private final MutableLiveData<ArrayList<Question>> quizData;
     private final MutableLiveData<String> errorMessage;
 
+    //RETROFITT
     private myRepository() {
         errorMessage = new MutableLiveData<>();
         quizData = new MutableLiveData<>();
@@ -62,13 +57,14 @@ public class myRepository {
         return errorMessage;
     }
 
+    //LAST NED QUIZ
     public MutableLiveData<ArrayList<Question>> downloadQuiz(String amount, String category, String difficulty, String type) {
-        // Legger url-parametre i en HashMap:
         Map<String, String> urlArguments = new HashMap<>();
         urlArguments.put("amount", amount);
         urlArguments.put("category", category);
         urlArguments.put("difficulty", difficulty);
         urlArguments.put("type", type);
+
         Call<QuizData> call = triviaApi.downloadQuiz(urlArguments);
         call.enqueue(new Callback<QuizData>() {
             @Override
@@ -80,7 +76,6 @@ public class myRepository {
                 ArrayList<Question> tmp = data.getResults();
                 quizData.setValue(tmp);
             }
-
             @Override
             public void onFailure(Call<QuizData> call, Throwable t) {
             }
@@ -88,7 +83,7 @@ public class myRepository {
         return quizData;
     }
 
-    //LES fra INTERN fil:
+    //LES FRA INTERN FIL
     public ArrayList<Question> readInternalFile(Context context) {
         StringBuilder stringBuilder = new StringBuilder();
         FileInputStream fileInputStream = null;
@@ -99,23 +94,22 @@ public class myRepository {
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
             String jsonArrayAsString = line.toString();
-            //Konverterfra JSON til ArrayList<Question>
+
+            //Konverter fra JSON til ArrayList<Question>
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<Question>>(){}.getType();
+
             ArrayList<Question> tmpList = gson.fromJson(jsonArrayAsString, type);
             quizData.setValue(tmpList);
             return tmpList;
-        }
-        catch (FileNotFoundException e) {
+        } catch (IOException e) {
             //e.printStackTrace();
             return null;
-        } catch (IOException e) {
-            // Error occurred when opening raw file for reading.
-            return null;
-        }
+        }// Error occurred when opening raw file for reading.
+
     }
 
-
+    //SKRIV TIL INTEN FIL
     public void writeInternalFile(Context context, ArrayList<Question> tmpList) {
         Gson gson = new Gson();
         String questionListAsString = gson.toJson(tmpList);
@@ -125,6 +119,21 @@ public class myRepository {
             fileOutputStream.write(questionListAsString.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    //DELETE INTERNAL FILE
+    public void deleteInternalFile(Context context, String path) {
+        try {
+            String folder = context.getFilesDir().getAbsolutePath();
+            File file = new File(folder, "running_quiz.json");
+            if(file.exists()) {
+                file.delete();
+                if (!file.exists())
+                Toast.makeText(context, "Fil slettet", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }

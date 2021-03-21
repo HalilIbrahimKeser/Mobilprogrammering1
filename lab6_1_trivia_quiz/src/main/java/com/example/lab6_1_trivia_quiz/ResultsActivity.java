@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -35,7 +33,6 @@ public class ResultsActivity extends AppCompatActivity implements BottomNavigati
         TextView tvKarakter = findViewById(R.id.tvKarakter);
 
         String resultat = "Resultat: " + correctAnswersCount + " / " + correctAnswersSize;
-
         String karakter = "Karakter: " + calculateResult();
 
         tvResultat.setText(resultat);

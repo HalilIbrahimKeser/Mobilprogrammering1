@@ -1,16 +1,24 @@
 package com.example.lab6_1_trivia_quiz;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.example.lab6_1_trivia_quiz.models.QuizData;
+import androidx.preference.PreferenceManager;
+
+import com.example.lab6_1_trivia_quiz.repository.myRepository;
+
+import java.io.File;
+
 
 public class MainActivity extends AppCompatActivity {
-    protected QuizData quizData;
+    private final myRepository myRepo = myRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Menu icons are inflated just as they were with actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -35,11 +42,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        Intent intent = new Intent(this, QuizActivity.class);
-        startActivity(intent);
+        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!path.isEmpty() && !sharedPreferences.getAll().isEmpty()) {
+            Intent intent = new Intent(this, QuizActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Gå inn på innstillinger og\nVelg nye spørsmål fra innstillinger", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void resetGame (View view) {
-        //Nullstill savedpreferences
+        //SLETTER SHARED
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
+
+        //SLETT DEN TOMME FILEN
+        String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
+        myRepo.deleteInternalFile(getApplicationContext(), path);
+
+        Toast.makeText(this, "Innstillinger slettet.\nVelg nye spørsmål fra innstillinger", Toast.LENGTH_SHORT).show();
     }
 }
