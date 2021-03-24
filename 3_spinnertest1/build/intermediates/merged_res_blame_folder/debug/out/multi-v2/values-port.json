@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "B:\\androidstudio_app\\3_spinnertest1\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Ny\\.gradle\\caches\\transforms-3\\c0efad103569cd1cae9ecf5a69065c01\\transformed\\appcompat-1.0.0\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

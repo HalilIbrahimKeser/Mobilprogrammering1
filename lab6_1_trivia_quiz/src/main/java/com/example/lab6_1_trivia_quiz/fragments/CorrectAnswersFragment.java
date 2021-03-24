@@ -20,7 +20,6 @@ public class CorrectAnswersFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     String amount, category, difficulty, type = null;
     protected ArrayList<Question> quizData;
-    private int position;
 
     public CorrectAnswersFragment() {
     }
@@ -36,8 +35,9 @@ public class CorrectAnswersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int position;
         if (getArguments() != null)
-            this.position = getArguments().getInt(ARG_PARAM1);
+            position = getArguments().getInt(ARG_PARAM1);
     }
 
     @Override

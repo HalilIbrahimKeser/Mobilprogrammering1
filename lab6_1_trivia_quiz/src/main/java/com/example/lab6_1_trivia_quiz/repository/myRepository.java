@@ -129,8 +129,8 @@ public class myRepository {
             File file = new File(folder, "running_quiz.json");
             if(file.exists()) {
                 file.delete();
-                if (!file.exists())
-                Toast.makeText(context, "Fil slettet", Toast.LENGTH_LONG).show();
+//                if (!file.exists())
+//                Toast.makeText(context, "Fil slettet", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();

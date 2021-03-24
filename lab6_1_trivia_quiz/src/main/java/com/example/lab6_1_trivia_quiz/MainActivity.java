@@ -62,6 +62,6 @@ public class MainActivity extends AppCompatActivity {
         String path = this.getFilesDir().getAbsolutePath()+"/running_quiz.json";
         myRepo.deleteInternalFile(getApplicationContext(), path);
 
-        Toast.makeText(this, "Innstillinger slettet.\nVelg nye spørsmål fra innstillinger", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Innstillinger og lokalspørsmålsfil slettet.\nVelg nye spørsmål fra innstillinger", Toast.LENGTH_SHORT).show();
     }
 }

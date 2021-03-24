@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -72,20 +74,33 @@ public class QuizActivitySlideFragment extends Fragment {
             RadioButton rbAnswer3 = view.findViewById(R.id.rbAnswer3);
             RadioButton rbAnswer4 = view.findViewById(R.id.rbAnswer4);
 
-            //Legg alt inn i ny liste og shuffle.
-            List<String> alternatives = new ArrayList<>();
-            alternatives.add(decodeHtmlString(quizData.get(position).getCorrect_answer()));
-            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(0)));
-            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(1)));
-            alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(2)));
-            Collections.shuffle(alternatives);
+            if (quizData.isEmpty()){
+                Toast.makeText(getContext(), "Ingen spørsmål hentet. Prøv annen kategory", Toast.LENGTH_SHORT).show();
+            }
+            if (quizData.get(position).getIncorrect_answers().size() == 2) {
+                //Legg alt inn i ny liste og shuffle.
+                List<String> alternatives = new ArrayList<>();
+                alternatives.add(decodeHtmlString(quizData.get(position).getCorrect_answer()));
+                alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(0)));
+                alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(1)));
+                alternatives.add(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(2)));
+                Collections.shuffle(alternatives);
 
+                //Sett text på flere textview
+                tvQuestion.setText(decodeHtmlString(quizData.get(position).getQuestion()));
+                rbAnswer1.setText(alternatives.get(0));
+                rbAnswer2.setText(alternatives.get(1));
+                rbAnswer3.setText(alternatives.get(2));
+                rbAnswer4.setText(alternatives.get(3));
+            }else {
+                //Sett text på flere textview
+                tvQuestion.setText(decodeHtmlString(quizData.get(position).getQuestion()));
+                rbAnswer1.setText(decodeHtmlString(quizData.get(position).getCorrect_answer()));
+                rbAnswer2.setText(decodeHtmlString(quizData.get(position).getIncorrect_answers().get(0)));
+                rbAnswer3.setVisibility(View.INVISIBLE);
+                rbAnswer4.setVisibility(View.INVISIBLE);
+            }
             //Sett text på flere textview
-            tvQuestion.setText(decodeHtmlString(quizData.get(position).getQuestion()));
-            rbAnswer1.setText(alternatives.get(0));
-            rbAnswer2.setText(alternatives.get(1));
-            rbAnswer3.setText(alternatives.get(2));
-            rbAnswer4.setText(alternatives.get(3));
             tvQuestionNumber.setText(String.valueOf(position + 1));
             String str = ((position + 1) + "/" + quizData.size());
             tvQuestionNumSlashNum.setText(str);

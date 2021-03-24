@@ -1,7 +1,0 @@
-#Thu Feb 25 10:19:10 CET 2021
-base.0=C\:\\DokumenterPC\\ProsjektLaptop\\DTE-2603-Mobilprogrammering\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-path.1=classes.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=C\:\\DokumenterPC\\ProsjektLaptop\\DTE-2603-Mobilprogrammering\\spinnertest1\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
