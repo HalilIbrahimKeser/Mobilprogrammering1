@@ -48,13 +48,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0"
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.3.0'
     annotationProcessor "androidx.room:room-compiler:2.2.6"
 
     // Saved state module
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0'
 
     // Tests
     androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
-    testImplementation "junit:junit:4.13.1"
+    testImplementation 'junit:junit:4.13.2'
 }

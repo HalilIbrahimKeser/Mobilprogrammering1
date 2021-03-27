@@ -1,3 +1,4 @@
+include ':Modul_7'
 include ':7_viewbinding0'
 include ':7_huskelisteKontekstMeny'
 include ':7_dptest5'

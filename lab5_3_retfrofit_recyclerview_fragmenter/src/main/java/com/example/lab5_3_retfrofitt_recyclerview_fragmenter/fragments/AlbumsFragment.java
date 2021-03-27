@@ -29,6 +29,8 @@ public class AlbumsFragment extends Fragment {
     private RecyclerView albumsRecyclerView;
     private AlbumAdapter albumAdapter;
     protected List<Album> myDataset;
+//    private FragmentAlbumsBinding binding;
+
 
     public AlbumsFragment() {}
 
@@ -88,6 +90,11 @@ public class AlbumsFragment extends Fragment {
             albumAdapter.setLocalDataSet(allAlbums);
             albumAdapter.notifyDataSetChanged();
         });
-
     }
+
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        binding = null;
+//    }
 }
