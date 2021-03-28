@@ -1,5 +1,6 @@
 package no.uit.huskeliste1;
 
+import android.app.Activity;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private EditText etToDoText;
     private int currentSelectedItem = -1;
+
+
 
     public static String MY_TAG = "MY_TAG";
 

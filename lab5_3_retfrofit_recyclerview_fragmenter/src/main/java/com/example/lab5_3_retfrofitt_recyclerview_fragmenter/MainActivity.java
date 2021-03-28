@@ -11,8 +11,9 @@ import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.User;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+
+
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

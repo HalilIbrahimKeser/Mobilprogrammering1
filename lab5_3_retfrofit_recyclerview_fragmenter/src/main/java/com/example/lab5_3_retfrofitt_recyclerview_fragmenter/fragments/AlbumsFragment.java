@@ -22,6 +22,7 @@ import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.viewmodel.myViewMod
 
 import java.util.List;
 import java.util.Objects;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.databinding.FragmentAlbumsBinding;
 
 public class AlbumsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
