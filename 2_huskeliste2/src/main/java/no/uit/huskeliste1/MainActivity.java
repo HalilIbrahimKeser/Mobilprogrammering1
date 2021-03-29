@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
+import no.uit.huskeliste1.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnKeyListener {
     //"Data":

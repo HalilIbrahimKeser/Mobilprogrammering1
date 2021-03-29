@@ -7,8 +7,7 @@
     android:background="#DDC061"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
-    android:orientation="vertical"
-    tools:viewBindingIgnore="true">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvAlbum"

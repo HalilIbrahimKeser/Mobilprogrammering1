@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="#97BDCD"
     tools:context=".fragments.SinglePhotoFragment"
-    android:orientation="vertical"
-    tools:viewBindingIgnore="true">
+    android:orientation="vertical">
 
 
     <ImageView

@@ -7,8 +7,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:background="#5BA896"
-    android:orientation="vertical"
-    tools:viewBindingIgnore="true">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

@@ -17,12 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.MainActivity;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.R;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.adapters.AlbumAdapter;
+import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.databinding.FragmentAlbumsBinding;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.models.Album;
 import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.viewmodel.myViewModel;
 
 import java.util.List;
-import java.util.Objects;
-import com.example.lab5_3_retfrofitt_recyclerview_fragmenter.databinding.FragmentAlbumsBinding;
+
+//ENDRINGER GJORT; LA INN viewbinding
 
 public class AlbumsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +31,7 @@ public class AlbumsFragment extends Fragment {
     private RecyclerView albumsRecyclerView;
     private AlbumAdapter albumAdapter;
     protected List<Album> myDataset;
-//    private FragmentAlbumsBinding binding;
+    private FragmentAlbumsBinding fragmentAlbumsBinding;
 
 
     public AlbumsFragment() {}
@@ -58,7 +59,8 @@ public class AlbumsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_albums, container, false);
+        fragmentAlbumsBinding = FragmentAlbumsBinding.inflate(inflater, container, false);
+        return fragmentAlbumsBinding.getRoot();
     }
 
     @Override
@@ -69,7 +71,7 @@ public class AlbumsFragment extends Fragment {
         albumsViewModel.getAlbumsForUser(this.userId).observe(getViewLifecycleOwner(), (List<Album> allAlbums) -> {
             this.myDataset = allAlbums;
 
-            albumsRecyclerView = view.findViewById(R.id.albumsRecyclerView);
+            albumsRecyclerView = fragmentAlbumsBinding.albumsRecyclerView;
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             albumsRecyclerView.setLayoutManager(layoutManager);
 
@@ -93,9 +95,9 @@ public class AlbumsFragment extends Fragment {
         });
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        binding = null;
-//    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        fragmentAlbumsBinding = null;
+    }
 }

@@ -1,3 +1,4 @@
+include ':lab8_1_roomwordsample'
 include ':Modul_7'
 include ':7_viewbinding0'
 include ':7_huskelisteKontekstMeny'
