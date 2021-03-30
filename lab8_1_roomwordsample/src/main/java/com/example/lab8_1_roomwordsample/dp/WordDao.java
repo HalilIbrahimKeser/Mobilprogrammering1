@@ -1,10 +1,12 @@
-package com.example.lab8_1_roomwordsample;
+package com.example.lab8_1_roomwordsample.dp;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.example.lab8_1_roomwordsample.model.Word;
 
 import java.util.List;
 

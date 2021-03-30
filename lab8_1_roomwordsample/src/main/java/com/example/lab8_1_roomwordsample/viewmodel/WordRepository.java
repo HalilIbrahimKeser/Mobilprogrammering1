@@ -1,8 +1,12 @@
-package com.example.lab8_1_roomwordsample;
+package com.example.lab8_1_roomwordsample.viewmodel;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.lab8_1_roomwordsample.dp.WordDao;
+import com.example.lab8_1_roomwordsample.dp.WordRoomDatabase;
+import com.example.lab8_1_roomwordsample.model.Word;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.lab8_1_roomwordsample;
+package com.example.lab8_1_roomwordsample.adapters;
 
 
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lab8_1_roomwordsample.R;
 
 class WordViewHolder extends RecyclerView.ViewHolder {
     private final TextView wordItemView;

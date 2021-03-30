@@ -1,10 +1,13 @@
-package com.example.lab8_1_roomwordsample;
+package com.example.lab8_1_roomwordsample.adapters;
 
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+
+import com.example.lab8_1_roomwordsample.model.Word;
+import com.example.lab8_1_roomwordsample.WordViewHolder;
 
 public class WordListAdapter extends ListAdapter<Word, WordViewHolder> {
 
