@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "B:\\androidstudio_app\\8_SQLite1\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Ny\\.gradle\\caches\\transforms-3\\11d92066f63a4c6964d549d96cc94deb\\transformed\\appcompat-1.2.0\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

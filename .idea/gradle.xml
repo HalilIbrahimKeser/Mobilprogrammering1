@@ -56,7 +56,9 @@
             <option value="$PROJECT_DIR$/7_dptest5" />
             <option value="$PROJECT_DIR$/7_huskelisteKontekstMeny" />
             <option value="$PROJECT_DIR$/7_viewbinding0" />
-            <option value="$PROJECT_DIR$/Modul_7" />
+            <option value="$PROJECT_DIR$/8_SQLite1" />
+            <option value="$PROJECT_DIR$/8_roomusers2021" />
+            <option value="$PROJECT_DIR$/8_roomwordsample2021utvidet" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lab1_1" />
             <option value="$PROJECT_DIR$/lab1_2" />
@@ -73,6 +75,8 @@
             <option value="$PROJECT_DIR$/lab6_0_delt_fillager" />
             <option value="$PROJECT_DIR$/lab6_1_trivia_quiz" />
             <option value="$PROJECT_DIR$/lab8_1_roomwordsample" />
+            <option value="$PROJECT_DIR$/lab8_oblig_4_room" />
+            <option value="$PROJECT_DIR$/roomusers2021" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

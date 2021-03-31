@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.lab8_1_roomwordsample.model.Word;
-import com.example.lab8_1_roomwordsample.WordViewHolder;
 
 public class WordListAdapter extends ListAdapter<Word, WordViewHolder> {
 
@@ -26,7 +25,7 @@ public class WordListAdapter extends ListAdapter<Word, WordViewHolder> {
         holder.bind(current.getWord());
     }
 
-    static class WordDiff extends DiffUtil.ItemCallback<Word> {
+    public static class WordDiff extends DiffUtil.ItemCallback<Word> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Word oldItem, @NonNull Word newItem) {
