@@ -1,31 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <TextView
+        android:id="@+id/btNewPhoto"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/new_photo"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etNewPhotoAlbumId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etNewPhotoAlbumId" />
+
+    <TextView
+        android:id="@+id/btNewAlbum"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/new_album"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etNewAlbumUserId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etNewAlbumUserId" />
+
+    <TextView
+        android:id="@+id/btDeleteAlbum"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/delete_album"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etDeletePhotoAlbumId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etDeletePhotoAlbumId" />
+
+    <TextView
+        android:id="@+id/btShowPhoto"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/show_album_photos"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etShowAlbumPhotoUserId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etShowAlbumPhotoUserId" />
+
+    <TextView
+        android:id="@+id/btDeleteUser"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:listitem="@layout/recyclerview_item"
-        android:padding="@dimen/big_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/delete_user"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etDeleteUserId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/etDeleteUserId"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etNewPhotoAlbumId"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttom_background1"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="@string/albumid"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/etNewAlbumUserId"
+        app:layout_constraintTop_toBottomOf="@+id/etNewAlbumUserId"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/etDeletePhotoAlbumId"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttom_background1"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="@string/albumid"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/etNewPhotoAlbumId"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPhotoAlbumId"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/etShowAlbumPhotoUserId"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttom_background1"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="@string/userid"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/etDeletePhotoAlbumId"
+        app:layout_constraintTop_toBottomOf="@+id/etDeletePhotoAlbumId"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/etNewAlbumUserId"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttom_background1"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="@string/userid"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/etDeleteUserId"
+        app:layout_constraintTop_toBottomOf="@+id/etDeleteUserId"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/btNewUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/buttom_background"
+        android:padding="5dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/new_user"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etDeleteUserId"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttom_background1"
+        android:backgroundTint="@color/teal_700"
+        android:ems="10"
+        android:hint="@string/userid"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btNewUser"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/headerUsers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/buttom_background2"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/users"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btShowPhoto" />
+
+    <TextView
+        android:id="@+id/headerUsers2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/buttom_background2"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/albums"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="411dp"
+        android:layout_height="170dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerUsers">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/big_padding"
+            tools:listitem="@layout/recyclerview_item" />
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="411dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerUsers2"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/big_padding"
+            tools:listitem="@layout/recyclerview_item" />
+    </ScrollView>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:contentDescription="@string/add_word"
-        android:src="@drawable/ic_baseline_add_24"/>
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
